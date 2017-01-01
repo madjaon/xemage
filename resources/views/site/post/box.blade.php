@@ -10,9 +10,12 @@
 @if($display == DISPLAY_1)
 	<ul>
 		@foreach($data as $key => $value)
+			<?php 
+				$image = ($value->image)?$value->image:'/img/noimage.jpg';
+			?>
 			<li>
 				<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
-					<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
+					<img src="{{ $image }}" alt="{!! $value->name !!}" />
 					<span>{!! $value->name !!}</span>
 					<div class="clearfix"></div>
 				</a>

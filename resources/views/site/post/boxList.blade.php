@@ -1,10 +1,13 @@
 <div class="box-list">
 	<ul>
 		@foreach($data as $key => $value)
+		<?php 
+			$image = ($value->image)?$value->image:'/img/noimage.jpg';
+		?>
 		<li>
 			<div class="list-left">
 				<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
-					<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
+					<img src="{{ $image }}" alt="{!! $value->name !!}" />
 				</a>
 			</div>
 			<div class="list-right">
