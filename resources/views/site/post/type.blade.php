@@ -1,0 +1,65 @@
+<?php 
+	if(isset($isHotOrNew)) {
+		$metaPrefix = $type->name.' | ';
+	} else {
+		$metaPrefix = '';
+	}
+	if($total > 0) {
+		$title = ($type->meta_title!='')?$type->meta_title:$type->name;
+		$h1 = $type->name;
+		$is404 = false;
+		$meta_title = $metaPrefix.$type->meta_title;
+		$meta_keyword = $metaPrefix.$type->meta_keyword;
+		$meta_description = $metaPrefix.$type->meta_description;
+		$meta_image = $type->meta_image;
+	} else {
+		$title = PAGENOTFOUND;
+		$h1 = PAGENOTFOUND;
+		$is404 = true;
+		$meta_title = '';
+		$meta_keyword = '';
+		$meta_description = '';
+		$meta_image = '';
+	}
+	$extendData = array(
+			'is404' => $is404,
+			'meta_title' => $meta_title,
+			'meta_keyword' => $meta_keyword,
+			'meta_description' => $meta_description,
+			'meta_image' => $meta_image,
+			'pagePrev' => isset($paginate)?$data->previousPageUrl():null,
+			'pageNext' => isset($paginate)?$data->nextPageUrl():null
+		);
+?>
+@extends('site.layouts.master', $extendData)
+
+@section('title', $title)
+
+@section('content')
+<div class="box">
+	<?php
+		if(isset($seriParent)) {
+			$breadcrumb = array(
+				['name' => $seriParent->name, 'link' => url($seriParent->slug)],
+				['name' => $h1, 'link' => '']
+			);
+		} else {
+			$breadcrumb = array(
+				['name' => $h1, 'link' => '']
+			);
+		}
+	?>
+	@include('site.common.breadcrumb', $breadcrumb)
+	<div class="title">
+		<h1>{!! $h1 !!}</h1>
+	</div>
+	@if($type->grid == ACTIVE)
+	@include('site.post.boxList', array('data' => $data, 'type' => $type))
+	@else
+	@include('site.post.box', array('data' => $data))
+	@endif
+	@if(isset($paginate))
+	@include('site.common.paginate', ['paginator' => $data])
+	@endif
+</div>
+@endsection
