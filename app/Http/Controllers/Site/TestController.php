@@ -51,25 +51,26 @@ class TestController extends Controller
         // }
         // $table .= '</tbody></table>';
         // echo $table;
+        
         //insert posts
-        $datas = DB::table('tvtd')->get();
-        foreach($datas as $key => $value) {
-            $slug = str_replace('.html', '', $value->slug);
-            $slug = str_replace('/', '', $slug);
-            $type_id = 41;
-            $data = Post::create([
-                'name' => $value->name,
-                'slug' => $slug,
-                'type_main_id' => $type_id, //tu-vi-tron-doi
-                'description' => str_replace('  <p style="text-align: center; margin: 10px 0;">  <!-- LVS300x250 -->   </p> <br/> ', '', $value->description),
-                'source' => 'xemtuoi.com.vn',
-                'source_url' => 'http://xemtuoi.com.vn'.$value->slug,
-                'start_date' => date('Y-m-d H:i:s'),
-            ]);
-            $data->posttypes()->attach($type_id);
-        }
-        Cache::flush();
-        return 1;
+        // $datas = DB::table('tvtd')->get();
+        // foreach($datas as $key => $value) {
+        //     $slug = str_replace('.html', '', $value->slug);
+        //     $slug = str_replace('/', '', $slug);
+        //     $type_id = 41;
+        //     $data = Post::create([
+        //         'name' => $value->name,
+        //         'slug' => $slug,
+        //         'type_main_id' => $type_id, //tu-vi-tron-doi
+        //         'description' => str_replace('  <p style="text-align: center; margin: 10px 0;">  <!-- LVS300x250 -->   </p> <br/> ', '', $value->description),
+        //         'source' => 'xemtuoi.com.vn',
+        //         'source_url' => 'http://xemtuoi.com.vn'.$value->slug,
+        //         'start_date' => date('Y-m-d H:i:s'),
+        //     ]);
+        //     $data->posttypes()->attach($type_id);
+        // }
+        // Cache::flush();
+        // return 1;
     }
 
 }
