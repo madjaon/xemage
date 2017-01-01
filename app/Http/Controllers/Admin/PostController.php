@@ -101,6 +101,8 @@ class PostController extends Controller
             'meta_keyword' => 'max:255',
             'meta_description' => 'max:255',
             'meta_image' => 'max:255',
+            'source' => 'max:255',
+            'source_url' => 'max:255',
         ]);
         if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -120,6 +122,9 @@ class PostController extends Controller
                 'meta_keyword' => $request->meta_keyword,
                 'meta_description' => $request->meta_description,
                 'meta_image' => CommonMethod::removeDomainUrl($request->meta_image),
+                'position' => 1,
+                'source' => $request->source,
+                'source_url' => $request->source_url,
                 'position' => 1,
                 'start_date' => CommonMethod::datetimeConvert($request->start_date, $request->start_time),
                 'view' => 0,
@@ -181,6 +186,8 @@ class PostController extends Controller
             'meta_keyword' => 'max:255',
             'meta_description' => 'max:255',
             'meta_image' => 'max:255',
+            'source' => 'max:255',
+            'source_url' => 'max:255',
         ];
         if($request->slug != $data->slug) {
             $rules['slug'] = 'required|max:255|unique:posts|unique:post_types';
@@ -204,6 +211,8 @@ class PostController extends Controller
                 'meta_keyword' => $request->meta_keyword,
                 'meta_description' => $request->meta_description,
                 'meta_image' => CommonMethod::removeDomainUrl($request->meta_image),
+                'source' => $request->source,
+                'source_url' => $request->source_url,
                 'start_date' => CommonMethod::datetimeConvert($request->start_date, $request->start_time),
                 'status' => $request->status,
                 'lang' => $request->lang,

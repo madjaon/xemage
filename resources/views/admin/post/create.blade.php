@@ -76,11 +76,31 @@
 									</div>
 								</div>
 							</div>
+							<div class="form-group">
+								<label for="source">Nguồn (domain:ex:xemtuoi.vn)</label>
+								<div class="row">
+									<div class="col-sm-12">
+										<input name="source" type="text" value="{{ old('source') }}" class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="source_url">Đường dẫn nguồn</label>
+								<div class="row">
+									<div class="col-sm-12">
+										<input name="source_url" type="text" value="{{ old('source_url') }}" class="form-control">
+									</div>
+								</div>
+							</div>
 							@include('admin.common.inputStatusLang', array('isCreate' => true))
 							@include('admin.common.inputContent', array('isCreate' => true))
 							@include('admin.common.inputMeta', array('isCreate' => true))
 						</div>
 						<div class="col-sm-4">
+							<div class="box-footer">
+								<input type="submit" class="btn btn-primary" value="Lưu lại" />
+								<input type="reset" class="btn btn-default" value="Nhập lại" />
+							</div>
 							@include('admin.post.posttype', array('isCreate' => true))
 							@include('admin.post.posttag', array('isCreate' => true))
 						</div>

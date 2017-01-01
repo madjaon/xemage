@@ -43,7 +43,7 @@
 						<td>{{ CommonQuery::getFieldById('post_types', $value->type_main_id, 'name') }}</td>
 						<!-- <td>{{-- CommonOption::getTypePost($value->type) --}}</td> -->
 						<td>{{ getZero($value->view) }}</td>
-						<td>{{ $value->source }}</td>
+						<td><a href="{{ $value->source_url }}" target="_blank" rel="nofollow">{{ $value->source }}</a></td>
 						<td>{!! CommonMethod::startDateLabel($value->start_date) !!}</td>
 						<td><a id="status_{{ $value->id }}" onclick="updateStatus({{ $value->id }}, 'status')" style="cursor: pointer;" title="Click to change">{!! CommonOption::getStatus($value->status) !!}</a></td>
 						<td>
