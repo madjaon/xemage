@@ -166,9 +166,9 @@ class SiteController extends Controller
         // IF SLUG IS A POST
         // post
         $post = DB::table('posts')
-            ->where('posts.slug', $slug)
-            ->where('posts.status', ACTIVE)
-            ->where('posts.start_date', '<=', date('Y-m-d H:i:s'))
+            ->where('slug', $slug)
+            ->where('status', ACTIVE)
+            ->where('start_date', '<=', date('Y-m-d H:i:s'))
             ->first();
         if($post) {
             //list tags
