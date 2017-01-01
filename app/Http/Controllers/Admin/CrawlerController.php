@@ -149,6 +149,8 @@ class CrawlerController extends Controller
                         foreach($html->find($request->image_pattern) as $element) {
                             $images[$key][] = $element->src;
                         }
+                    } else {
+                        $images[$key] = [];
                     }
                     $result = self::stealPost($request, $links[$key], $images[$key]);
                 }
@@ -210,13 +212,19 @@ class CrawlerController extends Controller
                 //slug
                 $slug = CommonMethod::convert_string_vi_to_en($postName);
                 $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/i', '-', $slug));
+                //image
+                if(count($images) > 0 && !empty($request->image_dir)) {
+                    $image = '/images/'.$request->image_dir.'/'.basename($images[$key]);
+                } else {
+                    $image = '';
+                }
                 //insert post
                 $data = Post::create([
                     'name' => $postName,
                     'slug' => $slug,
                     'type_main_id' => $request->type_main_id,
                     'description' => $postDescription,
-                    'image' => '/images/'.$request->image_dir.'/'.basename($images[$key]),
+                    'image' => $image,
                     'position' => 1,
                     'start_date' => CommonMethod::datetimeConvert($request->start_date, $request->start_time),
                     'status' => $request->status,
@@ -228,7 +236,9 @@ class CrawlerController extends Controller
                     $data->posttypes()->attach([$request->type_main_id]);
                 }
                 //upload images
-                $imageName = uploadImageFromUrl($images[$key], $request->image_dir);
+                if(count($images) > 0 && !empty($request->image_dir)) {
+                    $imageName = uploadImageFromUrl($images[$key], $request->image_dir);
+                }
             }
         }
         return;
