@@ -34,9 +34,13 @@ class TestController extends Controller
             </tr>';
         foreach($data as $key => $value) {
             $year2 = $value->year + 60;
+            $url = DB::table('tvtd')->select('slug')->where('year', $value->year)->first();
+            $url = str_replace('.html', '', $url->slug);
+            $url2 = DB::table('tvtd')->select('slug')->where('year', $year2)->first();
+            $url2 = str_replace('.html', '', $url2->slug);
             $table .= '<tr>
-                <td style="text-align: center;"><strong>'.$value->year.'</strong></td>
-                <td style="text-align: center;"><strong>'.$year2.'</strong></td>
+                <td style="text-align: center;"><strong><a href="'.$url.'">'.$value->year.'</a></strong></td>
+                <td style="text-align: center;"><strong><a href="'.$url2.'">'.$year2.'</a></strong></td>
                 <td style="text-align: center;">'.$value->ages.'</td>
                 <td style="text-align: center;">'.$value->note.'</td>
                 <td style="text-align: center;">'.str_replace('Mạng ', '', $value->life).'</td>
