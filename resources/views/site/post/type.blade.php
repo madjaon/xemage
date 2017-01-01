@@ -52,6 +52,9 @@
 		<div class="description">{!! $type->summary !!}</div>
 		<div class="description">{!! $type->description !!}</div>
 	</div>
+	@if($typeChild)
+		@include('site.post.box', array('data' => $typeChild))
+	@endif
 	@if($total > 0)
 		@if($type->grid == ACTIVE)
 		@include('site.post.boxList', array('data' => $data, 'type' => $type))
