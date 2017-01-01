@@ -160,7 +160,7 @@ class SiteController extends Controller
             // lay ra the loai con neu the loai nay ko co bai viet
             if($total <= 0) {
                 $typeChild = DB::table('post_types')
-                    ->select('id', 'name', 'slug', 'image')
+                    ->select('id', 'name', 'slug', 'parent_id', 'image')
                     ->where('parent_id', $type->id)
                     ->where('status', ACTIVE)
                     ->get();
