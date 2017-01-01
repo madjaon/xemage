@@ -16,8 +16,8 @@
 						<label for="type_id_{{ $value->id }}">{{ $value->name }}</label>
 						<small class="label label-success primary" id="primary_{{ $value->id }}" style="display: none;"><i class="fa fa-key"></i> Primary</small>
 						<small class="make_primary" id="make_primary_{{ $value->id }}" onclick="checkKey({{ $value->id }}, 'primary', 'type_main_id');" style="cursor: pointer; display: none;"> Primary</small>
-						<small class="label label-success seri" id="seri_{{ $value->id }}" style="display: none;"><i class="fa fa-key"></i> Seri</small>
-						<small class="make_seri" id="make_seri_{{ $value->id }}" onclick="checkKey({{ $value->id }}, 'seri', 'seri');" style="cursor: pointer; display: none;"> Seri</small>
+						<!-- <small class="label label-success seri" id="seri_{{-- $value->id --}}" style="display: none;"><i class="fa fa-key"></i> Seri</small>
+						<small class="make_seri" id="make_seri_{{-- $value->id --}}" onclick="checkKey({{-- $value->id --}}, 'seri', 'seri');" style="cursor: pointer; display: none;"> Seri</small> -->
 						<small class="label label-success related" id="related_{{ $value->id }}" style="display: none;"><i class="fa fa-key"></i> Related</small>
 						<small class="make_related" id="make_related_{{ $value->id }}" onclick="checkKey({{ $value->id }}, 'related', 'related', 2);" style="cursor: pointer;"> Related</small>
 					</li>
@@ -47,8 +47,8 @@
 						<label for="type_id_{{ $value->id }}">{{ $value->name }}</label>
 						<small class="label label-success primary" id="primary_{{ $value->id }}" style="<?php echo CommonPost::issetCheckedDisplay($data->type_main_id, $value->id); ?>"><i class="fa fa-key"></i> Primary</small>
 						<small class="make_primary" id="make_primary_{{ $value->id }}" onclick="checkKey({{ $value->id }}, 'primary', 'type_main_id');" style="cursor: pointer; <?php echo CommonPost::issetMakeDisplay($data->id, $data->type_main_id, $value->id); ?>">Primary</small>
-						<small class="label label-success seri" id="seri_{{ $value->id }}" style="<?php echo CommonPost::issetCheckedDisplay($data->seri, $value->id); ?>"><i class="fa fa-key"></i> Seri</small>
-						<small class="make_seri" id="make_seri_{{ $value->id }}" onclick="checkKey({{ $value->id }}, 'seri', 'seri');" style="cursor: pointer; <?php echo CommonPost::issetMakeDisplay($data->id, $data->seri, $value->id); ?>">Seri</small>
+						<!-- <small class="label label-success seri" id="seri_{{-- $value->id --}}" style="<?php //echo CommonPost::issetCheckedDisplay($data->seri, $value->id); ?>"><i class="fa fa-key"></i> Seri</small>
+						<small class="make_seri" id="make_seri_{{-- $value->id --}}" onclick="checkKey({{-- $value->id --}, 'seri', 'seri');" style="cursor: pointer; <?php //echo CommonPost::issetMakeDisplay($data->id, $data->seri, $value->id); ?>">Seri</small> -->
 						<small class="label label-success related" id="related_{{ $value->id }}" style="<?php echo CommonPost::issetCheckedDisplay($data->related, $value->id); ?>"><i class="fa fa-key"></i> related</small>
 						<small class="make_related" id="make_related_{{ $value->id }}" onclick="checkKey({{ $value->id }}, 'related', 'related', 2);" style="cursor: pointer; <?php echo CommonPost::issetMakeDisplay($data->id, $data->related, $value->id, false); ?>">Related</small>
 					</li>

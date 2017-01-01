@@ -19,11 +19,11 @@
 			$('#primary_'+id).hide();
 			$('#make_primary_'+id).hide();
 			//seri
-			if($('input[name="seri"]').val() == id) {
-				$('input[name="seri"]').val('');
-			}
-			$('#seri_'+id).hide();
-			$('#make_seri_'+id).hide();
+			// if($('input[name="seri"]').val() == id) {
+			// 	$('input[name="seri"]').val('');
+			// }
+			// $('#seri_'+id).hide();
+			// $('#make_seri_'+id).hide();
 			//related
 			if($('input[name="related"]').val() == id) {
 				$('input[name="related"]').val('');
