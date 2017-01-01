@@ -52,7 +52,7 @@ class TestController extends Controller
         // $table .= '</tbody></table>';
         // echo $table;
         
-        //insert posts
+        // insert posts
         // $datas = DB::table('tvtd')->get();
         // foreach($datas as $key => $value) {
         //     $slug = str_replace('.html', '', $value->slug);
@@ -65,6 +65,21 @@ class TestController extends Controller
         //         'description' => str_replace('  <p style="text-align: center; margin: 10px 0;">  <!-- LVS300x250 -->   </p> <br/> ', '', $value->description),
         //         'source' => 'xemtuoi.com.vn',
         //         'source_url' => 'http://xemtuoi.com.vn'.$value->slug,
+        //         'start_date' => date('Y-m-d H:i:s'),
+        //     ]);
+        //     $data->posttypes()->attach($type_id);
+        // }
+
+        // $datas = DB::table('tvtd2')->get();
+        // foreach($datas as $key => $value) {
+        //     $type_id = 42;
+        //     $data = Post::create([
+        //         'name' => $value->name,
+        //         'slug' => $value->slug,
+        //         'type_main_id' => $type_id, //tu-vi-tron-doi
+        //         'description' => $value->description,
+        //         'source' => 'xemtuoi.com.vn',
+        //         'source_url' => 'http://xemtuoi.com.vn/'.$value->slug.'.html',
         //         'start_date' => date('Y-m-d H:i:s'),
         //     ]);
         //     $data->posttypes()->attach($type_id);
