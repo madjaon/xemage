@@ -109,9 +109,7 @@
 					<div class="row">
 						<div class="col-sm-8">
 							@include('admin.common.inputStatusLang', array('isCreate' => true))
-							<div style="display: none;">
 							@include('admin.common.inputContent', array('isCreate' => true))
-							</div>
 							@include('admin.common.inputMeta', array('isCreate' => true))
 						</div>
 					</div>

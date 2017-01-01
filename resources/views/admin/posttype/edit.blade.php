@@ -112,9 +112,7 @@
 					<div class="row">
 						<div class="col-sm-8">
 							@include('admin.common.inputStatusLang', array('isEdit' => true))
-							<div style="display: none;">
 							@include('admin.common.inputContent', array('isEdit' => true))
-							</div>
 							@include('admin.common.inputMeta', array('isEdit' => true))
 						</div>
 					</div>
