@@ -1,16 +1,11 @@
 <?php 
-	if(isset($isHotOrNew)) {
-		$metaPrefix = $type->name.' | ';
-	} else {
-		$metaPrefix = '';
-	}
-	if($total > 0) {
+	if($type) {
 		$title = ($type->meta_title!='')?$type->meta_title:$type->name;
 		$h1 = $type->name;
 		$is404 = false;
-		$meta_title = $metaPrefix.$type->meta_title;
-		$meta_keyword = $metaPrefix.$type->meta_keyword;
-		$meta_description = $metaPrefix.$type->meta_description;
+		$meta_title = $type->meta_title;
+		$meta_keyword = $type->meta_keyword;
+		$meta_description = $type->meta_description;
 		$meta_image = $type->meta_image;
 	} else {
 		$title = PAGENOTFOUND;
@@ -27,8 +22,8 @@
 			'meta_keyword' => $meta_keyword,
 			'meta_description' => $meta_description,
 			'meta_image' => $meta_image,
-			'pagePrev' => isset($paginate)?$data->previousPageUrl():null,
-			'pageNext' => isset($paginate)?$data->nextPageUrl():null
+			'pagePrev' => ($total > 0)?$data->previousPageUrl():null,
+			'pageNext' => ($total > 0)?$data->nextPageUrl():null
 		);
 ?>
 @extends('site.layouts.master', $extendData)
@@ -53,13 +48,19 @@
 	<div class="title">
 		<h1>{!! $h1 !!}</h1>
 	</div>
-	@if($type->grid == ACTIVE)
-	@include('site.post.boxList', array('data' => $data, 'type' => $type))
-	@else
-	@include('site.post.box', array('data' => $data))
-	@endif
-	@if(isset($paginate))
-	@include('site.common.paginate', ['paginator' => $data])
+	<div class="info">
+		<div class="description">{!! $type->summary !!}</div>
+		<div class="description">{!! $type->description !!}</div>
+	</div>
+	@if($total > 0)
+		@if($type->grid == ACTIVE)
+		@include('site.post.boxList', array('data' => $data, 'type' => $type))
+		@else
+		@include('site.post.box', array('data' => $data))
+		@endif
+		@if(isset($paginate))
+		@include('site.common.paginate', ['paginator' => $data])
+		@endif
 	@endif
 </div>
 @endsection

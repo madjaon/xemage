@@ -145,25 +145,23 @@ class SiteController extends Controller
             $paginate = 1;
             $data = $this->getPostByRelationsQuery('type', $type->id)->paginate($paginateNumber);
             $total = count($data);
-            if($total > 0) {
-                //auto meta tag for seo
-                if(empty($type->meta_title)) {
-                    $type->meta_title = $type->name.' | Tổng hợp tử vi xem bói phong thủy tại xemtuoi.vn';
-                }
-                if(empty($type->meta_keyword)) {
-                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                    $type->meta_keyword = $typeNameNoLatin.', '.$type->name;
-                }
-                if(empty($type->meta_description)) {
-                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                    $type->meta_description = $typeNameNoLatin.', '.$type->name.' tại xemtuoi.vn';
-                }
-                //put cache
-                $html = view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate])->render();
-                Cache::forever($cacheName, $html);
-                //return view
-                return view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate]);
+            //auto meta tag for seo
+            if(empty($type->meta_title)) {
+                $type->meta_title = $type->name.' | Tổng hợp tử vi xem bói phong thủy tại xemtuoi.vn';
             }
+            if(empty($type->meta_keyword)) {
+                $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
+                $type->meta_keyword = $typeNameNoLatin.', '.$type->name;
+            }
+            if(empty($type->meta_description)) {
+                $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
+                $type->meta_description = $typeNameNoLatin.', '.$type->name.' tại xemtuoi.vn';
+            }
+            //put cache
+            $html = view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate])->render();
+            Cache::forever($cacheName, $html);
+            //return view
+            return view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate]);
         }
         // IF SLUG IS A POST
         // post

@@ -1,5 +1,5 @@
 <?php 
-	if($data->total() > 0) {
+	if($tag) {
 		$title = ($tag->meta_title!='')?$tag->meta_title:$tag->name;
 		$h1 = $tag->name;
 		$is404 = false;
@@ -22,8 +22,8 @@
 			'meta_keyword' => $meta_keyword,
 			'meta_description' => $meta_description,
 			'meta_image' => $meta_image,
-			'pagePrev' => isset($data)?$data->previousPageUrl():null,
-			'pageNext' => isset($data)?$data->nextPageUrl():null
+			'pagePrev' => ($total > 0)?$data->previousPageUrl():null,
+			'pageNext' => ($total > 0)?$data->nextPageUrl():null
 		);
 ?>
 @extends('site.layouts.master', $extendData)
@@ -41,7 +41,13 @@
 	<div class="title">
 		<h1>{!! $h1 !!}</h1>
 	</div>
-	@include('site.post.boxList', array('data' => $data))
-	@include('site.common.paginate', ['paginator' => $data])
+	<div class="info">
+		<div class="description">{!! $tag->summary !!}</div>
+		<div class="description">{!! $tag->description !!}</div>
+	</div>
+	@if($total > 0)
+		@include('site.post.boxList', array('data' => $data))
+		@include('site.common.paginate', ['paginator' => $data])
+	@endif
 </div>
 @endsection

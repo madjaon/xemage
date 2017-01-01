@@ -21,6 +21,30 @@ class TestController extends Controller
     	// $link = 'https://www.facebook.com/LeoMessi/videos/vb.176063032413299/1183588781660714/?type=2&theater';
     	// $result = CommonVideo::getLinkFacebookVideo($link);
     	// dd($result);
+
+
+        //tu vi tron doi -> table
+        $data = DB::table('tvtd')->take(60)->get();
+        $table = '<table style="height: auto;" width="100%"><tbody><tr>
+            <td style="text-align: center;" colspan="2"><strong>Năm dương lịch</strong></td>
+            <td style="text-align: center;"><strong>Năm âm lịch</strong></td>
+            <td style="text-align: center;"><strong>Giải thích</strong></td>
+            <td style="text-align: center;"><strong>Mệnh</strong></td>
+            <td style="text-align: center;"><strong>Giải nghĩa</strong></td>
+            </tr>';
+        foreach($data as $key => $value) {
+            $year2 = $value->year + 60;
+            $table .= '<tr>
+                <td style="text-align: center;"><strong>'.$value->year.'</strong></td>
+                <td style="text-align: center;"><strong>'.$year2.'</strong></td>
+                <td style="text-align: center;">'.$value->ages.'</td>
+                <td style="text-align: center;">'.$value->note.'</td>
+                <td style="text-align: center;">'.str_replace('Mạng ', '', $value->life).'</td>
+                <td style="text-align: center;">'.$value->life_desc.'</td>
+                </tr>';
+        }
+        $table .= '</tbody></table>';
+        echo $table;
     }
 
 }
