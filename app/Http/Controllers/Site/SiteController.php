@@ -17,15 +17,15 @@ class SiteController extends Controller
     public function index()
     {
         //cache name
-        // $cacheName = 'index';
-        // $device = getDevice();
-        // if($device == MOBILE) {
-        //     $cacheName = $cacheName.'_mobile';
-        // }
-        // //get cache
-        // if(Cache::has($cacheName)) {
-        //     return Cache::get($cacheName);
-        // }
+        $cacheName = 'index';
+        $device = getDevice();
+        if($device == MOBILE) {
+            $cacheName = $cacheName.'_mobile';
+        }
+        //get cache
+        if(Cache::has($cacheName)) {
+            return Cache::get($cacheName);
+        }
         //query
         $data = DB::table('post_types')
             ->select('id', 'name', 'slug', 'parent_id', 'summary', 'grid', 'limited', 'sort_by', 'display')
@@ -117,9 +117,9 @@ class SiteController extends Controller
             $cacheName = $cacheName.'_mobile';
         }
         //get cache
-        // if(Cache::has($cacheName)) {
-        //     return Cache::get($cacheName);
-        // }
+        if(Cache::has($cacheName)) {
+            return Cache::get($cacheName);
+        }
         // IF SLUG IS PAGE
         //query
         $singlePage = DB::table('pages')->where('slug', $slug)->where('status', ACTIVE)->first();
