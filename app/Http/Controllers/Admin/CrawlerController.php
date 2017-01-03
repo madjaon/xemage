@@ -112,9 +112,9 @@ class CrawlerController extends Controller
 
     public function destroy($id)
     {
-        $data = Post::find($id);
-        $data->delete();
-        return redirect()->route('admin.crawler.index')->with('success', 'Xóa thành công');
+        // $data = Post::find($id);
+        // $data->delete();
+        // return redirect()->route('admin.crawler.index')->with('success', 'Xóa thành công');
     }
 
     public function steal(Request $request)
