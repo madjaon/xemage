@@ -26,27 +26,27 @@
 	             "save table contextmenu directionality emoticons template paste textcolor"
 	       	],
 					content_css: "css/content.css",
-					toolbar: "undo redo | bold italic | formatselect fontselect fontsizeselect | forecolor backcolor | removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image media | link unlink | mybutton",
+					toolbar: "undo redo | bold italic | formatselect fontselect fontsizeselect | forecolor backcolor | removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image media | link unlink", // | mybutton
 					//add more button
-					setup: function (editor) {
-						editor.addButton('mybutton', {
-						  type: 'listbox',
-						  text: 'Chèn',
-						  icon: false,
-						  onselect: function (e) {
-						    editor.insertContent(this.value());
-						  },
-						  values: [
-						    { text: 'Nguyên liệu', value: '&nbsp;<img src="/img/food1.png" alt="Nguyên liệu">' },
-						    { text: 'Cách làm', value: '&nbsp;<img src="/img/food2.png" alt="Cách làm">' },
-						    // { text: 'Chúc bạn nấu ăn thành công!', value: 'Chúc bạn nấu ăn thành công!' }
-						  ],
-						  onPostRender: function () {
-						    // Select the second item by default
-						    this.value('&nbsp;<em>Some italic text!</em>');
-						  }
-						});
-					},
+					// setup: function (editor) {
+					// 	editor.addButton('mybutton', {
+					// 	  type: 'listbox',
+					// 	  text: 'Chèn',
+					// 	  icon: false,
+					// 	  onselect: function (e) {
+					// 	    editor.insertContent(this.value());
+					// 	  },
+					// 	  values: [
+					// 	    { text: 'Nguyên liệu', value: '&nbsp;<img src="/img/food1.png" alt="Nguyên liệu">' },
+					// 	    { text: 'Cách làm', value: '&nbsp;<img src="/img/food2.png" alt="Cách làm">' },
+					// 	    // { text: 'Chúc bạn nấu ăn thành công!', value: 'Chúc bạn nấu ăn thành công!' }
+					// 	  ],
+					// 	  onPostRender: function () {
+					// 	    // Select the second item by default
+					// 	    this.value('&nbsp;<em>Some italic text!</em>');
+					// 	  }
+					// 	});
+					// },
 				  //end add more button
 
 	       	style_formats: [
