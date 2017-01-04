@@ -51,8 +51,8 @@ class SiteController extends Controller
         $seo = DB::table('configs')->where('status', ACTIVE)->first();
         
         //put cache
-        // $html = view('site.index', ['data' => $data, 'seo' => $seo])->render();
-        // Cache::forever($cacheName, $html);
+        $html = view('site.index', ['data' => $data, 'seo' => $seo])->render();
+        Cache::forever($cacheName, $html);
         //return view
         return view('site.index', ['data' => $data, 'seo' => $seo]);
     }
