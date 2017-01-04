@@ -44,3 +44,5 @@ define('CRAW_CATEGORY_IMAGE', 2);
 //display
 define('DISPLAY_1', 1); //Hình ảnh kèm tiêu đề
 define('DISPLAY_2', 2); //Chỉ hiển thị tiêu đề
+//responsive filemanager
+define('AKEY', 'db0ac2431a2e87c54852dbb0e7b9ed3d');
