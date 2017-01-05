@@ -62,7 +62,7 @@ class AppServiceProvider extends ServiceProvider
             ->orderBy('name')
             ->get();
         if($type==MENUTYPE1  || $type==MENUTYPE3) {
-            $output = '<ul class="menu"><li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>
+            $output = '<ul class="menu"><li><a href="'.url('/').'"><i class="fa fa-home" aria-hidden="true"></i>
 </a></li>';
         } elseif($type==MENUTYPE2) {
             $output = '<ul class="sidemenu">';
@@ -81,7 +81,7 @@ class AppServiceProvider extends ServiceProvider
             foreach($sub as $value) {
                 $hasChild = self::_hasChild($value->id);
                 $classHasChild = ($hasChild)?' hasChild':'';
-                $output .= '<li class="'.CommonQuery::checkCurrent(url($value->url)).$classHasChild.'"><a href="'.$value->url.'">'.$value->name.'</a>';
+                $output .= '<li class="'.CommonQuery::checkCurrent(url($value->url)).$classHasChild.'"><a href="'.url($value->url).'">'.$value->name.'</a>';
                 if($hasChild) {
                     if($type==MENUTYPE1) {
                         $output .= '<ul class="submenu">';

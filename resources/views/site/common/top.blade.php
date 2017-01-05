@@ -1,5 +1,5 @@
 <header>
-	<center><a href="/" class="logo"><img src="/img/logo.png" alt="logo" /></a></center>
+	<center><a href="{{ url('/') }}" class="logo"><img src="/img/logo.png" alt="logo" /></a></center>
 	<div class="topmenu">{!! $topmenu !!}</div>
 </header>
 <div class="search">
