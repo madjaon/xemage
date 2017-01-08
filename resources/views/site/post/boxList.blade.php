@@ -15,7 +15,7 @@
 				@if($value->summary != '')
 				<p>{!! $value->summary !!}</p>
 				@else
-				<p>{!! substr(strip_tags($value->description),0,300) . '...' !!}</p>
+				<p>{!! limit_text(strip_tags($value->description), 300) !!}</p>
 				@endif
 			</div>
 			<div class="clearfix"></div>
