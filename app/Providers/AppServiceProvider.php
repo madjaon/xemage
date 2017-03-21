@@ -26,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
         // self::getMenus(MENUTYPE2, 'sidemenu');
         view()->share('bottommenu', self::getMenu(MENUTYPE3));
         // self::getMenus(MENUTYPE3, 'bottommenu');
-        self::getMenus(MENUTYPE4, 'mobilemenu');
+        view()->share('mobilemenu', self::getMenu(MENUTYPE4));
+        // self::getMenus(MENUTYPE4, 'mobilemenu');
     }
 
     private function getArchives($orderColumn = 'start_date', $orderSort = 'desc', $limit = PAGINATE_SIDE)
@@ -64,8 +65,6 @@ class AppServiceProvider extends ServiceProvider
         if($type==MENUTYPE1  || $type==MENUTYPE3) {
             $output = '<ul class="menu"><li><a href="'.url('/').'"><i class="fa fa-home" aria-hidden="true"></i>
 </a></li>';
-        } elseif($type==MENUTYPE2) {
-            $output = '<ul class="sidemenu">';
         } else {
             $output = '<ul>';
         }

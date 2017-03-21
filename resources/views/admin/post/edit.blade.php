@@ -40,6 +40,15 @@
 									</div>
 								</div>
 							</div>
+							<div class="form-group">
+								<label>Patterns</label>
+								<p>Mẫu form chức năng trên đầu trang</p>
+								<div class="row">
+									<div class="col-sm-12">
+										<input name="patterns" type="text" value="{{ $data->patterns }}" class="form-control">
+									</div>
+								</div>
+							</div>
 							<div class="form-group" style="display: none;">
 								<label for="type">Dạng bài viết</label>
 								<div class="row">

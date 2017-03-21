@@ -61,6 +61,8 @@ class CrawlerController extends Controller
             $data = Crawler::create([
                         'name' => $request->name,
                         'source' => $request->source,
+                        'slug_type' => $request->slug_type,
+                        'post_slugs' => $request->post_slugs,
                         'post_links' => $request->post_links,
                         'category_link' => $request->category_link,
                         'category_page_link' => $request->category_page_link,
@@ -85,6 +87,8 @@ class CrawlerController extends Controller
                 $data->update([
                     'name' => $request->name,
                     'source' => $request->source,
+                    'slug_type' => $request->slug_type,
+                    'post_slugs' => $request->post_slugs,
                     'post_links' => $request->post_links,
                     'category_link' => $request->category_link,
                     'category_page_link' => $request->category_page_link,
@@ -195,11 +199,25 @@ class CrawlerController extends Controller
                         }
                     }
                     // loai bo the cu the element_delete
-                    if(!empty($request->element_delete_positions) && !empty($request->element_delete)) {
-                        $element_delete_positions = explode(',', $request->element_delete_positions);
-                        if(count($element_delete_positions) > 0) {
-                            foreach($element_delete_positions as $edp) {
-                                $element->find($request->element_delete, $edp)->outertext='';
+                    // cau truc: element_delete: div,h2
+                    // cau truc: element_delete_positions: 0,1,-1|-1
+                    if(!empty($request->element_delete)) {
+                        $element_delete = explode(',', $request->element_delete);
+                        if(count($element_delete) > 0) {
+                            if(!empty($request->element_delete_positions)) {
+                                $element_delete_positions = explode('|', $request->element_delete_positions);
+                                if(count($element_delete_positions) > 0) {
+                                   foreach($element_delete as $ked => $ed) {
+                                        if(!empty($element_delete_positions[$ked])) {
+                                            $element_delete_positions_ked = explode(',', $element_delete_positions[$ked]);
+                                            if(count($element_delete_positions_ked) > 0) {
+                                                foreach($element_delete_positions_ked as $edp) {
+                                                    $element->find($ed, $edp)->outertext='';
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -210,8 +228,19 @@ class CrawlerController extends Controller
                     }
                 }
                 //slug
-                $slug = CommonMethod::convert_string_vi_to_en($postName);
-                $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/i', '-', $slug));
+                if($request->slug_type == SLUGTYPE2) {
+                    $slug = getSlugFromUrl($link);
+                } else if($request->slug_type == SLUGTYPE3) {
+                    if(!empty($request->post_slugs)) {
+                        $slugs = explode(',', $request->post_slugs);
+                        $slug = $slugs[$key];
+                    } else {
+                        $slug = getSlugFromUrl($link);
+                    }
+                } else {
+                    $slug = CommonMethod::convert_string_vi_to_en($postName);
+                    $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/i', '-', $slug));
+                }
                 //image
                 if(count($images) > 0 && !empty($request->image_dir)) {
                     $image = '/images/'.$request->image_dir.'/'.basename($images[$key]);

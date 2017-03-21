@@ -36,6 +36,15 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label>Patterns</label>
+						<p>Mẫu form chức năng trên đầu trang</p>
+						<div class="row">
+							<div class="col-sm-8">
+								<input name="patterns" type="text" value="{{ old('patterns') }}" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="parent_id">Mục cha</label>
 						<div class="row">
 							<div class="col-sm-8">
@@ -67,6 +76,15 @@
 								<label for="display">Display</label>
 								<p>Kiểu hiển thị danh sách</p>
 								{!! Form::select('display', CommonOption::displayArray(), old('display'), array('class' =>'form-control')) !!}
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="list_posts">List Posts</label>
+						<p>Hiển thị danh sách post trong trang thể loại không?</p>
+						<div class="row">
+							<div class="col-sm-8">
+							{!! Form::select('list_posts', CommonOption::statusArray(), old('list_posts'), array('class' =>'form-control')) !!}
 							</div>
 						</div>
 					</div>

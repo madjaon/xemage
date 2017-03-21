@@ -72,6 +72,7 @@ class PostTagController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'slug' => 'required|max:255|unique:post_tags',
+            'patterns' => 'max:255',
             'summary' => 'max:1000',
             'image' => 'max:255',
             'meta_title' => 'max:255',
@@ -85,6 +86,7 @@ class PostTagController extends Controller
         PostTag::create([
                 'name' => $request->name,
                 'slug' => $request->slug,
+                'patterns' => $request->patterns,
                 'summary' => $request->summary,
                 'description' => $request->description,
                 'image' => CommonMethod::removeDomainUrl($request->image),
@@ -135,6 +137,7 @@ class PostTagController extends Controller
         $data = PostTag::find($id);
         $rules = [
             'name' => 'required|max:255',
+            'patterns' => 'max:255',
             'summary' => 'max:1000',
             'image' => 'max:255',
             'meta_title' => 'max:255',
@@ -152,6 +155,7 @@ class PostTagController extends Controller
         $data->update([
                 'name' => $request->name,
                 'slug' => $request->slug,
+                'patterns' => $request->patterns,
                 'summary' => $request->summary,
                 'description' => $request->description,
                 'image' => CommonMethod::removeDomainUrl($request->image),

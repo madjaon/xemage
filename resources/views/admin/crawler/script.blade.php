@@ -28,6 +28,7 @@
 				'id': id,
 				'type': type,
 				'post_links': post_links,
+				'post_slugs': post_slugs,
 				'category_link': category_link,
 				'category_page_link': category_page_link,
 				'category_page_number': category_page_number,
@@ -42,6 +43,7 @@
 				'element_delete_positions': element_delete_positions,
 				'name': name,
 				'source': source,
+				'slug_type': slug_type,
 				'type_main_id': type_main_id,
 				'start_date': start_date,
 				'start_time': start_time,
@@ -71,6 +73,7 @@
 				'id': id,
 				'type': type,
 				'post_links': post_links,
+				'post_slugs': post_slugs,
 				'category_link': category_link,
 				'category_page_link': category_page_link,
 				'category_page_number': category_page_number,
@@ -85,6 +88,7 @@
 				'element_delete_positions': element_delete_positions,
 				'name': name,
 				'source': source,
+				'slug_type': slug_type,
 				'type_main_id': type_main_id,
 				'start_date': start_date,
 				'start_time': start_time,
@@ -116,6 +120,7 @@
 		id = $('input[name="id"]').val();
 		type = $('select[name="type"]').val();
 		post_links = $('textarea[name="post_links"]').val();
+		post_slugs = $('textarea[name="post_slugs"]').val();
 		category_link = $('textarea[name="category_link"]').val();
 		category_page_link = $('textarea[name="category_page_link"]').val();
 		category_page_number = $('input[name="category_page_number"]').val();
@@ -130,6 +135,7 @@
 		element_delete_positions = $('input[name="element_delete_positions"]').val();
 		name = $('input[name="name"]').val();
 		source = $('input[name="source"]').val();
+		slug_type = $('select[name="slug_type"]').val();
 		type_main_id = $('select[name="type_main_id"]').val();
 		start_date = $('input[name="start_date"]').val();
 		start_time = $('input[name="start_time"]').val();

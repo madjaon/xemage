@@ -30,6 +30,9 @@
 @section('title', $title)
 
 @section('content')
+
+@include('patterns.filter', array('filter' => 1))
+
 @if(count($data) > 0)
 	@foreach($data as $key => $value)
 		@if(count($value->posts) > 0)

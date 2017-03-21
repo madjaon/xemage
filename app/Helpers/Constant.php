@@ -35,6 +35,27 @@ define('SLIDER2', 2); // slider on bottom page
 define('SLIDER3', 3); // middle post
 // replace string
 define('CONTACTFORM', '/%ContactForm%/');
+define('TUVITRONDOI', '/%tuvitrondoi%/');
+define('XEMHOPTUOI', '/%xemhoptuoi%/');
+define('XEMTUOIVOCHONG', '/%xemtuoivochong%/');
+define('DATTENCON', '/%dattencon%/');
+define('QUYCOCTOANMENH', '/%quycoctoanmenh%/');
+define('TUOIKETHON', '/%tuoikethon%/');
+define('CAOLYDAUHINH', '/%caolydauhinh%/');
+define('NGAYCUOIHOI', '/%ngaycuoihoi%/');
+define('NGAYHOANGDAO', '/%ngayhoangdao%/');
+define('NGAYLAMNHA', '/%ngaylamnha%/');
+define('NGAYNHAPTRACH', '/%ngaynhaptrach%/');
+define('NGAYKHAITRUONG', '/%ngaykhaitruong%/');
+define('NGAYTUTAOSUACHUA', '/%ngaytutaosuachua%/');
+define('MAUSACHOPTUOI', '/%mausachoptuoi%/');
+define('HUONGNHATOT', '/%huongnhatot%/');
+define('NGAYCHONCAT', '/%ngaychoncat%/');
+define('NGAYHACDAO', '/%ngayhacdao%/');
+define('NGAYBATTUONG', '/%ngaybattuong%/');
+define('TUVIGIOSINH', '/%tuvigiosinh%/');
+define('XEMCUNGMENH', '/%xemcungmenh%/');
+define('TAMTAIHOANGOCKIMLAU', '/%tamtaihoangockimlau%/');
 //trang thai crawler
 define('CRAW_POST', 1);
 define('CRAW_CATEGORY', 2);
@@ -46,3 +67,7 @@ define('DISPLAY_1', 1); //Hình ảnh kèm tiêu đề
 define('DISPLAY_2', 2); //Chỉ hiển thị tiêu đề
 //responsive filemanager
 define('AKEY', 'db0ac2431a2e87c54852dbb0e7b9ed3d');
+// slug type
+define('SLUGTYPE1', 1); // lay slug theo tieu de bai viet lay duoc
+define('SLUGTYPE2', 2); // lay slug theo slug cua link nguon bai viet
+define('SLUGTYPE3', 3); // lay slug theo danh sach slug tuong ung voi danh sach link nguon bai viet

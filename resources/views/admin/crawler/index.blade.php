@@ -8,6 +8,8 @@
 	if(count($data) > 0) {
 		$name = $data->name;
 		$source = $data->source;
+		$slug_type = $data->slug_type;
+		$post_slugs = $data->post_slugs;
 		$post_links = $data->post_links;
 		$category_link = $data->category_link;
 		$category_page_link = $data->category_page_link;
@@ -31,6 +33,8 @@
 	} else {
 		$name = old('name');
 		$source = old('source');
+		$slug_type = old('slug_type');
+		$post_slugs = old('post_slugs');
 		$post_links = old('post_links');
 		$category_link = old('category_link');
 		$category_page_link = old('category_page_link');
@@ -97,6 +101,16 @@
 												<div class="row">
 													<div class="col-sm-12">
 													<textarea name="post_links" class="form-control crawpost" rows="3">{{ $post_links }}</textarea>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label>Slugs Posts</label>
+												<p>Slug tương ứng với danh sách link bài viết (phía trên). Nếu có nhiều thì ngăn cách bởi dấu phẩy</p>
+												<p>Chỉ tác dụng khi chọn Kiểu lưu Slug bài viết tương ứng</p>
+												<div class="row">
+													<div class="col-sm-12">
+													<textarea name="post_slugs" class="form-control crawpost" rows="3">{{ $post_slugs }}</textarea>
 													</div>
 												</div>
 											</div>
@@ -183,13 +197,15 @@
 												<label>Mẫu thẻ cụ thể cần xóa trong nội dung post</label>
 												<p>Xóa nội dung 1 thẻ cụ thể mà không có class hoặc id. Vị trí các thẻ định nghĩa bên dưới. Nếu có nhiều mẫu thì ngăn cách bằng dấu phẩy.</p>
 												<p>Ex (xóa thẻ &lt;p&gt; nào đó): p</p>
+												<p>hoặc div,h2</p>
 												<div class="row">
 													<div class="col-sm-12">
 														<input name="element_delete" type="text" value="{{ $element_delete }}" class="form-control">
 													</div>
 												</div>
-												<p>Vị trí của mẫu thẻ ở trên. Nếu không có mẫu thẻ ở trên thì để trống. Nếu nhiều vị trí thì ngăn cách bởi dấu phẩy.</p>
+												<p>Vị trí của mẫu thẻ ở trên. Nếu không có mẫu thẻ ở trên thì để trống. Mỗi mẫu ngăn cách bởi dấu | . Nếu có nhiều vị trí thì ngăn cách bởi dấu phẩy.</p>
 												<p>Ex (vị trí thẻ &lt;p&gt; ở trên: 0: thẻ &lt;p&gt; đầu tiên, 1: thẻ &lt;p&gt; thứ 2, -1: thẻ &lt;p&gt; cuối cùng): 0,1,-1</p>
+												<p>hoặc 0,1,-1|-1</p>
 												<div class="row">
 													<div class="col-sm-12">
 														<input name="element_delete_positions" type="text" value="{{ $element_delete_positions }}" class="form-control">
@@ -217,6 +233,14 @@
 												</div>
 											</div>
 											<div class="form-group">
+												<label>Kiểu lưu Slug bài viết</label>
+												<div class="row">
+													<div class="col-sm-12">
+													{!! Form::select('slug_type', CommonOption::slugTypeArray(), $slug_type, array('class' => 'form-control')) !!}
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
 												<label>Chuyên mục/thể loại chính post</label>
 												<div class="row">
 													<div class="col-sm-12">
@@ -238,7 +262,7 @@
 													<div class="col-sm-6">
 														<div class="bootstrap-timepicker">
 															<div class="input-group">
-																<input name="start_time" type="text" value="{{ $start_date }}" class="form-control timepicker">
+																<input name="start_time" type="text" value="{{ $start_time }}" class="form-control timepicker">
 																<div class="input-group-addon">
 																	<i class="fa fa-clock-o"></i>
 																</div>

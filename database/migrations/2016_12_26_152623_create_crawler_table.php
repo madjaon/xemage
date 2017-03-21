@@ -17,6 +17,8 @@ class CreateCrawlerTable extends Migration
             $table->increments('id');
             $table->string('name'); // ten mau crawl
             $table->string('source'); // source domain, de trong neu khong co
+            $table->integer('slug_type')->default(ACTIVE); // lay slug theo tieu de bai viet lay duoc hay theo link nguon bai viet
+            $table->text('post_slugs'); // danh sach slug tuong ung voi danh sach link - post_links
             $table->text('post_links'); // 1 hoac nhieu. neu nhieu links thi phai cung 1 mau trang
             $table->text('category_link'); // link trang category dau tien
             $table->text('category_page_link'); // link trang 2 (phan trang)

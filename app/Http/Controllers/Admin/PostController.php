@@ -92,6 +92,7 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'bail|required|max:255',
             'slug' => 'required|max:255|unique:posts|unique:post_types',
+            'patterns' => 'max:255',
             'type_main_id' => 'required',
             'type' => 'required',
             'url' => 'max:255',
@@ -110,6 +111,7 @@ class PostController extends Controller
         $data = Post::create([
                 'name' => $request->name,
                 'slug' => $request->slug,
+                'patterns' => $request->patterns,
                 'type_main_id' => $request->type_main_id,
                 'seri' => $request->seri,
                 'related' => $request->related,
@@ -177,6 +179,7 @@ class PostController extends Controller
         $data = Post::find($id);
         $rules = [
             'name' => 'required|max:255',
+            'patterns' => 'max:255',
             'type_main_id' => 'required',
             'type' => 'required',
             'url' => 'max:255',
@@ -199,6 +202,7 @@ class PostController extends Controller
         $data->update([
                 'name' => $request->name,
                 'slug' => $request->slug,
+                'patterns' => $request->patterns,
                 'type_main_id' => $request->type_main_id,
                 'seri' => $request->seri,
                 'related' => $request->related,

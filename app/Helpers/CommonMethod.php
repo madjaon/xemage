@@ -108,13 +108,55 @@ class CommonMethod
 		$patterns = array();
 		// string to search
 		$patterns[0] = CONTACTFORM;
+		$patterns[1] = TUVITRONDOI;
+		$patterns[2] = XEMHOPTUOI;
+		$patterns[3] = XEMTUOIVOCHONG;
+		$patterns[4] = DATTENCON;
+		$patterns[5] = QUYCOCTOANMENH;
+		$patterns[6] = TUOIKETHON;
+		$patterns[7] = CAOLYDAUHINH;
+		$patterns[8] = NGAYCUOIHOI;
+		$patterns[9] = NGAYHOANGDAO;
+		$patterns[10] = NGAYLAMNHA;
+		$patterns[11] = NGAYNHAPTRACH;
+		$patterns[12] = NGAYKHAITRUONG;
+		$patterns[13] = NGAYTUTAOSUACHUA;
+		$patterns[14] = MAUSACHOPTUOI;
+		$patterns[15] = HUONGNHATOT;
+		$patterns[16] = NGAYCHONCAT;
+		$patterns[17] = NGAYHACDAO;
+		$patterns[18] = NGAYBATTUONG;
+		$patterns[19] = TUVIGIOSINH;
+		$patterns[20] = XEMCUNGMENH;
+		$patterns[21] = TAMTAIHOANGOCKIMLAU;
 		$replacements = array();
 		// string to replace
-		$csrf_field = csrf_field();
-		$replacements[0] = '<form class="contact-form" method="POST" action="/contact">'.$csrf_field.'<p><label for="contact-name">Họ Tên</label><input type="text" id="contact-name" name="name" required /></p><p><label for="contact-email">Email</label><input type="email" id="contact-email" name="email" required /></p><p><label for="contact-tel">Điện Thoại</label><input type="text" id="contact-tel" name="tel" /></p><p><label for="contact-msg">Tin Nhắn</label><textarea id="contact-msg" name="msg" rows="3"></textarea></p><p><label></label><input type="submit" value="Gửi Tin Nhắn" /></p></form>';
+		$replacements[0] = view('patterns.contactform');
+		$replacements[1] = view('patterns.filter', ['filter' => 1]);
+		$replacements[2] = view('patterns.filter', ['filter' => 2]);
+		$replacements[3] = view('patterns.filter', ['filter' => 3]);
+		$replacements[4] = view('patterns.filter', ['filter' => 4]);
+		$replacements[5] = view('patterns.filter', ['filter' => 5]);
+		$replacements[6] = view('patterns.filter', ['filter' => 6]);
+		$replacements[7] = view('patterns.filter', ['filter' => 7]);
+		$replacements[8] = view('patterns.filter', ['filter' => 8]);
+		$replacements[9] = view('patterns.filter', ['filter' => 9]);
+		$replacements[10] = view('patterns.filter', ['filter' => 10]);
+		$replacements[11] = view('patterns.filter', ['filter' => 11]);
+		$replacements[12] = view('patterns.filter', ['filter' => 12]);
+		$replacements[13] = view('patterns.filter', ['filter' => 13]);
+		$replacements[14] = view('patterns.filter', ['filter' => 14]);
+		$replacements[15] = view('patterns.filter', ['filter' => 15]);
+		$replacements[16] = view('patterns.filter', ['filter' => 16]);
+		$replacements[17] = view('patterns.filter', ['filter' => 17]);
+		$replacements[18] = view('patterns.filter', ['filter' => 18]);
+		$replacements[19] = view('patterns.filter', ['filter' => 19]);
+		$replacements[20] = view('patterns.filter', ['filter' => 20]);
+		$replacements[21] = view('patterns.filter', ['filter' => 21]);
 		// sort array before replace
 		ksort($patterns);
 		ksort($replacements);
 		return preg_replace($patterns, $replacements, $string);
 	}
+	
 }

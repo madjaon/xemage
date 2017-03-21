@@ -76,6 +76,7 @@ class PostTypeController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'slug' => 'required|max:255|unique:posts|unique:post_types',
+            'patterns' => 'max:255',
             'summary' => 'max:1000',
             'image' => 'max:255',
             'meta_title' => 'max:255',
@@ -90,6 +91,7 @@ class PostTypeController extends Controller
         PostType::create([
                 'name' => $request->name,
                 'slug' => $request->slug,
+                'patterns' => $request->patterns,
                 'parent_id' => $request->parent_id,
                 'summary' => $request->summary,
                 'description' => $request->description,
@@ -103,6 +105,7 @@ class PostTypeController extends Controller
                 'home' => $request->home,
                 'type' => $request->type,
                 'display' => $request->display,
+                'list_posts' => $request->list_posts,
                 'grid' => $request->grid,
                 'color' => $request->color,
                 'status' => $request->status,
@@ -150,6 +153,7 @@ class PostTypeController extends Controller
         $data = PostType::find($id);
         $rules = [
             'name' => 'required|max:255',
+            'patterns' => 'max:255',
             'summary' => 'max:1000',
             'image' => 'max:255',
             'meta_title' => 'max:255',
@@ -168,6 +172,7 @@ class PostTypeController extends Controller
         $data->update([
                 'name' => $request->name,
                 'slug' => $request->slug,
+                'patterns' => $request->patterns,
                 'parent_id' => $request->parent_id,
                 'summary' => $request->summary,
                 'description' => $request->description,
@@ -181,6 +186,7 @@ class PostTypeController extends Controller
                 'home' => $request->home,
                 'type' => $request->type,
                 'display' => $request->display,
+                'list_posts' => $request->list_posts,
                 'grid' => $request->grid,
                 'color' => $request->color,
                 'status' => $request->status,

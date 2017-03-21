@@ -33,9 +33,9 @@
 @section('content')
 <div class="box">
 	<?php
-		if(isset($seriParent)) {
+		if(isset($typeParent)) {
 			$breadcrumb = array(
-				['name' => $seriParent->name, 'link' => url($seriParent->slug)],
+				['name' => $typeParent->name, 'link' => url($typeParent->slug)],
 				['name' => $h1, 'link' => '']
 			);
 		} else {
@@ -49,6 +49,7 @@
 		<h1>{!! $h1 !!}</h1>
 	</div>
 	<div class="info">
+		<div class="description">{!! $type->patterns !!}</div>
 		<div class="description">{!! $type->summary !!}</div>
 		<div class="description">{!! $type->description !!}</div>
 	</div>

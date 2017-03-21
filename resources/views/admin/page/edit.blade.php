@@ -38,7 +38,15 @@
 							</div>
 						</div>
 					</div>
-					
+					<div class="form-group">
+						<label>Patterns</label>
+						<p>Mẫu form chức năng trên đầu trang</p>
+						<div class="row">
+							<div class="col-sm-8">
+								<input name="patterns" type="text" value="{{ $data->patterns }}" class="form-control">
+							</div>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-sm-8">
 							@include('admin.common.inputStatusLang', array('isEdit' => true))

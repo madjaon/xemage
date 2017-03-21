@@ -70,9 +70,9 @@ $default_language 	= "en_EN"; //default language file name
 $icon_theme 		= "ico"; //ico or ico_dark you can cusatomize just putting a folder inside filemanager/img
 $show_folder_size	= TRUE; //Show or not show folder size in list view feature in filemanager (is possible, if there is a large folder, to greatly increase the calculations)
 $show_sorting_bar	= TRUE; //Show or not show sorting feature in filemanager
-$transliteration 	= FALSE; //active or deactive the transliteration (mean convert all strange characters in A..Za..z0..9 characters)
-$convert_spaces  	= FALSE; //convert all spaces on files name and folders name with $replace_with variable
-$replace_with  	    = "_"; //convert all spaces on files name and folders name this value
+$transliteration 	= TRUE; //active or deactive the transliteration (mean convert all strange characters in A..Za..z0..9 characters)
+$convert_spaces  	= TRUE; //convert all spaces on files name and folders name with $replace_with variable
+$replace_with  	    = "-"; //convert all spaces on files name and folders name this value
 
 // -1: There is no lazy loading at all, 0: Always lazy-load images, 0+: The minimum number of the files in a directory
 // when lazy loading should be turned on.
@@ -117,7 +117,7 @@ $image_resizing_override 	= FALSE;
 // YOU CAN ALSO PASS THIS PARAMETERS USING SESSION VAR => $_SESSION['RF']["VIEW"]=
 //
 //******************
-$default_view = 0;
+$default_view = 2;
 
 //set if the filename is truncated when overflow first row 
 $ellipsis_title_after_first_row = TRUE;

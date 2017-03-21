@@ -42,6 +42,7 @@
 		<h1>{!! $h1 !!}</h1>
 	</div>
 	<div class="info">
+		<div class="description">{!! $tag->patterns !!}</div>
 		<div class="description">{!! $tag->summary !!}</div>
 		<div class="description">{!! $tag->description !!}</div>
 	</div>

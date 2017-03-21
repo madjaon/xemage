@@ -17,6 +17,7 @@ class CreatePosttagTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
+            $table->string('patterns');
             $table->string('summary', 1000);
             $table->text('description');
             $table->string('image');

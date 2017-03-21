@@ -139,3 +139,29 @@ function uploadImageFromUrl($url, $dir, $name='') {
     file_put_contents($path, file_get_contents($url));
     return $name;
 }
+//return slug from url
+function getSlugFromUrl($url='',$currentUrl=null) {
+    if($currentUrl != null) {
+        $url = url()->current();
+    }
+    $url = trim(parse_url($url, PHP_URL_PATH), '/');
+    $ur = explode('/', $url);
+    $u = explode('.', $ur[count($ur)-1]);
+    return $u[0];
+}
+//nam nhuan hay ko?
+function leapyear($year) {
+    if(date('L', strtotime($year.'-01-01'))){
+        return true;
+    } else {
+        return false;
+    }
+}
+function getJsonData($path=null)
+{
+    if($path == null) {
+        $path = public_path().'/js/cm.json';
+    }
+    $json = json_decode(file_get_contents($path), true);
+    return $json;
+}

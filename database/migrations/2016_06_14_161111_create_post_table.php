@@ -17,6 +17,7 @@ class CreatePostTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
+            $table->string('patterns');
             $table->integer('type_main_id');
             $table->integer('seri');
             $table->integer('related');

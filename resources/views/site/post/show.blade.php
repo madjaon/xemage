@@ -57,6 +57,7 @@
 		<h1>{!! $h1 !!}</h1>
 	</div>
 	<div class="info">
+		<div class="description">{!! $post->patterns !!}</div>
 		<div class="description">{!! $post->description !!}</div>
 		
 		@include('site.common.social')

@@ -72,12 +72,15 @@ class SiteController extends Controller
         }
         //query
         $tag = DB::table('post_tags')
-            ->select('id', 'name', 'slug', 'summary', 'description', 'image', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image')
+            ->select('id', 'name', 'slug', 'patterns', 'summary', 'description', 'image', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image')
             ->where('slug', $slug)
             ->where('status', ACTIVE)
             ->first();
         // posts tags
         if(isset($tag)) {
+            $tag->patterns = CommonMethod::replaceText($tag->patterns);
+            $tag->summary = CommonMethod::replaceText($tag->summary);
+            $tag->description = CommonMethod::replaceText($tag->description);
             $data = $this->getPostByRelationsQuery('tag', $tag->id)->paginate(PAGINATE);
             if($data->total() > 0) {
                 //auto meta tag for seo
@@ -125,7 +128,9 @@ class SiteController extends Controller
         $singlePage = DB::table('pages')->where('slug', $slug)->where('status', ACTIVE)->first();
         // page
         if(isset($singlePage)) {
+            $singlePage->patterns = CommonMethod::replaceText($singlePage->patterns);
             $singlePage->summary = CommonMethod::replaceText($singlePage->summary);
+            $singlePage->description = CommonMethod::replaceText($singlePage->description);
             //put cache
             $html = view('site.page', ['data' => $singlePage])->render();
             Cache::forever($cacheName, $html);
@@ -137,39 +142,49 @@ class SiteController extends Controller
         $type = $this->getPostTypeBySlug($slug);
         // post type
         if(isset($type)) {
-            if($type->grid == ACTIVE) {
-                $paginateNumber = PAGINATE;
-            } else {
-                $paginateNumber = PAGINATE_GRID;
-            }
-            $paginate = 1;
-            $data = $this->getPostByRelationsQuery('type', $type->id)->paginate($paginateNumber);
-            $total = count($data);
-            //auto meta tag for seo
-            if(empty($type->meta_title)) {
-                $type->meta_title = $type->name.' | Tổng hợp tử vi xem bói phong thủy tại xemtuoi.vn';
-            }
-            if(empty($type->meta_keyword)) {
-                $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                $type->meta_keyword = $typeNameNoLatin.', '.$type->name;
-            }
-            if(empty($type->meta_description)) {
-                $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                $type->meta_description = $typeNameNoLatin.', '.$type->name.' tại xemtuoi.vn';
-            }
-            // lay ra the loai con neu the loai nay ko co bai viet
-            if($total <= 0) {
-                $typeChild = DB::table('post_types')
-                    ->select('id', 'name', 'slug', 'parent_id', 'image')
-                    ->where('parent_id', $type->id)
-                    ->where('status', ACTIVE)
-                    ->get();
-                if(count($typeChild) > 0) {
-                    $typeChild = $typeChild;
+            $type->patterns = CommonMethod::replaceText($type->patterns);
+            $type->summary = CommonMethod::replaceText($type->summary);
+            $type->description = CommonMethod::replaceText($type->description);
+            if($type->list_posts == ACTIVE) {
+                if($type->grid == ACTIVE) {
+                    $paginateNumber = PAGINATE;
+                } else {
+                    $paginateNumber = PAGINATE_GRID;
+                }
+                $paginate = 1;
+                $data = $this->getPostByRelationsQuery('type', $type->id)->paginate($paginateNumber);
+                $total = count($data);
+                //auto meta tag for seo
+                if(empty($type->meta_title)) {
+                    $type->meta_title = $type->name.' | Tổng hợp tử vi xem bói phong thủy tại xemtuoi.vn';
+                }
+                if(empty($type->meta_keyword)) {
+                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
+                    $type->meta_keyword = $typeNameNoLatin.', '.$type->name;
+                }
+                if(empty($type->meta_description)) {
+                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
+                    $type->meta_description = $typeNameNoLatin.', '.$type->name.' tại xemtuoi.vn';
+                }
+                // lay ra the loai con neu the loai nay ko co bai viet
+                if($total <= 0) {
+                    $typeChild = DB::table('post_types')
+                        ->select('id', 'name', 'slug', 'parent_id', 'image')
+                        ->where('parent_id', $type->id)
+                        ->where('status', ACTIVE)
+                        ->get();
+                    if(count($typeChild) > 0) {
+                        $typeChild = $typeChild;
+                    } else {
+                        $typeChild = null;
+                    }
                 } else {
                     $typeChild = null;
                 }
             } else {
+                $paginate = null;
+                $data = null;
+                $total = 0;
                 $typeChild = null;
             }
             //put cache
@@ -186,6 +201,9 @@ class SiteController extends Controller
             ->where('start_date', '<=', date('Y-m-d H:i:s'))
             ->first();
         if($post) {
+            $post->patterns = CommonMethod::replaceText($post->patterns);
+            $post->summary = CommonMethod::replaceText($post->summary);
+            $post->description = CommonMethod::replaceText($post->description);
             //list tags
             $tags = DB::table('post_tags')
                 ->join('post_tag_relations', 'post_tags.id', '=', 'post_tag_relations.tag_id')
@@ -265,17 +283,20 @@ class SiteController extends Controller
         $type = $this->getPostTypeBySlug($slug2, 1);
         $typeParent = $this->getPostTypeBySlug($slug1);
         if(isset($type) && isset($typeParent) && ($typeParent->id == $type->parent_id)) {
-            $paginate = 1;
-            $data = $this->getPostByRelationsQuery('type', $type->id)->paginate(PAGINATE);
-            $total = count($data);
-            if($total > 0) {
-                $seriParent = $this->getPostTypeById($type->parent_id);
-                //put cache
-                $html = view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate, 'seriParent' => $seriParent])->render();
-                Cache::forever($cacheName, $html);
-                //return view
-                return view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate, 'seriParent' => $seriParent]);
+            if($type->list_posts == ACTIVE) {
+                $paginate = 1;
+                $data = $this->getPostByRelationsQuery('type', $type->id)->paginate(PAGINATE);
+                $total = count($data);
+            } else {
+                $data = null;
+                $paginate = null;
+                $total = 0;
             }
+            //put cache
+            $html = view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate, 'typeParent' => $typeParent])->render();
+            Cache::forever($cacheName, $html);
+            //return view
+            return view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate, 'typeParent' => $typeParent]);
         }
         return response()->view('errors.404', [], 404);
     }
@@ -363,7 +384,7 @@ class SiteController extends Controller
     private function getPostTypeBySlug($slug, $hasParentId = null)
     {
         $result = DB::table('post_types')
-            ->select('id', 'name', 'slug', 'parent_id', 'summary', 'description', 'image', 'grid', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image', 'display')
+            ->select('id', 'name', 'slug', 'patterns', 'parent_id', 'summary', 'description', 'image', 'grid', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image', 'display', 'list_posts')
             ->where('slug', $slug)
             ->where('status', ACTIVE);
         if($hasParentId) {

@@ -71,6 +71,7 @@ class PageController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'slug' => 'required|max:255|unique:posts|unique:post_types|unique:pages',
+            'patterns' => 'max:255',
             'summary' => 'max:1000',
             'image' => 'max:255',
             'meta_title' => 'max:255',
@@ -84,6 +85,7 @@ class PageController extends Controller
         Page::create([
                 'name' => $request->name,
                 'slug' => $request->slug,
+                'patterns' => $request->patterns,
                 'summary' => $request->summary,
                 'description' => $request->description,
                 'image' => CommonMethod::removeDomainUrl($request->image),
@@ -134,6 +136,7 @@ class PageController extends Controller
         $data = Page::find($id);
         $rules = [
             'name' => 'required|max:255',
+            'patterns' => 'max:255',
             'summary' => 'max:1000',
             'image' => 'max:255',
             'meta_title' => 'max:255',
@@ -151,6 +154,7 @@ class PageController extends Controller
         $data->update([
                 'name' => $request->name,
                 'slug' => $request->slug,
+                'patterns' => $request->patterns,
                 'summary' => $request->summary,
                 'description' => $request->description,
                 'image' => CommonMethod::removeDomainUrl($request->image),

@@ -37,6 +37,7 @@
 	</div>
 	@include('site.common.errors')
 	<div class="info">
+		<div class="description">{!! $data->patterns !!}</div>
 		<div class="description">{!! $data->summary !!}</div>
 		<div class="description">{!! $data->description !!}</div>
 	</div>
