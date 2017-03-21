@@ -30,36 +30,21 @@
 </div>
 @endif
 @if($filter == 2)
+<!-- xem hop tuoi -->
 <div class="timebox">
 	<h3>Xem Tuổi Hợp Làm Ăn</h3>
-	<p><label>Năm sinh  (âm lịch) và giới tính của bạn:</label>{!! CommonOption::getListYear('year1', 2027, 1947) !!} {!! CommonOption::getListSex('sex1') !!}</p>
-	<p><label>Năm sinh  (âm lịch) và giới tính người khác:</label>{!! CommonOption::getListYear('year2', 2027, 1947) !!} {!! CommonOption::getListSex('sex2') !!}</p>
-	<p><button>Xem kết quả</button></p>
+	<p><label>Năm sinh  (âm lịch) và giới tính của bạn:</label>{!! CommonOption::getListYear('year1', 2049, 1930) !!} {!! CommonOption::getListSex('sex1') !!}</p>
+	<p><label>Năm sinh  (âm lịch) và giới tính người khác:</label>{!! CommonOption::getListYear('year2', 2049, 1930) !!} {!! CommonOption::getListSex('sex2') !!}</p>
+	<p id="filterError"></p>
+	<p><button id="filter2">Xem kết quả</button></p>
+	<div id="filterResult"></div>
 </div>
 @endif
 @if($filter == 3)
 <!-- xem tuoi vo chong -->
-<?php 
-	$slug = getSlugFromUrl('',1);
-	$slugCharacter = explode('-', $slug);
-	$slugCharacterCount = count($slugCharacter);
-	if($slugCharacterCount > 5) {
-		$year2 = $slugCharacter[count($slugCharacter)-1];
-		if(!isset($year2) || !is_numeric($year2)) {
-			$year2 = 1930;
-		}
-		$year1 = $slugCharacter[count($slugCharacter)-5];
-		if(!isset($year1) || !is_numeric($year1)) {
-			$year1 = 1930;
-		}
-	} else {
-		$year2 = 1930;
-		$year1 = 1930;
-	}
-?>
 <div class="timebox">
-	<p><label>Năm sinh chồng (âm lịch):</label>{!! CommonOption::getListYear('year1', 2049, 1930, $year1) !!}</p>
-	<p><label>Năm sinh vợ (âm lịch):</label>{!! CommonOption::getListYear('year2', 2049, 1930, $year2) !!}</p>
+	<p><label>Năm sinh chồng (âm lịch):</label>{!! CommonOption::getListYear('year1', 2049, 1930) !!}</p>
+	<p><label>Năm sinh vợ (âm lịch):</label>{!! CommonOption::getListYear('year2', 2049, 1930) !!}</p>
 	<p id="filterError"></p>
 	<p><button id="filter3">Xem kết quả</button></p>
 	<div id="filterResult"></div>
