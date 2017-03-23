@@ -165,7 +165,7 @@ class CommonOption
     static function checkSelected($value, $optionValue, $isChecked=null) {
         if($value == $optionValue) {
             if($isChecked != null) {
-                return ' checked="checked';
+                return ' checked="checked"';
             } else {
                 return ' selected';
             }

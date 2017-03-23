@@ -278,23 +278,28 @@ function compareMenh(y1, y2, m1, m2, calc) {
 		if(calc) { return 2; }
 		return '<strong style="color:#00CC66">Tương sinh</strong>';
 	} else if((y1 === 'Kim' && y2 === 'Hỏa') || (y1 === 'Kim' && y2 === 'Mộc') || (y1 === 'Thuỷ' && y2 === 'Thổ')|| (y1 === 'Thuỷ' && y2 === 'Hỏa')|| (y1 === 'Mộc' && y2 === 'Kim')|| (y1 === 'Mộc' && y2 === 'Thổ')|| (y1 === 'Hỏa' && y2 === 'Kim')|| (y1 === 'Hỏa' && y2 === 'Thuỷ')|| (y1 === 'Thổ' && y2 === 'Thuỷ')|| (y1 === 'Thổ' && y2 === 'Mộc')) {
-		if(calc) { return 0; }
 		// cac truong hop ngoai le, khac nhung lai tot
 		if(((y1 === 'Kim' && y2 === 'Hỏa') && (m1 === 'Kiếm phong kim' || m1 === 'Sa trung kim')) || ((y1 === 'Hỏa' && y2 === 'Kim') && (m2 === 'Kiếm phong kim' || m2 === 'Sa trung kim'))) {
+			if(calc) { return 2; }
 			return '<strong style="color:#00CC66">Tương khắc nhưng tốt</strong><br><span>Nếu Kim là Kiếm phong kim hoặc Sa trung kim</span>';
 		}
 		if(((y1 === 'Hỏa' && y2 === 'Thủy') && (m1 === 'Thiên thượng hỏa' || m1 === 'Sơn hạ hỏa' || m1 === 'Tích Lịch Hỏa')) || ((y1 === 'Thủy' && y2 === 'Hỏa') && (m2 === 'Thiên thượng hỏa' || m2 === 'Sơn hạ hỏa' || m2 === 'Tích Lịch Hỏa'))) {
+			if(calc) { return 2; }
 			return '<strong style="color:#00CC66">Tương khắc nhưng tốt</strong><br><span>Nếu Hỏa là Thiên thượng hỏa hoặc Sơn hạ hỏa hoặc Tích Lịch Hỏa</span>';
 		}
 		if(((y1 === 'Mộc' && y2 === 'Kim') && (m1 === 'Bình địa mộc')) || ((y1 === 'Kim' && y2 === 'Mộc') && (m2 === 'Bình địa mộc'))) {
+			if(calc) { return 2; }
 			return '<strong style="color:#00CC66">Tương khắc nhưng tốt</strong><br><span>Nếu Mộc là Bình địa mộc</span>';
 		}
 		if(((y1 === 'Thủy' && y2 === 'Thổ') && (m1 === 'Đại hải thủy' || m1 === 'Thiên hà thủy')) || ((y1 === 'Thổ' && y2 === 'Thủy') && (m2 === 'Đại hải thủy' || m2 === 'Thiên hà thủy'))) {
+			if(calc) { return 2; }
 			return '<strong style="color:#00CC66">Tương khắc nhưng tốt</strong><br><span>Nếu Thủy là Đại hải thủy hoặc Thiên hà thủy</span>';
 		}
 		if(((y1 === 'Thổ' && y2 === 'Mộc') && (m1 === 'Lộ bàng thổ' || m1 === 'Đại dịch thổ' || m1 === 'Sa trung thổ')) || ((y1 === 'Mộc' && y2 === 'Thổ') && (m2 === 'Lộ bàng thổ' || m2 === 'Đại dịch thổ' || m2 === 'Sa trung thổ'))) {
+			if(calc) { return 2; }
 			return '<strong style="color:#00CC66">Tương khắc nhưng tốt</strong><br><span>Nếu Thổ là Lộ bàng thổ hoặc Đại dịch thổ hoặc Sa trung thổ</span>';
 		}
+		if(calc) { return 0; }
 		return '<strong style="color:#FF0066">Tương khắc</strong>';
 	} else {
 		if(calc) { return 1; }
@@ -485,7 +490,7 @@ $('#filter2').click(function(){
 			+'<p><strong>Hành: </strong>'+year2Js.hanh+'</p>'
 			+'<p><strong>Giới tính: </strong>'+sextext2+'</p>'
 			+'</td></tr></tbody></table>'
-			+'<h3 style="font-size:18px;">Luận giải xem bói tuổi chồng '+year1Js.tuoi+' vợ '+year2Js.tuoi+'</h3>'
+			+'<h3 style="font-size:18px;">Luận giải xem bói '+sextext1+' tuổi '+year1Js.tuoi+' và '+sextext2+' tuổi '+year2Js.tuoi+'</h3>'
 			+'<table style="width:100%;margin: 0 auto;text-align:center;"><tbody><tr><td>'
 			+'<p><strong>Về Mệnh</strong></p>'
 			+'<p>'+year1Js.hanhmenh+' - '+year2Js.hanhmenh+' => '+compareMenh(year1Js.hanh2, year2Js.hanh2, year1Js.menh, year2Js.menh)+'</p>'
@@ -504,4 +509,20 @@ $('#filter2').click(function(){
 	.fail(function() {
 		$('#filterError').html('Dữ liệu đang được cập nhật');
 	});
+});
+// xem sao chieu menh
+$('#filter22').click(function(){
+	var year1 = $('select[name="year1"] option:selected').val();
+	var year2 = $('select[name="year2"] option:selected').val();
+	var sex = $('input[name="sex"]:checked').val();
+	if(year1 === '' || sex === '' || year2 === '') {
+		$('#filterError').html('Mời bạn chọn đầy đủ thông tin');
+	}
+	if(sex === '2') {
+		sextext = 'nu';
+	} else {
+		sextext = 'nam';
+	}
+	var url = '/xem-sao-chieu-menh-nam-'+year2+'-cua-'+sextext+'-sinh-nam-'+year1;
+	window.location.href = url;
 });

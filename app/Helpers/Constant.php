@@ -56,6 +56,7 @@ define('NGAYBATTUONG', '/%ngaybattuong%/');
 define('TUVIGIOSINH', '/%tuvigiosinh%/');
 define('XEMCUNGMENH', '/%xemcungmenh%/');
 define('TAMTAIHOANGOCKIMLAU', '/%tamtaihoangockimlau%/');
+define('SAOCHIEUMENH', '/%saochieumenh%/');
 //trang thai crawler
 define('CRAW_POST', 1);
 define('CRAW_CATEGORY', 2);

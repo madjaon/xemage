@@ -452,6 +452,23 @@ ul.menu {
 		}
 	}
 }
+ul.loveyou {
+	clear: both;
+	overflow: hidden;
+	li {
+		list-style: square;
+		width: 50%;
+		float: left;
+		margin: 5px 0;
+		a:hover {
+			font-weight: bold;
+		}
+	}
+	li:before,
+	li:after {
+		clear: both;
+	}
+}
 .topmenu {
 	
 }

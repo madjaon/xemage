@@ -33,6 +33,59 @@
 
 @include('patterns.filter', array('filter' => 1))
 
+<div class="box">
+	<div class="box-title clearfix">
+		<h3><a href="{{ url('/tu-vi-tron-doi') }}" title="Tử vi">Tử vi</a></h3>
+		<span>&nbsp;</span>
+	</div>
+	<ul class="loveyou">
+		<li><a href="{{ url('/tu-vi-2017') }}" title="Tử vi 2017">Tử vi 2017</a></li>
+		<li><a href="{{ url('/tu-vi-tron-doi') }}" title="Tử vi trọn đời">Tử vi trọn đời</a></li>
+		<li><a href="{{ url('/tu-vi-12-con-giap') }}" title="Tử vi 12 con giáp">Tử vi 12 con giáp</a></li>
+		<li><a href="{{ url('/xem-tu-vi-theo-gio-sinh') }}" title="Tử vi theo giờ sinh">Tử vi theo giờ sinh</a></li>
+	</ul>
+</div>
+
+<div class="box">
+	<div class="box-title clearfix">
+		<h3><a href="{{ url('/xem-tuoi') }}" title="Xem tuổi">Xem tuổi</a></h3>
+		<span>&nbsp;</span>
+	</div>
+	<ul class="loveyou">
+		<li><a href="{{ url('/xem-tuoi-vo-chong') }}" title="Xem tuổi vợ chồng">Xem tuổi vợ chồng</a></li>
+		<li><a href="{{ url('/xem-tuoi-ket-hon') }}" title="Xem tuổi kết hôn">Xem tuổi kết hôn</a></li>
+		<li><a href="{{ url('/cao-ly-dau-hinh') }}" title="Cao ly đầu hình">Cao ly đầu hình</a></li>
+		<li><a href="{{ url('/quy-coc-toan-menh') }}" title="Quỷ cốc toán mệnh">Quỷ cốc toán mệnh</a></li>
+		<li><a href="{{ url('/dat-ten-con-theo-ngu-hanh') }}" title="Đặt tên con theo ngũ hành">Đặt tên con theo ngũ hành</a></li>
+		<li><a href="{{ url('/menh-so') }}" title="Xem mệnh số">Xem mệnh số</a></li>
+		<li><a href="{{ url('/xem-cung-menh-theo-nam-sinh') }}" title="Xem cung mệnh">Xem cung mệnh</a></li>
+		<li><a href="{{ url('/xem-sao-chieu-menh') }}" title="Xem cung mệnh">Xem sao chiếu mệnh</a></li>
+	</ul>
+</div>
+
+<div class="box">
+	<div class="box-title clearfix">
+		<h3><a href="{{ url('/xem-boi') }}" title="Xem ngày tốt xấu theo ngũ hành và phong thủy">Xem ngày tốt xấu theo ngũ hành và phong thủy</a></h3>
+		<span>&nbsp;</span>
+	</div>
+	<ul class="loveyou">
+		<li><a href="{{ url('/xem-ngay-cuoi-hoi') }}" title="Xem ngày cưới hỏi">Xem ngày cưới hỏi</a></li>
+		<li><a href="{{ url('/chon-ngay-chon-cat') }}" title="Xem ngày chon cất">Xem ngày chôn cất</a></li>
+		<li><a href="{{ url('/xem-ngay-khai-truong') }}" title="Xem ngày khai trương">Xem ngày khai trương</a></li>
+		<li><a href="{{ url('/xem-ngay-lam-nha') }}" title="Xem ngày làm nhà">Xem ngày làm nhà</a></li>
+		<li><a href="{{ url('/xem-ngay-nhap-trach-ve-nha-moi') }}" title="Xem ngày về nhà mới">Xem ngày về nhà mới</a></li>
+		<li><a href="{{ url('/xem-ngay-tu-tao-sua-chua') }}" title="Xem ngày tu tạo sửa chữa">Xem ngày tu tạo sửa chữa</a></li>
+		<li><a href="{{ url('/xem-ngay-bat-tuong') }}" title="Xem ngày bất tương">Xem ngày bất tương</a></li>
+		<li><a href="{{ url('/xem-ngay-hac-dao-ngay-xau') }}" title="Xem ngày hắc đạo">Xem ngày hắc đạo</a></li>
+		<li><a href="{{ url('/xem-ngay-hoang-dao') }}" title="Xem ngày hoàng đạo">Xem ngày hoàng đạo</a></li>
+		<li><a href="{{ url('/xem-huong-nha-tot') }}" title="Xem hướng nhà tốt">Xem hướng nhà tốt</a></li>
+		<li><a href="{{ url('/bang-tinh-tam-tai-hoang-oc-kim-lau') }}" title="Bảng tính tam tai hoàng ốc kim lâu">Bảng tính tam tai hoàng ốc kim lâu</a></li>
+		<li><a href="{{ url('/mau-sac-hop-tuoi') }}" title="Xem màu sắc hợp tuổi">Xem màu sắc hợp tuổi</a></li>
+	</ul>
+</div>
+
+
+
 @if(count($data) > 0)
 	@foreach($data as $key => $value)
 		@if(count($value->posts) > 0)
