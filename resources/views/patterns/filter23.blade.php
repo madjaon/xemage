@@ -1,29 +1,6 @@
 <!-- boi ngay sinh -->
-<?php 
-	$slug = getSlugFromUrl('',1);
-	$slugCharacter = explode('-', $slug);
-	$slugCharacterCount = count($slugCharacter);
-	if($slugCharacterCount > 3) {
-		$year = $slugCharacter[count($slugCharacter)-1];
-		if(!isset($year) || !is_numeric($year)) {
-			$year = 1930;
-		}
-		$month = $slugCharacter[count($slugCharacter)-3];
-		if(!isset($month) || !is_numeric($month)) {
-			$month = 1;
-		}
-		$day = $slugCharacter[count($slugCharacter)-3];
-		if(!isset($day) || !is_numeric($day)) {
-			$day = 1;
-		}
-	} else {
-		$year = 1930;
-		$month = 1;
-		$day = 1;
-	}
-?>
 <div class="timebox">
-	<p><label>Ngày sinh:</label>{!! CommonOption::getListDay('day', $day) !!} {!! CommonOption::getListMonth('month', $month) !!} {!! CommonOption::getListYear('year', 2027, 1930, $year) !!}</p>
+	<p><label>Ngày sinh:</label>{!! CommonOption::getListDay('day', 27) !!} {!! CommonOption::getListMonth('month', 11) !!} {!! CommonOption::getListYear('year', 2027, 1930, 1988) !!}</p>
 	<p id="filterError"></p>
 	<p><button id="filter23">Xem kết quả</button></p>
 </div>
