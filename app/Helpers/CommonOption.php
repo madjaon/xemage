@@ -162,6 +162,20 @@ class CommonOption
         $array = self::slugTypeArray();
         return $array[$slugType];
     }
+    //kiểu lấy tiêu đề bài viết
+    static function titleTypeArray()
+    {
+        return array(
+            TITLETYPE1=>'Lấy tiêu đề bài tự động theo mẫu thẻ lấy tiêu đề', 
+            TITLETYPE2=>'Lấy tiêu đề tự động theo danh sách slug tương ứng ds link nguồn', 
+            TITLETYPE3=>'Lấy tiêu đề theo danh sách tiêu đề tương ứng ds link nguồn', 
+        );
+    }
+    static function getTitleType($titleType=TITLETYPE1)
+    {
+        $array = self::titleTypeArray();
+        return $array[$titleType];
+    }
     static function checkSelected($value, $optionValue, $isChecked=null) {
         if($value == $optionValue) {
             if($isChecked != null) {

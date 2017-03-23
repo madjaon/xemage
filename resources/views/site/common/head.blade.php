@@ -40,4 +40,5 @@
 	@if($configcode)
 	{!! $configcode !!}
 	@endif
+	<script src="{{ asset('js/app.js') }}"></script>
 </head>

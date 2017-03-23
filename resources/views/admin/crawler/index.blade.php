@@ -10,6 +10,8 @@
 		$source = $data->source;
 		$slug_type = $data->slug_type;
 		$post_slugs = $data->post_slugs;
+		$title_type = $data->title_type;
+		$post_titles = $data->post_titles;
 		$post_links = $data->post_links;
 		$category_link = $data->category_link;
 		$category_page_link = $data->category_page_link;
@@ -35,6 +37,8 @@
 		$source = old('source');
 		$slug_type = old('slug_type');
 		$post_slugs = old('post_slugs');
+		$title_type = old('title_type');
+		$post_titles = old('post_titles');
 		$post_links = old('post_links');
 		$category_link = old('category_link');
 		$category_page_link = old('category_page_link');
@@ -111,6 +115,16 @@
 												<div class="row">
 													<div class="col-sm-12">
 													<textarea name="post_slugs" class="form-control crawpost" rows="3">{{ $post_slugs }}</textarea>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label>Titles Posts</label>
+												<p>Title tương ứng với danh sách link bài viết (phía trên). Nếu có nhiều thì ngăn cách bởi dấu phẩy</p>
+												<p>Chỉ tác dụng khi chọn Kiểu lưu title bài viết tương ứng</p>
+												<div class="row">
+													<div class="col-sm-12">
+													<textarea name="post_titles" class="form-control crawpost" rows="3">{{ $post_titles }}</textarea>
 													</div>
 												</div>
 											</div>
@@ -237,6 +251,14 @@
 												<div class="row">
 													<div class="col-sm-12">
 													{!! Form::select('slug_type', CommonOption::slugTypeArray(), $slug_type, array('class' => 'form-control')) !!}
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label>Kiểu lưu Tiêu đề bài viết</label>
+												<div class="row">
+													<div class="col-sm-12">
+													{!! Form::select('title_type', CommonOption::titleTypeArray(), $title_type, array('class' => 'form-control')) !!}
 													</div>
 												</div>
 											</div>

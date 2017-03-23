@@ -57,6 +57,7 @@ define('TUVIGIOSINH', '/%tuvigiosinh%/');
 define('XEMCUNGMENH', '/%xemcungmenh%/');
 define('TAMTAIHOANGOCKIMLAU', '/%tamtaihoangockimlau%/');
 define('SAOCHIEUMENH', '/%saochieumenh%/');
+define('BOINGAYSINH', '/%boingaysinh%/');
 //trang thai crawler
 define('CRAW_POST', 1);
 define('CRAW_CATEGORY', 2);
@@ -72,3 +73,7 @@ define('AKEY', 'db0ac2431a2e87c54852dbb0e7b9ed3d');
 define('SLUGTYPE1', 1); // lay slug theo tieu de bai viet lay duoc
 define('SLUGTYPE2', 2); // lay slug theo slug cua link nguon bai viet
 define('SLUGTYPE3', 3); // lay slug theo danh sach slug tuong ung voi danh sach link nguon bai viet
+// title type
+define('TITLETYPE1', 1); // Lấy tiêu đề bài tự động theo mẫu thẻ lấy tiêu đề
+define('TITLETYPE2', 2); // Lấy tiêu đề tự động theo danh sách slug tương ứng ds link nguồn
+define('TITLETYPE3', 3); // Lấy tiêu đề theo danh sách tiêu đề tương ứng ds link nguồn

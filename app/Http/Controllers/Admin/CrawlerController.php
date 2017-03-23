@@ -63,6 +63,8 @@ class CrawlerController extends Controller
                         'source' => $request->source,
                         'slug_type' => $request->slug_type,
                         'post_slugs' => $request->post_slugs,
+                        'title_type' => $request->title_type,
+                        'post_titles' => $request->post_titles,
                         'post_links' => $request->post_links,
                         'category_link' => $request->category_link,
                         'category_page_link' => $request->category_page_link,
@@ -89,6 +91,8 @@ class CrawlerController extends Controller
                     'source' => $request->source,
                     'slug_type' => $request->slug_type,
                     'post_slugs' => $request->post_slugs,
+                    'title_type' => $request->title_type,
+                    'post_titles' => $request->post_titles,
                     'post_links' => $request->post_links,
                     'category_link' => $request->category_link,
                     'category_page_link' => $request->category_page_link,
@@ -178,8 +182,21 @@ class CrawlerController extends Controller
             foreach($links as $key => $link) {
                 $html = HtmlDomParser::file_get_html($link); // Create DOM from URL or file
                 // Lấy tiêu đề
-                foreach($html->find($request->title_pattern) as $element) {
-                    $postName = trim($element->plaintext); // Chỉ lấy phần text
+                if($request->title_type == TITLETYPE2) {
+                    if(!empty($request->post_slugs)) {
+                        $slugsForTitles = explode(',', $request->post_slugs);
+                        $slugTitle = $slugsForTitles[$key];
+                        $postName = trim(str_replace('-', ' ', $slugTitle));
+                    }
+                } else if($request->title_type == TITLETYPE3) {
+                    if(!empty($request->post_titles)) {
+                        $titles = explode(',', $request->post_titles);
+                        $postName = trim($titles[$key]);
+                    }
+                } else {
+                    foreach($html->find($request->title_pattern) as $element) {
+                        $postName = trim($element->plaintext); // Chỉ lấy phần text
+                    }
                 }
                 // Lấy noi dung
                 foreach($html->find($request->description_pattern) as $element) {

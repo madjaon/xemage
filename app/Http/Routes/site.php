@@ -2,6 +2,7 @@
 
 // Route::resource('test', 'TestController');
 
+Route::post('/boingaysinh', 'SiteController@boingaysinh');
 Route::post('/contact', 'SiteController@contact');
 Route::get('/sitemap.xml', 'SiteController@sitemap');
 Route::get('/tim-kiem', ['uses' => 'SiteController@search', 'as' => 'site.search']);

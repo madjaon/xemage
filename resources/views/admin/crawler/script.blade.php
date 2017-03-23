@@ -29,6 +29,8 @@
 				'type': type,
 				'post_links': post_links,
 				'post_slugs': post_slugs,
+				'title_type': title_type,
+				'post_titles': post_titles,
 				'category_link': category_link,
 				'category_page_link': category_page_link,
 				'category_page_number': category_page_number,
@@ -74,6 +76,8 @@
 				'type': type,
 				'post_links': post_links,
 				'post_slugs': post_slugs,
+				'title_type': title_type,
+				'post_titles': post_titles,
 				'category_link': category_link,
 				'category_page_link': category_page_link,
 				'category_page_number': category_page_number,
@@ -121,6 +125,8 @@
 		type = $('select[name="type"]').val();
 		post_links = $('textarea[name="post_links"]').val();
 		post_slugs = $('textarea[name="post_slugs"]').val();
+		title_type = $('select[name="title_type"]').val();
+		post_titles = $('textarea[name="post_titles"]').val();
 		category_link = $('textarea[name="category_link"]').val();
 		category_page_link = $('textarea[name="category_page_link"]').val();
 		category_page_number = $('input[name="category_page_number"]').val();

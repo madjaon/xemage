@@ -31,7 +31,7 @@
 
 @section('content')
 
-@include('patterns.filter', array('filter' => 1))
+@include('patterns.filter1')
 
 <div class="box">
 	<div class="box-title clearfix">
@@ -65,7 +65,7 @@
 
 <div class="box">
 	<div class="box-title clearfix">
-		<h3><a href="{{ url('/xem-boi') }}" title="Xem ngày tốt xấu theo ngũ hành và phong thủy">Xem ngày tốt xấu theo ngũ hành và phong thủy</a></h3>
+		<h3>Xem ngày tốt xấu theo ngũ hành và phong thủy</h3>
 		<span>&nbsp;</span>
 	</div>
 	<ul class="loveyou">
@@ -81,6 +81,16 @@
 		<li><a href="{{ url('/xem-huong-nha-tot') }}" title="Xem hướng nhà tốt">Xem hướng nhà tốt</a></li>
 		<li><a href="{{ url('/bang-tinh-tam-tai-hoang-oc-kim-lau') }}" title="Bảng tính tam tai hoàng ốc kim lâu">Bảng tính tam tai hoàng ốc kim lâu</a></li>
 		<li><a href="{{ url('/mau-sac-hop-tuoi') }}" title="Xem màu sắc hợp tuổi">Xem màu sắc hợp tuổi</a></li>
+	</ul>
+</div>
+
+<div class="box">
+	<div class="box-title clearfix">
+		<h3><a href="{{ url('/xem-boi') }}" title="Xem bói">Xem bói</a></h3>
+		<span>&nbsp;</span>
+	</div>
+	<ul class="loveyou">
+		<li><a href="{{ url('/boi-ngay-sinh') }}" title="Bói ngày sinh">Bói ngày sinh</a></li>
 	</ul>
 </div>
 

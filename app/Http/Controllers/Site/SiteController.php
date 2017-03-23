@@ -453,11 +453,28 @@ class SiteController extends Controller
         return redirect()->back()->with('success', 'Cảm ơn bạn đã gửi thông tin liên hệ cho chúng tôi.');
     }
     // remove cache page if exist message validator
-    private function forgetCache($slug) {
+    private function forgetCache($slug)
+    {
         //delete cache for contact page before redirect to remove message validator
         $cacheName = 'page_'.$slug.'_1';
         $cacheNameMobile = 'page_'.$slug.'_1_mobile';
         Cache::forget($cacheName);
         Cache::forget($cacheNameMobile);
     }
+    //boingaysinh
+    public function boingaysinh(Request $request)
+    {
+        $day = $request->day;
+        $month = $request->month;
+        $year = $request->year;
+        if(isset($day) && isset($month) && isset($year)) {
+            $n = $day . $month . $year;
+            $x = $n % 9;
+            if($x > 0 && $x < 10) {
+                return $x;
+            }
+        }
+        return 1;
+    }
+
 }
