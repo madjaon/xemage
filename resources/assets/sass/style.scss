@@ -423,23 +423,25 @@ ul.menu {
 		border-bottom: 1px solid #ccc;
 		background: #eee;
 		width: 100%;
-		padding: 2px 0;
+		padding: 10px 0;
 		margin: 0;
 		left: 0;
 	    display: none;
 	    visibility: hidden;
 		> li {
-			border-right: 1px solid #ccc;
-			display: table-cell;
+			display: inline-table;
 			list-style: none;
+			width: 33.3333%;
 			> a {
-				color: #262626;
-				font-weight: normal;
-				padding: 4px 3px;
+				color: #333;
+				font-weight: 400;
+				padding: 8px;
+				text-align: left;
 			}
 			> a:hover,
 			> a:focus {
-				color: #4db2ec;
+				color: #111;
+				background: #ccc;
 			}
 		}
 		> li:last-child {
