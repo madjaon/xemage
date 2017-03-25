@@ -81,8 +81,8 @@
 		<li><a href="{{ url('/xem-ngay-hoang-dao') }}" title="Xem ngày hoàng đạo">Xem ngày hoàng đạo</a></li>
 		<li><a href="{{ url('/xem-huong-nha-tot') }}" title="Xem hướng nhà tốt">Xem hướng nhà tốt</a></li>
 		<li><a href="{{ url('/bang-tinh-tam-tai-hoang-oc-kim-lau') }}" title="Bảng tính tam tai hoàng ốc kim lâu">Bảng tính tam tai hoàng ốc kim lâu</a></li>
-		<li><a href="{{ url('/phong-thuy-mat-tien') }}" title="Xem phong thủy mặt tiền">Xem phong thủy mặt tiền</a></li>
-		<li><a href="{{ url('/phong-thuy-san-vuon') }}" title="Xem phong thủy sân vườn">Xem phong thủy sân vườn</a></li>
+		<li><a href="{{ url('/phong-thuy-mat-tien') }}" title="Xem phong thủy mặt tiền">Phong thủy mặt tiền</a></li>
+		<li><a href="{{ url('/phong-thuy-san-vuon') }}" title="Xem phong thủy sân vườn">Phong thủy sân vườn</a></li>
 		<li><a href="{{ url('/mau-sac-hop-tuoi') }}" title="Xem màu sắc hợp tuổi">Xem màu sắc hợp tuổi</a></li>
 	</ul>
 </div>
@@ -97,12 +97,11 @@
 		<li><a href="{{ url('/boi-not-ruoi') }}" title="Bói nốt ruồi">Bói nốt ruồi</a></li>
 		<li><a href="{{ url('/giai-mong-chiem-bao') }}" title="Giải Mộng Chiêm Bao">Giải Mộng Chiêm Bao</a></li>
 		<li><a href="{{ url('/giai-ma-giac-mo-va-cac-con-so') }}" title="Giải Mã Giấc Mơ Và Các Con Số">Giải Mã Giấc Mơ Và Các Con Số</a></li>
-		<li><a href="{{ url('/ngay-sinh-va-tinh-cach') }}" title="Xem bói ngày Sinh Và Tính Cách">Xem bói ngày Sinh Và Tính Cách</a></li>
-		<li><a href="{{ url('/thang-sinh-va-tinh-cach') }}" title="Xem bói tháng Sinh Và Tính Cách">Xem bói tháng Sinh Và Tính Cách</a></li>
+		<li><a href="{{ url('/ngay-sinh-va-tinh-cach') }}" title="Xem bói ngày Sinh Và Tính Cách">Bói ngày Sinh Và Tính Cách</a></li>
+		<li><a href="{{ url('/thang-sinh-va-tinh-cach') }}" title="Xem bói tháng Sinh Và Tính Cách">Bói tháng Sinh Và Tính Cách</a></li>
+		<li><a href="{{ url('/xem-boi-tinh-yeu-theo-nhom-mau') }}" title="Xem bói tình yêu theo nhóm máu">Bói tình yêu theo nhóm máu</a></li>
 	</ul>
 </div>
-
-
 
 @if(count($data) > 0)
 	@foreach($data as $key => $value)

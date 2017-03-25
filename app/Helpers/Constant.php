@@ -66,6 +66,7 @@ define('BOINOTRUOIMATNU', '/%boinotruoimatnu%/');
 define('BOINOTRUOICOTHENAM', '/%boinotruoicothenam%/');
 define('BOINOTRUOICOTHENU', '/%boinotruoicothenu%/');
 define('BOINOTRUOIBANTAY', '/%boinotruoibantay%/');
+define('BOITINHYEUTHEONHOMMAU', '/%boitinhyeutheonhommau%/');
 //trang thai crawler
 define('CRAW_POST', 1);
 define('CRAW_CATEGORY', 2);

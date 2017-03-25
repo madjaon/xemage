@@ -139,6 +139,7 @@ class CommonMethod
 		$patterns[29] = BOINOTRUOICOTHENAM;
 		$patterns[30] = BOINOTRUOICOTHENU;
 		$patterns[31] = BOINOTRUOIBANTAY;
+		$patterns[32] = BOITINHYEUTHEONHOMMAU;
 		$replacements = array();
 		// string to replace
 		$replacements[0] = view('patterns.contactform');
@@ -173,6 +174,7 @@ class CommonMethod
 		$replacements[29] = view('patterns.filter29');
 		$replacements[30] = view('patterns.filter30');
 		$replacements[31] = view('patterns.filter31');
+		$replacements[32] = view('patterns.filter32');
 		// sort array before replace
 		ksort($patterns);
 		ksort($replacements);

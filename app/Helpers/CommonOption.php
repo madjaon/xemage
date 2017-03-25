@@ -254,5 +254,9 @@ class CommonOption
         }
         return '<select name="'.$name.'" class="form-control"><option value="ty"'.self::checkSelected($value, 'ty').'>Tý (23h-01h)</option><option value="suu"'.self::checkSelected($value, 'suu').'>Sửu (01-03h)</option><option value="dan"'.self::checkSelected($value, 'dan').'>Dần (03h-05h)</option><option value="mao"'.self::checkSelected($value, 'mao').'>Mão (05h-07h)</option><option value="thin"'.self::checkSelected($value, 'thin').'>Thìn (07h-09h)</option><option value="ti"'.self::checkSelected($value, 'ti').'>Tỵ (09h-11h)</option><option value="ngo"'.self::checkSelected($value, 'ngo').'>Ngọ (11h-13h)</option><option value="mui"'.self::checkSelected($value, 'mui').'>Mùi (13h-15h)</option><option value="than"'.self::checkSelected($value, 'than').'>Thân (15h-17h)</option><option value="dau"'.self::checkSelected($value, 'dau').'>Dậu (17h-19h)</option><option value="tuat"'.self::checkSelected($value, 'tuat').'>Tuất (19h-21h)</option><option value="hoi"'.self::checkSelected($value, 'hoi').'>Hợi (21h-23h)</option></select>';
     }
+    static function getListBlood($name='blood', $value='a')
+    {
+        return '<select name="'.$name.'" class="form-control"><option value="a"'.self::checkSelected($value, 'a').'>Nhóm máu A</option><option value="b"'.self::checkSelected($value, 'b').'>Nhóm máu B</option><option value="ab"'.self::checkSelected($value, 'ab').'>Nhóm máu AB</option><option value="o"'.self::checkSelected($value, 'o').'>Nhóm máu O</option></select>';
+    }
 
 }
