@@ -19,7 +19,7 @@
 	$('#filter19').click(function(){
 		var hour = $('select[name="hour"] option:selected').val();
 		if(hour === '') {
-			$('#filterError').html('Mời bạn chọn đầy đủ thông tin');
+			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
 		}
 		var url = '/xem-tu-vi-theo-gio-sinh-cho-ban-sinh-gio-'+hour;
 		window.location.href = url;

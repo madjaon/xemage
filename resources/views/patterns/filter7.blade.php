@@ -23,7 +23,7 @@
 		var can = $('select[name="can"] option:selected').val();
 		var chi = $('select[name="chi"] option:selected').val();
 		if(can === '' || chi === '') {
-			$('#filterError').html('Mời bạn chọn đầy đủ thông tin');
+			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
 		}
 		var url = '/cao-ly-dau-hinh-chong-can-'+can+'-vo-chi-'+chi;
 		window.location.href = url;

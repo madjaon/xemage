@@ -29,7 +29,7 @@
 		var month = $('select[name="month"] option:selected').val();
 		var year = $('select[name="year"] option:selected').val();
 		if(month === '' || year === '') {
-			$('#filterError').html('Mời bạn chọn đầy đủ thông tin');
+			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
 		}
 		var url = '/xem-ngay-khai-truong-thang-'+month+'-nam-'+year;
 		window.location.href = url;

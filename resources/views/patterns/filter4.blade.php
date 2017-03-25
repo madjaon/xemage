@@ -19,7 +19,7 @@
 	$('#filter4').click(function(){
 		var hanh = $('select[name="hanh"] option:selected').val();
 		if(hanh === '') {
-			$('#filterError').html('Mời bạn chọn đầy đủ thông tin');
+			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
 		}
 		var url = '/dat-ten-con-theo-hanh-'+hanh;
 		window.location.href = url;

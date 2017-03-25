@@ -12,7 +12,7 @@
 		var year2 = $('select[name="year2"] option:selected').val();
 		var year1 = $('select[name="year1"] option:selected').val();
 		if(year2 === '' || year1 === '') {
-			$('#filterError').html('Mời bạn chọn đầy đủ thông tin');
+			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
 		}
 		$.getJSON( "/js/cm.json", function( json ) {
 			var year1Js = json[year1];
@@ -58,10 +58,10 @@
 				+'<p>'+year1Js.nienmenhnam+' - '+year2Js.nienmenhnu+' => '+compareNienmenh(year1Js.nienmenhnam, year2Js.nienmenhnu)+'</p>'
 				+'</td></tr><tr><td><p><strong>KẾT QUẢ</strong></p>'+resultText
 				+'</td></tr></tbody></table>';
-	  		$('#filterResult').html(string);
+	  		$('#filterResult').hide().html(string).fadeIn('fast');
 		})
 		.fail(function() {
-			$('#filterError').html('Dữ liệu đang được cập nhật');
+			$('#filterError').hide().html('Dữ liệu đang được cập nhật').fadeIn('fast');
 		});
 	});
 </script>

@@ -15,7 +15,7 @@
 		var sex2 = $('input[name="sex2"]:checked').val();
 		var sex1 = $('input[name="sex1"]:checked').val();
 		if(year2 === '' || year1 === '' || sex2 === '' || sex1 === '') {
-			$('#filterError').html('Mời bạn chọn đầy đủ thông tin');
+			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
 		}
 		$.getJSON( "/js/cm.json", function( json ) {
 			var year1Js = json[year1];
@@ -81,10 +81,10 @@
 				+'<p>'+nienmenh1+' - '+nienmenh2+' => '+compareNienmenh(nienmenh1, nienmenh2)+'</p>'
 				+'</td></tr><tr><td><p><strong>KẾT QUẢ</strong></p>'+resultText
 				+'</td></tr></tbody></table>';
-	  		$('#filterResult').html(string);
+	  		$('#filterResult').hide().html(string).fadeIn('fast');
 		})
 		.fail(function() {
-			$('#filterError').html('Dữ liệu đang được cập nhật');
+			$('#filterError').hide().html('Dữ liệu đang được cập nhật').fadeIn('fast');
 		});
 	});
 </script>

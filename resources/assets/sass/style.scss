@@ -123,6 +123,8 @@ body {
 		padding-right: 10px;
 		margin-top: 5px;
 		margin-bottom: 5px;
+		font-size: 16px;
+		text-transform: uppercase;
 		a {
 			font-size: 16px;
 			text-transform: uppercase;
@@ -320,10 +322,14 @@ footer {
 		padding-bottom: 8px;
 		text-align: center;
 		a {
+			display: block;
 			strong {
 				display: block;
 			}
 		}
+	}
+	td:hover {
+		background-color: #eee;
 	}
 }
 .social {
@@ -604,7 +610,6 @@ form.contact-form {
 		margin: 10px 0;
 	}
 }
-
 //
 #filterError {
 	color: #FF0000;

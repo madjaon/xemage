@@ -54,6 +54,7 @@
 	<ul class="loveyou">
 		<li><a href="{{ url('/xem-tuoi-vo-chong') }}" title="Xem tuổi vợ chồng">Xem tuổi vợ chồng</a></li>
 		<li><a href="{{ url('/xem-tuoi-ket-hon') }}" title="Xem tuổi kết hôn">Xem tuổi kết hôn</a></li>
+		<li><a href="{{ url('/xem-tuoi-xong-dat') }}" title="Xem Tuổi Xông Đất">Xem Tuổi Xông Đất</a></li>
 		<li><a href="{{ url('/cao-ly-dau-hinh') }}" title="Cao ly đầu hình">Cao ly đầu hình</a></li>
 		<li><a href="{{ url('/quy-coc-toan-menh') }}" title="Quỷ cốc toán mệnh">Quỷ cốc toán mệnh</a></li>
 		<li><a href="{{ url('/dat-ten-con-theo-ngu-hanh') }}" title="Đặt tên con theo ngũ hành">Đặt tên con theo ngũ hành</a></li>
@@ -80,6 +81,8 @@
 		<li><a href="{{ url('/xem-ngay-hoang-dao') }}" title="Xem ngày hoàng đạo">Xem ngày hoàng đạo</a></li>
 		<li><a href="{{ url('/xem-huong-nha-tot') }}" title="Xem hướng nhà tốt">Xem hướng nhà tốt</a></li>
 		<li><a href="{{ url('/bang-tinh-tam-tai-hoang-oc-kim-lau') }}" title="Bảng tính tam tai hoàng ốc kim lâu">Bảng tính tam tai hoàng ốc kim lâu</a></li>
+		<li><a href="{{ url('/phong-thuy-mat-tien') }}" title="Xem phong thủy mặt tiền">Xem phong thủy mặt tiền</a></li>
+		<li><a href="{{ url('/phong-thuy-san-vuon') }}" title="Xem phong thủy sân vườn">Xem phong thủy sân vườn</a></li>
 		<li><a href="{{ url('/mau-sac-hop-tuoi') }}" title="Xem màu sắc hợp tuổi">Xem màu sắc hợp tuổi</a></li>
 	</ul>
 </div>
@@ -91,6 +94,11 @@
 	</div>
 	<ul class="loveyou">
 		<li><a href="{{ url('/boi-ngay-sinh') }}" title="Bói ngày sinh">Bói ngày sinh</a></li>
+		<li><a href="{{ url('/boi-not-ruoi') }}" title="Bói nốt ruồi">Bói nốt ruồi</a></li>
+		<li><a href="{{ url('/giai-mong-chiem-bao') }}" title="Giải Mộng Chiêm Bao">Giải Mộng Chiêm Bao</a></li>
+		<li><a href="{{ url('/giai-ma-giac-mo-va-cac-con-so') }}" title="Giải Mã Giấc Mơ Và Các Con Số">Giải Mã Giấc Mơ Và Các Con Số</a></li>
+		<li><a href="{{ url('/ngay-sinh-va-tinh-cach') }}" title="Xem bói ngày Sinh Và Tính Cách">Xem bói ngày Sinh Và Tính Cách</a></li>
+		<li><a href="{{ url('/thang-sinh-va-tinh-cach') }}" title="Xem bói tháng Sinh Và Tính Cách">Xem bói tháng Sinh Và Tính Cách</a></li>
 	</ul>
 </div>
 

@@ -186,6 +186,15 @@ class CommonOption
         }
         return '';
     }
+    static function getListSelectOption($name='pos', $end=31, $start=1, $value=1)
+    {
+        $select = '<select name="'.$name.'" class="form-control">';
+        for($i = $start; $i <= $end; $i++) {
+            $select .= '<option value="'.$i.'"'.self::checkSelected($value, $i).'>'.$i.'</option>';
+        }
+        $select .= '</select>';
+        return $select;
+    }
     static function getListDay($day='day', $value=1)
     {
         $select = '<select name="'.$day.'" class="form-control">';

@@ -1,4 +1,4 @@
-<!-- xem huong nha tot -->
+<!-- phong thuy mat tien nha o -->
 <?php 
 	$slug = getSlugFromUrl('',1);
 	$slugCharacter = explode('-', $slug);
@@ -20,14 +20,14 @@
 	}
 ?>
 <div class="timebox">
-	<p><label>Năm sinh (âm lịch):</label>{!! CommonOption::getListYear('year', 2027, 1947, $year) !!}</p>
+	<p><label>Năm sinh:</label>{!! CommonOption::getListYear('year', 2000, 1947, $year) !!}</p>
 	<p><label>Giới tính:</label>{!! CommonOption::getListSex('sex', $sex) !!}</p>
 	<p id="filterError"></p>
-	<p><button id="filter15">Xem kết quả</button></p>
+	<p><button id="filter24">Xem kết quả</button></p>
 </div>
 <script>
-	// xem huong nha tot
-	$('#filter15').click(function(){
+	// phong thuy mat tien nha o
+	$('#filter24').click(function(){
 		var year = $('select[name="year"] option:selected').val();
 		var sex = $('input[name="sex"]:checked').val();
 		if(year === '' || sex === '') {
@@ -38,7 +38,7 @@
 		} else {
 			sextext = 'nam';
 		}
-		var url = '/xem-huong-nha-tot-cho-'+sextext+'-sinh-nam-'+year;
+		var url = '/xem-phong-thuy-mat-tien-'+sextext+'-sinh-nam-'+year;
 		window.location.href = url;
 	});
 </script>

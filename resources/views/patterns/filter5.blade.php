@@ -23,7 +23,7 @@
 		var cannamsinh = $('select[name="cannamsinh"] option:selected').val();
 		var cangiosinh = $('select[name="cangiosinh"] option:selected').val();
 		if(cannamsinh === '' || cangiosinh === '') {
-			$('#filterError').html('Mời bạn chọn đầy đủ thông tin');
+			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
 		}
 		var url = '/quy-coc-toan-menh-'+cannamsinh+'-'+cangiosinh;
 		window.location.href = url;
