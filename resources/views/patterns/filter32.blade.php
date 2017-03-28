@@ -30,6 +30,7 @@
 		var blood2 = $('select[name="blood2"] option:selected').val();
 		if(blood1 === '' || blood2 === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		var url = '/xem-boi-tinh-yeu-theo-nhom-mau-'+blood1+'-va-'+blood2;
 		window.location.href = url;

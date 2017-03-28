@@ -30,6 +30,7 @@
 		var year = $('select[name="year"] option:selected').val();
 		if(month === '' || year === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		var url = '/xem-ngay-hac-dao-ngay-xau-thang-'+month+'-nam-'+year;
 		window.location.href = url;

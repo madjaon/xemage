@@ -469,12 +469,66 @@ class SiteController extends Controller
         $year = $request->year;
         if(isset($day) && isset($month) && isset($year)) {
             $n = $day . $month . $year;
-            $x = $n % 9;
+            $x = $n % 10;
             if($x > 0 && $x < 10) {
                 return $x;
             }
         }
         return 1;
+    }
+    //xemboithayphan
+    public function xemboithayphan(Request $request)
+    {
+        $question = $request->question;
+        $answer = $request->answer;
+        if(isset($question) && isset($answer)) {
+            $q = str_split_unicode($question);
+            $a = explode(',', $answer);
+            $qcount = count($q);
+            $acount = count($a);
+            if($qcount == 0 || $acount == 0) {
+                return 'Mời bạn nhập lại dữ liệu giúp thầy.';
+            }
+            $s = 0;
+            //cong tat ca cac chu cai trong cau hoi vao nhau (sau khi convert sang number = ord)
+            for($i = 0; $i < $qcount; $i++) {
+                $s += toNumber($q[$i]);
+            }
+            $sdate = intval(date('j')) + intval(date('n')) + intval(date('Y'));
+            //cong them ngay thang nam hien tai
+            $s = $s + $sdate;
+            //cong nhu tren voi tung cau tra loi
+            $aitem = []; $aitemcount = []; $as = []; $ass = [];
+            for($i = 0; $i < $acount; $i++) {
+                $aitem[$i] = str_split_unicode($a[$i]);
+                $aitemcount[$i] = count($aitem[$i]);
+                for($j = 0; $j < $aitemcount[$i]; $j++) {
+                    $as[$i] = toNumber($aitem[$i][$j]);
+                    $ass[$i] = $s % $as[$i];
+                }
+            }
+            $assmax = max($ass);
+            $r = array_search($assmax, $ass);
+            return 'Thầy khuyên bạn nên chọn câu trả lời là: <strong>' . $a[$r] . '</strong>';
+        }
+        return 'Xin lỗi bạn. Thầy bó tay không thể phán câu hỏi này của bạn.';
+    }
+    //xemboiaicap
+    public function xemboiaicap(Request $request)
+    {
+        $fullname = $request->fullname;
+        if(isset($fullname)) {
+            $n = toNumber($fullname);
+            $r = $n % 10;
+            if($r > 0 && $r < 10) {
+                $data = $r;
+            } else {
+                $data = 1;
+            }
+        } else {
+            $data = 1;    
+        }
+        return response()->json($data);
     }
 
 }

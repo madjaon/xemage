@@ -24,6 +24,7 @@
 		var chi = $('select[name="chi"] option:selected').val();
 		if(can === '' || chi === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		var url = '/cao-ly-dau-hinh-chong-can-'+can+'-vo-chi-'+chi;
 		window.location.href = url;

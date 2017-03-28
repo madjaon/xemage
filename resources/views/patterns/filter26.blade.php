@@ -18,8 +18,8 @@
 	}
 ?>
 <div class="timebox">
-	<p><label>Năm sinh gia chủ:</label>{!! CommonOption::getListYear('year1', 2020, 1955, $year1) !!}</p>
-	<p><label>Năm xông đất:</label>{!! CommonOption::getListYear('year2', 2025, 2018, $year2) !!}</p>
+	<p><label>Năm sinh gia chủ:</label>{!! CommonOption::getListYear('year1', 2015, 1955, $year1) !!}</p>
+	<p><label>Năm xông đất:</label>{!! CommonOption::getListYear('year2', 2022, 2018, $year2) !!}</p>
 	<p id="filterError"></p>
 	<p><button id="filter26">Xem kết quả</button></p>
 </div>
@@ -30,14 +30,15 @@
 		var year2 = $('select[name="year2"] option:selected').val();
 		if(year1 === '' || year2 === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		$.getJSON( "/js/y.json", function( json ) {
-	  		var url = '/xem-tuoi-xong-dat-nam-'+year2+'-'+json[year]+'-cho-gia-chu-sinh-nam-'+year1;
+	  		var url = '/xem-tuoi-xong-dat-nam-'+year2+'-'+json[year2]+'-cho-gia-chu-sinh-nam-'+year1;
 			window.location.href = url;
 		})
 		.fail(function() {
 			$('#filterError').hide().html('Dữ liệu đang được cập nhật').fadeIn('fast');
 		});
-		
+		return;
 	});
 </script>

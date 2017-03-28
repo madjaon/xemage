@@ -12,13 +12,16 @@
 		var pos = $('select[name="pos"] option:selected').val();
 		if(pos === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		$.getJSON( "/js/mole.json", function( json ) {
+			$('#filterError').hide().fadeOut('fast');
 	  		var string = '<p><strong>Kết quả:</strong> '+json['bodywoman'][pos]+'</p>';
 	  		$('#filterResult').hide().html(string).fadeIn('fast');
 		})
 		.fail(function() {
 			$('#filterError').hide().html('Dữ liệu đang được cập nhật').fadeIn('fast');
 		});
+		return;
 	});
 </script>

@@ -12,6 +12,7 @@
 		var year = $('select[name="year"] option:selected').val();
 		if(day === '' || month === '' || year === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		$.ajax(
 		{

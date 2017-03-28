@@ -16,8 +16,10 @@
 		var sex1 = $('input[name="sex1"]:checked').val();
 		if(year2 === '' || year1 === '' || sex2 === '' || sex1 === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		$.getJSON( "/js/cm.json", function( json ) {
+			$('#filterError').hide().fadeOut('fast');
 			var year1Js = json[year1];
 			var year2Js = json[year2];
 			if(sex2 === '2') {
@@ -86,5 +88,6 @@
 		.fail(function() {
 			$('#filterError').hide().html('Dữ liệu đang được cập nhật').fadeIn('fast');
 		});
+		return;
 	});
 </script>

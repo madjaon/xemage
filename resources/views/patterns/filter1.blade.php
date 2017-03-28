@@ -33,6 +33,7 @@
 		var sex = $('input[name="sex"]:checked').val();
 		if(year === '' || sex === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		$.getJSON( "/js/y.json", function( json ) {
 			var sextext = '';
@@ -47,5 +48,6 @@
 		.fail(function() {
 			$('#filterError').hide().html('Dữ liệu đang được cập nhật').fadeIn('fast');
 		});
+		return;
 	});
 </script>

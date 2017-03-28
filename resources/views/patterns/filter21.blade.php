@@ -24,6 +24,7 @@
 		var year = $('select[name="year"] option:selected').val();
 		if(year === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		var url = '/bang-tinh-tam-tai-hoang-oc-kim-lau-nam-'+year;
 		window.location.href = url;

@@ -95,11 +95,31 @@
 	<ul class="loveyou">
 		<li><a href="{{ url('/boi-ngay-sinh') }}" title="Bói ngày sinh">Bói ngày sinh</a></li>
 		<li><a href="{{ url('/boi-not-ruoi') }}" title="Bói nốt ruồi">Bói nốt ruồi</a></li>
+		<li><a href="{{ url('/boi-nhay-mat') }}" title="Bói nháy mắt">Bói nháy mắt</a></li>
+		<li><a href="{{ url('/xem-boi-chi-tay') }}" title="Xem Bói Chỉ Tay">Xem Bói Chỉ Tay</a></li>
+		<li><a href="{{ url('/xem-boi-hoa-tay') }}" title="Xem Bói hoa tay">Xem Bói hoa tay</a></li>
+		<li><a href="{{ url('/diem-bao-lanh-du') }}" title="Điềm báo lành dữ">Điềm báo lành dữ</a></li>
 		<li><a href="{{ url('/giai-mong-chiem-bao') }}" title="Giải Mộng Chiêm Bao">Giải Mộng Chiêm Bao</a></li>
 		<li><a href="{{ url('/giai-ma-giac-mo-va-cac-con-so') }}" title="Giải Mã Giấc Mơ Và Các Con Số">Giải Mã Giấc Mơ Và Các Con Số</a></li>
 		<li><a href="{{ url('/ngay-sinh-va-tinh-cach') }}" title="Xem bói ngày Sinh Và Tính Cách">Bói ngày Sinh Và Tính Cách</a></li>
 		<li><a href="{{ url('/thang-sinh-va-tinh-cach') }}" title="Xem bói tháng Sinh Và Tính Cách">Bói tháng Sinh Và Tính Cách</a></li>
 		<li><a href="{{ url('/xem-boi-tinh-yeu-theo-nhom-mau') }}" title="Xem bói tình yêu theo nhóm máu">Bói tình yêu theo nhóm máu</a></li>
+		<li><a href="{{ url('/xem-boi-thay-phan') }}" title="Xem bói thầy phán">Bói thầy phán</a></li>
+		<li><a href="{{ url('/xem-boi-ai-cap') }}" title="Xem bói Ai Cập">Xem bói Ai Cập</a></li>
+		<li><a href="{{ url('/xem-boi-tinh-yeu-theo-chu-cai-dau-tien') }}" title="Xem Bói Tình Yêu Theo Chữ Cái Đầu Tiên Trong Tên">Bói Tình Yêu Theo Chữ Cái</a></li>
+		<li><a href="{{ url('/xem-boi-tinh-cach-theo-chu-cai-dau-tien') }}" title="Xem Bói Tính Cách Theo Chữ Cái Đầu Tiên Trong Tên">Bói Tính Cách Theo Chữ Cái</a></li>
+	</ul>
+</div>
+
+<div class="box">
+	<div class="box-title clearfix">
+		<h3><a href="{{ url('/12-cung-hoang-dao') }}" title="12 Cung Hoàng Đạo">12 Cung Hoàng Đạo</a></h3>
+		<span>&nbsp;</span>
+	</div>
+	<ul class="loveyou">
+		<li><a href="{{ url('/xem-cung-hoang-dao') }}" title="Xem cung hoàng đạo">Xem cung hoàng đạo</a></li>
+		<li><a href="{{ url('/tinh-yeu-cua-cung-hoang-dao') }}" title="Tình Yêu Của Cung Hoàng Đạo">Tình Yêu Của Cung Hoàng Đạo</a></li>
+		<li><a href="{{ url('/xep-hang-12-chom-sao') }}" title="Xếp Hạng 12 Chòm Sao">Xếp Hạng 12 Chòm Sao</a></li>
 	</ul>
 </div>
 

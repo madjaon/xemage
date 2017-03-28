@@ -38,6 +38,7 @@
 		var sex = $('input[name="sex"]:checked').val();
 		if(year1 === '' || sex === '' || year2 === '') {
 			$('#filterError').hide().html('Mời bạn chọn đầy đủ thông tin').fadeIn('fast');
+			return;
 		}
 		if(sex === '2') {
 			sextext = 'nu';

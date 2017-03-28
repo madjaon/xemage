@@ -67,6 +67,13 @@ define('BOINOTRUOICOTHENAM', '/%boinotruoicothenam%/');
 define('BOINOTRUOICOTHENU', '/%boinotruoicothenu%/');
 define('BOINOTRUOIBANTAY', '/%boinotruoibantay%/');
 define('BOITINHYEUTHEONHOMMAU', '/%boitinhyeutheonhommau%/');
+define('BOINHAYMAT', '/%boinhaymat%/');
+define('DIEMBAOLANHDU', '/%diembaolanhdu%/');
+define('THAYPHAN', '/%thayphan%/');
+define('BOIAICAP', '/%boiaicap%/');
+define('CUNGHOANGDAO', '/%cunghoangdao%/');
+define('TINHYEUCUNGHOANGDAO', '/%tinhyeucunghoangdao%/');
+define('XEPHANGCUNGHOANGDAO', '/%xephangcunghoangdao%/');
 //trang thai crawler
 define('CRAW_POST', 1);
 define('CRAW_CATEGORY', 2);

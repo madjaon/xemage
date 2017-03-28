@@ -2,6 +2,8 @@
 
 // Route::resource('test', 'TestController');
 
+Route::post('/xemboiaicap', 'SiteController@xemboiaicap');
+Route::post('/xemboithayphan', 'SiteController@xemboithayphan');
 Route::post('/boingaysinh', 'SiteController@boingaysinh');
 Route::post('/contact', 'SiteController@contact');
 Route::get('/sitemap.xml', 'SiteController@sitemap');
