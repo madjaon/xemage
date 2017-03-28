@@ -619,6 +619,7 @@ form.contact-form {
 	margin-bottom: 15px;
 }
 
+.mau0,
 .mau1 {
 	font-weight: bold;
 }
@@ -671,6 +672,9 @@ form.contact-form {
 		float: none;
 		width: 100%;
 		margin-left: 0;
+	}
+	table.zodiac-rank {
+		width: 100% !important;
 	}
 }
 /* Medium and up */
