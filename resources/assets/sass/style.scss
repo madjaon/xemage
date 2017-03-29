@@ -1,6 +1,6 @@
 * {
 	font-family: Tahoma,Helvetica,Arial,sans-serif;
-	font-size: 13px;
+	font-size: 14px;
 	// -webkit-touch-callout:none;
  //    -webkit-user-select:none;
  //    -moz-user-select:none;
@@ -44,7 +44,13 @@ button {
     border: 1px solid transparent;
 }
 ///////////////////////
-
+select.form-control {
+	padding: 0 12px;
+}
+.form-control option {
+	padding: 6px 8px;
+}
+///////////////////////
 a {
 	color: #262626;
 	text-decoration: none;
@@ -95,7 +101,7 @@ body {
 	max-width: 100%;
 }
 .main {
-	
+	min-height: 300px;
 }
 .content {
 
@@ -116,9 +122,11 @@ body {
 	}
 }
 .box-title {
-	background: #ccc;
-	border-bottom: 1px solid #aaa;
+	background: #eee;
+	border-bottom: 1px solid #ccc;
+	border-left: 4px solid #ba761a;
 	h3 {
+		color: #333;
 		padding-left: 10px;
 		padding-right: 10px;
 		margin-top: 5px;
@@ -203,6 +211,37 @@ body {
 		}
 	}
 }
+.box3 {
+	ul {
+		text-align: center;
+		li {
+			display: inline-block;
+			width: 140px;
+			float: none;
+			border-bottom: none;
+			a {
+				display: inline-block;
+				img {
+					text-align: center;
+					display: inline-block;
+				}
+				strong {
+					display: block;
+				}
+			}
+		}
+		li:nth-child(odd) {
+		    margin-right: 0;
+		}
+		li:nth-child(even) {
+		    margin-left: 0;
+		}
+		li:nth-child(1), 
+		li:nth-child(2) {
+			margin-top: 0;
+		}
+	}
+}
 .list-left {
 	float: left;
 	width: 100px;
@@ -252,8 +291,8 @@ ul.breadcrumbs {
 ul.pagination {
 	text-align: center;
 	padding: 0 10px;
-	margin-top: 5px;
-	margin-bottom: 15px;
+	margin-top: 10px;
+	margin-bottom: 30px;
 	li {
 		display: inline-block;
 		list-style: none;
@@ -385,6 +424,7 @@ ul.menu {
 		display: table-cell;
 		list-style: none;
 		a {
+			font-size: 13px;
 			color: #fff;
 			padding: 6px 3px;
 			display: block;
@@ -403,7 +443,7 @@ ul.menu {
 	> li:first-child {
 		> a {
 			padding: 6px 8px;
-			font-size: 13px;
+			font-size: 14px;
 		}
 	}
 	> li:last-child {
@@ -467,7 +507,8 @@ ul.loveyou {
 		list-style: square;
 		width: 50%;
 		float: left;
-		margin: 5px 0;
+		margin: 6px 0;
+		color: #ba761a;
 		a:hover {
 			font-weight: bold;
 		}
@@ -481,7 +522,31 @@ ul.loveyou {
 	
 }
 .bottommenu {
-
+	margin-top: 30px;
+	ul.menu {
+		li {
+			a {
+				font-size: 13px;
+			}
+		}
+		> li {
+			> a:hover,
+			> a:focus {
+				color: #ba761a;
+			}
+		}
+		> li:first-child {
+			> a {
+				font-size: 13px;
+			}
+		}
+		> li.current {
+			> a {
+				background: transparent;
+				color: #fff;
+			}
+		}
+	}
 }
 header.mobileheader {
 	padding: 10px;
@@ -675,6 +740,13 @@ form.contact-form {
 	}
 	table.zodiac-rank {
 		width: 100% !important;
+	}
+	.box3 {
+		ul {
+			li {
+				width: 45%;
+			}
+		}
 	}
 }
 /* Medium and up */

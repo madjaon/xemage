@@ -166,18 +166,14 @@ class SiteController extends Controller
                     $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
                     $type->meta_description = $typeNameNoLatin.', '.$type->name.' tại xemtuoi.vn';
                 }
-                // lay ra the loai con neu the loai nay ko co bai viet
-                if($total <= 0) {
-                    $typeChild = DB::table('post_types')
+                // lay ra the loai con cua the loai hien tai
+                $typeChild = DB::table('post_types')
                         ->select('id', 'name', 'slug', 'parent_id', 'image')
                         ->where('parent_id', $type->id)
                         ->where('status', ACTIVE)
                         ->get();
-                    if(count($typeChild) > 0) {
-                        $typeChild = $typeChild;
-                    } else {
-                        $typeChild = null;
-                    }
+                if(count($typeChild) > 0) {
+                    $typeChild = $typeChild;
                 } else {
                     $typeChild = null;
                 }
