@@ -1,7 +1,7 @@
 <?php
 
 // Route::resource('test', 'TestController');
-Route::get('mixdb/{value}', 'TestController@mixdb');
+// Route::get('mixdb/{typeId}', 'TestController@mixdb');
 
 Route::post('/xemboiaicap', 'SiteController@xemboiaicap');
 Route::post('/xemboithayphan', 'SiteController@xemboithayphan');
