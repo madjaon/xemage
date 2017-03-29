@@ -80,4 +80,48 @@
 		});
 		// window.location.reload();
 	}
+	function deleteSelected()
+	{
+		var check = $('input:checkbox:checked.id').val();
+		if(check) {
+			calldelete();
+		} else {
+			alert('Bạn chưa chọn cái nào!');
+		}
+	}
+	//call delete selected
+	function calldelete()
+	{
+		confirm = confirm('Bạn có chắc chắn muốn xóa?')
+		if(confirm) {
+			var id = $('input:checkbox:checked.id').map(function () {
+			  	return this.value;
+			}).get();
+			$.ajax(
+			{
+				type: 'post',
+				url: '{{ url("admin/post/calldelete") }}',
+				data: {
+					'id': id,
+					'_token': '{{ csrf_token() }}'
+				},
+				beforeSend: function() {
+		            $('#loadMsg').html('Deleting...');
+		        },
+				success: function(data)
+				{
+					if(data) {
+						window.location.reload();
+					}
+				}
+			});
+		} else {
+			window.location.reload();
+		}
+	}
+	//update type main index list
+	function callupdatetype()
+	{
+		alert('od');
+	}
 </script>

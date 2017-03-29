@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
     Route::post('posttype/callupdate', 'PostTypeController@callupdate');
     Route::resource('posttype', 'PostTypeController');
     //post
+    Route::post('post/calldelete', 'PostController@calldelete');
     Route::post('post/updateStatus', 'PostController@updateStatus');
     Route::get('post/search', ['uses' => 'PostController@search', 'as' => 'admin.post.search']);
     Route::resource('post', 'PostController');

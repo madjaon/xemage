@@ -269,4 +269,19 @@ class PostController extends Controller
         return 0;
     }
 
+    public function calldelete(Request $request)
+    {
+        $id = $request->id;
+        if($id) {
+            foreach($id as $key => $value) {
+                $data = Post::find($value);
+                $data->posttypes()->detach();
+                $data->posttags()->detach();
+                $data->delete();
+            }
+            Cache::flush();
+        }
+        return 0;
+    }
+
 }

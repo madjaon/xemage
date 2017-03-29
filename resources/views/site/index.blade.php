@@ -66,7 +66,7 @@
 
 <div class="box">
 	<div class="box-title clearfix">
-		<h3>Xem ngày tốt xấu theo ngũ hành và phong thủy</h3>
+		<h3>Ngũ hành, phong thủy</h3>
 		<span>&nbsp;</span>
 	</div>
 	<ul class="loveyou">

@@ -258,33 +258,38 @@ class CrawlerController extends Controller
                     $slug = CommonMethod::convert_string_vi_to_en($postName);
                     $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/i', '-', $slug));
                 }
-                //image
-                if(count($images) > 0 && !empty($request->image_dir)) {
-                    $image = '/images/'.$request->image_dir.'/'.basename($images[$key]);
-                } else {
-                    $image = '';
+                //check slug post
+                $checkSlug = Post::where('slug', $slug)->first();
+                if(count($$checkSlug) == 0) {
+                    //image
+                    if(count($images) > 0 && !empty($request->image_dir)) {
+                        $image = '/images/'.$request->image_dir.'/'.basename($images[$key]);
+                    } else {
+                        $image = '';
+                    }
+                    //insert post
+                    $data = Post::create([
+                        'name' => $postName,
+                        'slug' => $slug,
+                        'type_main_id' => $request->type_main_id,
+                        'description' => $postDescription,
+                        'image' => $image,
+                        'position' => 1,
+                        'start_date' => CommonMethod::datetimeConvert($request->start_date, $request->start_time),
+                        'status' => $request->status,
+                        'source' => $request->source,
+                        'source_url' => $link,
+                    ]);
+                    if($data) {
+                        // insert game type relation
+                        $data->posttypes()->attach([$request->type_main_id]);
+                    }
+                    //upload images
+                    if(count($images) > 0 && !empty($request->image_dir)) {
+                        $imageName = uploadImageFromUrl($images[$key], $request->image_dir);
+                    }
                 }
-                //insert post
-                $data = Post::create([
-                    'name' => $postName,
-                    'slug' => $slug,
-                    'type_main_id' => $request->type_main_id,
-                    'description' => $postDescription,
-                    'image' => $image,
-                    'position' => 1,
-                    'start_date' => CommonMethod::datetimeConvert($request->start_date, $request->start_time),
-                    'status' => $request->status,
-                    'source' => $request->source,
-                    'source_url' => $link,
-                ]);
-                if($data) {
-                    // insert game type relation
-                    $data->posttypes()->attach([$request->type_main_id]);
-                }
-                //upload images
-                if(count($images) > 0 && !empty($request->image_dir)) {
-                    $imageName = uploadImageFromUrl($images[$key], $request->image_dir);
-                }
+                //end post
             }
         }
         return;

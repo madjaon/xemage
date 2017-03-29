@@ -88,4 +88,54 @@ class TestController extends Controller
         // return 1;
     }
 
+    // warning: this function is dangerous
+    //vlue = 28: type id 28. 
+    public function mixdb($value=28)
+    {
+        dd('disabled');
+        $ps = DB::table('posts')
+                ->select('id', 'slug', 'type_main_id', DB::raw('COUNT(*) as c'))
+                ->groupBy('slug')
+                ->having('c', '>', 1)
+                ->orderBy('c', 'desc')
+                ->get();
+        if(count($ps) > 0) {
+            $ids = [];
+            foreach($ps as $key => $value) {
+                $ids[$key] = DB::table('posts')
+                    ->where('slug', $value->slug)
+                    ->lists('id');
+                if(count($ids[$key]) > 0 && $value->c > 2) {
+                    $firstId = $ids[$key][0];
+                    $allbutfirst = array_slice($ids[$key], 1);
+                    //delete post_type_relations
+                    DB::table('post_type_relations')->whereIn('post_id', $ids[$key])->delete();
+                    //insert post_type_relations with type = $value
+                    DB::table('post_type_relations')->insert(['post_id' => $firstId, 'type_id' => $value]);
+                    //delete posts duplicate posts except first in list
+                    DB::table('posts')->whereIn('id', $allbutfirst)->delete();
+                    //update first post typemainid = $value
+                    DB::table('posts')->where('id', $firstId)->update(['type_main_id' => $value]);
+                }
+                if(count($ids[$key]) > 0 && $value->c == 2) {
+                    $firstId = $ids[$key][0];
+                    $secondId = $ids[$key][1];
+                    //find first post
+                    $firstPost = DB::table('posts')->where('id', $firstId)->first();
+                    if($firstPost) {
+                        //update second post type main id to same first post typemainid
+                        DB::table('posts')->where('id', $secondId)->update(['type_main_id' => $firstPost->type_main_id]);
+                        //delete second post
+                        DB::table('posts')->where('id', $secondId)->delete();
+                        // update post type relation post id to first post id
+                        DB::table('post_type_relations')->where('post_id', $secondId)->update(['post_id' => $firstId]);
+                    }
+                }
+            }
+            dd('End mix. Please, Check database now');
+        } else {
+            dd('no record');
+        }
+    }
+
 }
