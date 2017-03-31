@@ -23,6 +23,7 @@ define('PAGINATION', 20);
 define('PAGINATE', 12);
 define('PAGINATE_BOX', 6);
 define('PAGINATE_GRID', 12);
+define('PAGINATE_RELATED', 6);
 //404
 define('PAGENOTFOUND', '404 - Trang không tìm thấy');
 //device

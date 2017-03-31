@@ -211,6 +211,16 @@ body {
 		}
 	}
 }
+.box0 {
+	ul {
+		li {
+			i.fa {
+				font-size: 14px;
+				margin-right: 8px;
+			}
+		}
+	}
+}
 .box3 {
 	ul {
 		text-align: center;
@@ -420,6 +430,7 @@ ul.menu {
 	width: 100%;
 	padding: 0;
 	margin: 0;
+	z-index: 9999;
 	li {
 		display: table-cell;
 		list-style: none;
@@ -635,6 +646,7 @@ button {
 	border: none;
 	color: #fff;
 	cursor: pointer;
+	border-radius: 3px;
 }
 input[type="submit"]:hover,
 input[type="submit"]:focus,
@@ -674,6 +686,12 @@ form.contact-form {
 		text-transform: uppercase;
 		margin: 10px 0;
 	}
+}
+.mybox {
+	display: block;
+	overflow: hidden;
+	margin: 10px auto;
+	text-align: center;
 }
 //
 #filterError {

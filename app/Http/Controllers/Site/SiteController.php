@@ -209,12 +209,10 @@ class SiteController extends Controller
                 ->orderBy('post_tags.name')
                 ->get();
             //list type
-            $postTypesQuery = $this->getPostTypeQuery($post->type_main_id, [$post->id]);
-            $postTypes = $postTypesQuery->get();
-            $postTypesIds = $postTypesQuery->pluck('id');
+            $postTypes = $this->getPostRelated($post->id, [$post->id], $post->type_main_id);
+            $postTypesIds = $this->getPostRelated($post->id, [$post->id], $post->type_main_id, 1);
             //list related
-            $postRelatedQuery = $this->getPostTypeQuery($post->related, $postTypesIds);
-            $postRelated = $postRelatedQuery->get();
+            $postRelated = $this->getPostRelated($post->id, $postTypesIds, $post->related);
             //FIRST: type, related
             $typeMain = $this->getPostTypeById($post->type_main_id);
             $related = $this->getPostTypeById($post->related);
@@ -347,17 +345,51 @@ class SiteController extends Controller
         $content = view('site.sitemap');
         return response($content)->header('Content-Type', 'text/xml;charset=utf-8');
     }
-    private function getPostTypeQuery($id, $ids)
+    //asuna: lay tat ca du lieu post (null) / hay chi lay danh sach id cua post (not null)
+    private function getPostRelated($id, $ids, $typeId, $asuna = null)
+    {
+        //lay danh sach posts
+        if($asuna == null) {
+            //post moi hon
+            $post1Query = $this->getPostTypeQuery($id, $ids, $typeId);
+            $post1 = $post1Query->get();
+            //post cu hon
+            $post2Query = $this->getPostTypeQuery($id, $ids, $typeId, 1);
+            $post2 = $post2Query->get();
+            $posts = array_merge($post1, $post2);
+            return $posts;
+        }
+        //lay danh sach id posts
+        else {
+            //post moi hon
+            $post1Query = $this->getPostTypeQuery($id, $ids, $typeId);
+            $post1 = $post1Query->pluck('id');
+            //post cu hon
+            $post2Query = $this->getPostTypeQuery($id, $ids, $typeId, 1);
+            $post2 = $post2Query->pluck('id');
+            $posts = array_merge($post1, $post2);
+            return $posts;
+        }
+    }
+    //lay ra post cu hon (time not null) va moi hon (time null) theo id
+    //id: id post hien tai
+    //typeId: id type main / related cua post hien tai. ids: danh sach id da lay ra (tranh trung lap)
+    private function getPostTypeQuery($id, $ids, $typeId, $time = null)
     {
         $data = DB::table('posts')
             ->join('post_type_relations', 'posts.id', '=', 'post_type_relations.post_id')
-            ->select('posts.id', 'posts.name', 'posts.slug', 'posts.image', 'posts.summary', 'posts.description', 'posts.created_at')
-            ->where('post_type_relations.type_id', $id)
+            ->select('posts.id', 'posts.name', 'posts.slug', 'posts.image', 'posts.summary', 'posts.created_at')
+            ->where('post_type_relations.type_id', $typeId)
             ->where('posts.status', ACTIVE)
-            ->where('posts.start_date', '<=', date('Y-m-d H:i:s'))
-            ->whereNotIn('post_type_relations.post_id', $ids)
-            ->orderBy('posts.start_date', 'desc')
-            ->take(PAGINATE_BOX);
+            ->where('posts.start_date', '<=', date('Y-m-d H:i:s'));
+        if($time == null) {
+            $data = $data->where('posts.id', '>', $id);
+        } else {
+            $data = $data->where('posts.id', '<', $id);
+        }
+        $data = $data->whereNotIn('post_type_relations.post_id', $ids)
+            ->orderBy('posts.id', 'desc')
+            ->take(PAGINATE_RELATED);
         return $data;
     }
     private function getPostTypeByParentIdQuery($id)

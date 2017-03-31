@@ -4,6 +4,6 @@
 		<h3><a href="{{ $typeMainUrl }}" title="{!! $data->name !!}">{!! $data->name !!}</a></h3>
 		<span>&nbsp;</span>
 	</div>
-	@include('site.post.box', array('data' => $postData))
+	@include('site.post.box0', array('data' => $postData))
 </div>
 @endif

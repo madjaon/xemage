@@ -122,6 +122,7 @@
 	//update type main index list
 	function callupdatetype()
 	{
-		alert('od');
+		alert('tính năng bị delay');
+		return;
 	}
 </script>

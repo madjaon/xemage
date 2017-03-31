@@ -52,6 +52,9 @@
 		<div class="description">{!! $type->patterns !!}</div>
 		<div class="description">{!! $type->summary !!}</div>
 		<div class="description">{!! $type->description !!}</div>
+
+		@include('site.common.ad', ['posPc' => 7, 'posMobile' => 8])
+		
 	</div>
 	@if(isset($typeChild))
 		@include('site.post.box3', array('data' => $typeChild, 'type' => $type))

@@ -40,6 +40,9 @@
 		<div class="description">{!! $data->patterns !!}</div>
 		<div class="description">{!! $data->summary !!}</div>
 		<div class="description">{!! $data->description !!}</div>
+
+		@include('site.common.ad', ['posPc' => 7, 'posMobile' => 8])
+		
 	</div>
 </div>
 @endsection

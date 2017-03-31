@@ -64,7 +64,7 @@
 		
 		@if(count($tags) > 0)
 		<div class="tags">
-			<div class="tags-icon"><i class="fa fa-tags" aria-hidden="true"></i> Chuyên mục</div>
+			<div class="tags-icon"><i class="fa fa-tags" aria-hidden="true"></i> Từ khóa liên quan</div>
 			<ul>
 				@foreach($tags as $value)
 				<li><a href="{{ url('tag/'.$value->slug) }}" title="{!! $value->name !!}">{!! $value->name !!}</a></li>
@@ -72,6 +72,8 @@
 			</ul>
 		</div>
 		@endif
+
+		@include('site.common.ad', ['posPc' => 7, 'posMobile' => 8])
 
 		<div class="fb-comments" data-numposts="5"></div>
 

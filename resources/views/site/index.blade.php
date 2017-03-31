@@ -33,6 +33,8 @@
 
 @include('patterns.filter1')
 
+@include('site.common.ad', ['posPc' => 7, 'posMobile' => 8])
+
 <div class="box">
 	<div class="box-title clearfix">
 		<h3><a href="{{ url('/tu-vi-tron-doi') }}" title="Tử vi">Tử vi</a></h3>

@@ -71,14 +71,12 @@ class CommonOption
             2 => 'Header - Mobile',
             3 => 'Footer - PC',
             4 => 'Footer - Mobile',
-            5 => 'Sidebar Top - PC',
-            6 => 'Sidebar Top- Mobile',
-            7 => 'Sidebar Bottom - PC',
-            8 => 'Sidebar Bottom - Mobile',
-            9 => 'Phía trên bài viết - PC',
-            10 => 'Phía trên bài viết - Mobile',
-            11 => 'Phía dưới bài viết - PC',
-            12 => 'Phía dưới bài viết - Mobile',
+            5 => 'QC trôi bên trái - PC',
+            6 => 'QC trôi bên phải - PC',
+            7 => 'Dưới nội dung trang - PC',
+            8 => 'Dưới nội dung trang - Mobile',
+            9 => 'Phía trên mục thư viện - PC',
+            10 => 'Phía trên mục thư viện - Mobile',
             
         );
     }

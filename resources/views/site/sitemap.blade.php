@@ -9,6 +9,7 @@
         $postTypes = CommonQuery::getAllWithStatus('post_types');
         $postTags = CommonQuery::getAllWithStatus('post_tags');
         $posts = CommonQuery::getAllWithStatus('posts');
+        $pages = CommonQuery::getAllWithStatus('pages');
     ?>
     @if($postTypes)
         @foreach($postTypes as $value)
@@ -38,9 +39,19 @@
     @endif
     @if($posts)
         @foreach($posts as $value)
+            <url>
+                <loc>{{ url($value->slug) }}</loc>
+                <lastmod>{{ date('Y-m-d', strtotime($value->start_date)) }}</lastmod>
+                <changefreq>weekly</changefreq>
+                <priority>0.8</priority>
+            </url>
+        @endforeach
+    @endif
+    @if($pages)
+        @foreach($pages as $value)
     	    <url>
     	    	<loc>{{ url($value->slug) }}</loc>
-    	    	<lastmod>{{ date('Y-m-d', strtotime($value->start_date)) }}</lastmod>
+    	    	<lastmod>{{ date('Y-m-d', strtotime($value->created_at)) }}</lastmod>
     			<changefreq>weekly</changefreq>
     			<priority>0.8</priority>
     	    </url>

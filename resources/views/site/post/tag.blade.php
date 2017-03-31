@@ -45,6 +45,9 @@
 		<div class="description">{!! $tag->patterns !!}</div>
 		<div class="description">{!! $tag->summary !!}</div>
 		<div class="description">{!! $tag->description !!}</div>
+
+		@include('site.common.ad', ['posPc' => 7, 'posMobile' => 8])
+		
 	</div>
 	@if($total > 0)
 		@include('site.post.boxList', array('data' => $data))
