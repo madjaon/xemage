@@ -22,6 +22,7 @@
 		$image_dir = $data->image_dir;
 		$image_pattern = $data->image_pattern;
 		$image_check = $data->image_check;
+		$title_post_check = $data->title_post_check;
 		$title_pattern = $data->title_pattern;
 		$description_pattern = $data->description_pattern;
 		$description_pattern_delete = $data->description_pattern_delete;
@@ -49,6 +50,7 @@
 		$image_dir = old('image_dir');
 		$image_pattern = old('image_pattern');
 		$image_check = old('image_check');
+		$title_post_check = old('title_post_check');
 		$title_pattern = old('title_pattern');
 		$description_pattern = old('description_pattern');
 		$description_pattern_delete = old('description_pattern_delete');
@@ -183,9 +185,10 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label>Mẫu thẻ chứa tiêu đề post trong trang chi tiết post</label>
+												<label>Mẫu thẻ chứa tiêu đề post trong trang chi tiết post hoặc trong trang danh sách category.</label>
 												<div class="row">
 													<div class="col-sm-12">
+														{!! Form::select('title_post_check', CommonOption::titleCrawlerArray(), $title_post_check, array('class' => 'form-control')) !!}
 														<input name="title_pattern" type="text" value="{{ $title_pattern }}" class="form-control">
 													</div>
 												</div>

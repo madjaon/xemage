@@ -38,6 +38,7 @@
 				'image_dir': image_dir,
 				'image_pattern': image_pattern,
 				'image_check': image_check,
+				'title_post_check': title_post_check,
 				'title_pattern': title_pattern,
 				'description_pattern': description_pattern,
 				'description_pattern_delete': description_pattern_delete,
@@ -60,9 +61,14 @@
 				alert('Ok darling! Check Posts List Now!');
 				buttonDisabled('.stealnow');
 				return;
+			},
+			error: function(xhr)
+			{
+				alert("An error occured: " + xhr.status + " " + xhr.statusText);
+				buttonDisabled('.stealnow');
+				return;
 			}
 		});
-		// window.location.reload();
 	}
 	function savenow()
 	{
@@ -85,6 +91,7 @@
 				'image_dir': image_dir,
 				'image_pattern': image_pattern,
 				'image_check': image_check,
+				'title_post_check': title_post_check,
 				'title_pattern': title_pattern,
 				'description_pattern': description_pattern,
 				'description_pattern_delete': description_pattern_delete,
@@ -115,9 +122,14 @@
 					buttonDisabled('.savenow');
 				}
 				return;
+			},
+			error: function(xhr)
+			{
+				alert("An error occured: " + xhr.status + " " + xhr.statusText);
+				buttonDisabled('.savenow');
+				return;
 			}
 		});
-		// window.location.reload();
 	}
 	function getForm()
 	{
@@ -134,6 +146,7 @@
 		image_dir = $('input[name="image_dir"]').val();
 		image_pattern = $('input[name="image_pattern"]').val();
 		image_check = $('select[name="image_check"]').val();
+		title_post_check = $('select[name="title_post_check"]').val();
 		title_pattern = $('input[name="title_pattern"]').val();
 		description_pattern = $('input[name="description_pattern"]').val();
 		description_pattern_delete = $('textarea[name="description_pattern_delete"]').val();

@@ -226,7 +226,7 @@ body {
 		text-align: center;
 		li {
 			display: inline-block;
-			width: 140px;
+			width: 180px;
 			float: none;
 			border-bottom: none;
 			a {
@@ -765,6 +765,9 @@ form.contact-form {
 				width: 45%;
 			}
 		}
+	}
+	.bottommenu {
+		display: none;
 	}
 }
 /* Medium and up */

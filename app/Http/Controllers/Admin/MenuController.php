@@ -192,7 +192,7 @@ class MenuController extends Controller
     {
         $id = $request->id;
         $field = $request->field;
-        if($id) {
+        if($id && $field) {
             $data = Menu::find($id);    
             if(count($data) > 0) {
                 $status = ($data->$field == ACTIVE)?INACTIVE:ACTIVE;

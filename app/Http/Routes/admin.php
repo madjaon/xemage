@@ -20,7 +20,9 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
     Route::post('posttype/callupdate', 'PostTypeController@callupdate');
     Route::resource('posttype', 'PostTypeController');
     //post
+    Route::post('post/callupdatetype', 'PostController@callupdatetype');
     Route::post('post/calldelete', 'PostController@calldelete');
+    Route::post('post/callupdatestatus', 'PostController@callupdatestatus');
     Route::post('post/updateStatus', 'PostController@updateStatus');
     Route::get('post/search', ['uses' => 'PostController@search', 'as' => 'admin.post.search']);
     Route::resource('post', 'PostController');
@@ -41,6 +43,7 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
     Route::post('slider/callupdate', 'SliderController@callupdate');
     Route::resource('slider', 'SliderController');
     //crawler
+    Route::get('genthumb', 'CrawlerController@genthumb');
     Route::post('crawler/save', 'CrawlerController@save');
     Route::post('crawler/steal', 'CrawlerController@steal');
     Route::resource('crawler', 'CrawlerController');

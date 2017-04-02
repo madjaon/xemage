@@ -23,10 +23,17 @@
 			{
 				if(data) {
 					window.location.reload();
+				} else {
+					alert('Xảy ra lỗi! Chưa thể cập nhật! Vui lòng refresh trang.');
+					window.location.reload();
 				}
+			},
+			error: function(xhr)
+			{
+				alert("An error occured: " + xhr.status + " " + xhr.statusText);
+				window.location.reload();
 			}
 		});
-		// window.location.reload();
 	}
 	function updateStatus(id, field)
 	{
@@ -50,8 +57,12 @@
 					alert('Xảy ra lỗi! Chưa thể cập nhật! Vui lòng refresh trang.');
 					window.location.reload();
 				}
+			},
+			error: function(xhr)
+			{
+				alert("An error occured: " + xhr.status + " " + xhr.statusText);
+				window.location.reload();
 			}
 		});
-		// window.location.reload();
 	}
 </script>

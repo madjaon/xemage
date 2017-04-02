@@ -24,7 +24,7 @@
 				<li class="user">
 					<a href="#"><i class="fa fa-user"></i>{!! Auth::guard('admin')->user()->name !!}</a>
 				</li>
-				<li>
+				<li class="user">
 					<a href="{{ route('admin.auth.logout') }}"><i class="fa fa-power-off"></i>Sign out</a>
 				</li>
 			</ul>

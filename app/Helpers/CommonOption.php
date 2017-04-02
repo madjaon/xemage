@@ -37,7 +37,7 @@ class CommonOption
             MENUTYPE4=>'Menu mobile', 
         );
     }
-    static function getMenuType($menuType=ACTIVE)
+    static function getMenuType($menuType=MENUTYPE1)
     {
         $array = self::menuTypeArray();
         return $array[$menuType];
@@ -55,7 +55,7 @@ class CommonOption
     //role admin
     static function roleArray()
     {
-        return array(ADMIN=>'Admin'); //, EDITOR=>'Editor'
+        return array(ADMIN=>'Admin', EDITOR=>'Editor');
     }
     static function getRole($roleId=ADMIN)
     {
@@ -118,7 +118,7 @@ class CommonOption
     {
         return array(CRAW_POST=>'Lấy tin theo danh sách links posts',CRAW_CATEGORY=>'Lấy tin theo danh sách posts trong chuyên mục');
     }
-    static function getTypeCrawler($type=POST)
+    static function getTypeCrawler($type=CRAW_POST)
     {
         $array = self::typeCrawlerArray();
         return $array[$type];
@@ -128,9 +128,19 @@ class CommonOption
     {
         return array(CRAW_POST_IMAGE=>'Lấy ảnh từ trang chi tiết',CRAW_CATEGORY_IMAGE=>'Lấy ảnh từ trang chuyên mục');
     }
-    static function getImageCrawler($type=POST)
+    static function getImageCrawler($type=CRAW_POST_IMAGE)
     {
         $array = self::imageCrawlerArray();
+        return $array[$type];
+    }
+    //image crawler
+    static function titleCrawlerArray()
+    {
+        return array(CRAW_TITLE_POST=>'Lấy tiêu đề bài viết từ trang chi tiết',CRAW_TITLE_CATEGORY=>'Lấy tiêu đề bài viết từ trang chuyên mục');
+    }
+    static function getTitleCrawler($type=CRAW_TITLE_POST)
+    {
+        $array = self::titleCrawlerArray();
         return $array[$type];
     }
     //display post type

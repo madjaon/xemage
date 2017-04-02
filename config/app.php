@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
 
@@ -210,6 +211,7 @@ return [
 
         // Static class
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'Image' => Intervention\Image\Facades\Image::class,
         'CommonOption' => App\Helpers\CommonOption::class,
         'CommonQuery' => App\Helpers\CommonQuery::class,
         'CommonUrl' => App\Helpers\CommonUrl::class,

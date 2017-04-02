@@ -29,6 +29,11 @@
 			{
 				var url = '/xem-boi-ai-cap-menh-so-'+data;
 				window.location.href = url;
+			},
+			error: function(xhr)
+			{
+				alert('Tính năng đang cập nhật. Xin bạn quay lại sau!');
+				window.location.reload();
 			}
 		});
 		return;

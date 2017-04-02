@@ -37,6 +37,11 @@
 				$('#filter35').html('Xem kết quả');
 				var string = '<p><strong>Kết quả:</strong> '+data+'</p>';
 		  		$('#filterResult').hide().html(string).fadeIn('fast');
+			},
+			error: function(xhr)
+			{
+				alert('Tính năng đang cập nhật. Xin bạn quay lại sau!');
+				window.location.reload();
 			}
 		});
 		return;

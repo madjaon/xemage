@@ -81,6 +81,9 @@ define('CRAW_CATEGORY', 2);
 //image crawler
 define('CRAW_POST_IMAGE', 1);
 define('CRAW_CATEGORY_IMAGE', 2);
+//crawler lay tieu de tu trang category hay tu trang chi tiet post
+define('CRAW_TITLE_POST', 1);
+define('CRAW_TITLE_CATEGORY', 2);
 //display
 define('DISPLAY_1', 1); //Hình ảnh kèm tiêu đề
 define('DISPLAY_2', 2); //Chỉ hiển thị tiêu đề
@@ -94,3 +97,9 @@ define('SLUGTYPE3', 3); // lay slug theo danh sach slug tuong ung voi danh sach 
 define('TITLETYPE1', 1); // Lấy tiêu đề bài tự động theo mẫu thẻ lấy tiêu đề
 define('TITLETYPE2', 2); // Lấy tiêu đề tự động theo danh sách slug tương ứng ds link nguồn
 define('TITLETYPE3', 3); // Lấy tiêu đề theo danh sách tiêu đề tương ứng ds link nguồn
+//thumbnail image size
+define('IMAGE_WIDTH', 120);
+define('IMAGE_HEIGHT', 120);
+define('THUMB_DIMENSIONS', '120x120');
+define('SLIDE_HEADER_DIMENSIONS', '775x380');
+define('SLIDE_FOOTER_DIMENSIONS', '200x120');

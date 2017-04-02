@@ -277,6 +277,9 @@ class SiteController extends Controller
         $type = $this->getPostTypeBySlug($slug2, 1);
         $typeParent = $this->getPostTypeBySlug($slug1);
         if(isset($type) && isset($typeParent) && ($typeParent->id == $type->parent_id)) {
+            $type->patterns = CommonMethod::replaceText($type->patterns);
+            $type->summary = CommonMethod::replaceText($type->summary);
+            $type->description = CommonMethod::replaceText($type->description);
             if($type->list_posts == ACTIVE) {
                 $paginate = 1;
                 $data = $this->getPostByRelationsQuery('type', $type->id)->paginate(PAGINATE);

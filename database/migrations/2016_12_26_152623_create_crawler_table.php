@@ -27,10 +27,11 @@ class CreateCrawlerTable extends Migration
             $table->integer('category_page_number'); // so luong trang trong category
             $table->string('category_post_link_pattern'); //mau the chua link cua post trong trang category, ex: div.post h2.title a
             $table->integer('type_main_id'); // type_main_id cua post
-            $table->integer('type'); // type cua mau lay tin
+            $table->integer('type')->default(CRAW_POST); // type cua mau lay tin
             $table->string('image_dir'); // thu muc chua image avatar cua post
             $table->string('image_pattern'); // mau the chua image avatar cua post
-            $table->integer('image_check'); // lay anh tu trang chi tiet hay chuyen muc
+            $table->integer('image_check')->default(CRAW_POST_IMAGE); // lay anh tu trang chi tiet hay chuyen muc
+            $table->integer('title_post_check')->default(CRAW_TITLE_POST); // lay tieu de post tu trang chi tiet hay chuyen muc
             $table->string('title_pattern'); // mau the chua title cua post
             $table->string('description_pattern'); // mau the chua desc cua post
             $table->text('description_pattern_delete'); // mau the can xoa trong desc cua post, cach nhau = dau phay

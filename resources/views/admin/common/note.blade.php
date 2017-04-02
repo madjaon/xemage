@@ -10,11 +10,12 @@
         <!-- Custom Tabs -->
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab_1" data-toggle="tab">Slug</a></li>
-            <li><a href="#tab_2" data-toggle="tab">Patterns</a></li>
+            <li class="active"><a href="#tab_3" data-toggle="tab">Slug</a></li>
+            <li><a href="#tab_4" data-toggle="tab">Patterns</a></li>
+            <li><a href="#tab_5" data-toggle="tab">Cache & Thumbnail Avatar</a></li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="tab_1">
+            <div class="tab-pane active" id="tab_3">
               <p><b>Cấu trúc slug:</b></p>
               <p>Trong cặp dấu ngoặc vuông [] là giá trị thay đổi theo từng bài.<br>[năm] : (2017) . [giới tính] : (nam|nu) . [hành] : (kim|moc|thuy|hoa|tho) . [nhóm máu] : (a|b|ab|o) . [cung hoàng đạo] : (bach-duong) . [tên năm âm lịch] : (mau-tuat) ...</p>
               <ul>
@@ -48,7 +49,7 @@
               </ul>
             </div>
             <!-- /.tab-pane -->
-            <div class="tab-pane" id="tab_2">
+            <div class="tab-pane" id="tab_4">
               <p><b>Mẫu form nhập vào mục Patterns để tạo form chức năng trên trang</b></p>
               <ol>
                 <li><strong>Form liên hệ : </strong>%ContactForm%</li>
@@ -92,6 +93,17 @@
                 <li><strong>Xem tình yêu của cung hoàng đạo : </strong>%tinhyeucunghoangdao%</li>
                 <li><strong>Xếp hạng cung hoàng đạo : </strong>%xephangcunghoangdao%</li>
               </ol>
+            </div>
+            <!-- /.tab-pane -->
+            <div class="tab-pane" id="tab_5">
+                <p><b>Hello, my darling!</b></p>
+                <ul>
+                    <li><a href="/admin/clearallstorage">Xóa Cache Website</a></li>
+                    <li><a href="/admin/genthumb">Tạo Thumbnail cho ảnh đại diện avatar (chỉ những ảnh chưa có thumbnail)</a></li>
+                </ul>
+                <p><span class="label label-warning">Chú ý về chức năng Xóa Cache Website!</span> Hiếm khi sử dụng (ấn nhiều gây ảnh hưởng tới tốc độ load trang). Sử dụng khi có thay đổi về source code hoặc database trên host.</p>
+                <p><span class="label label-warning">Chú ý về chức năng tạo Thumbnail!</span> Có thể mất thời gian để tạo Thumbnail.</p>
+                <p>Sử dụng khi Ảnh avatar (ảnh đại diện) có thể bị lỗi do file PNG, GIF có thể không tạo được thumbnail khi upload bằng trình upload ảnh.</p>
             </div>
             <!-- /.tab-pane -->
           </div>

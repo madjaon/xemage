@@ -1,5 +1,6 @@
 <?php 
 namespace App\Helpers;
+use Image;
 
 class CommonMethod
 {
@@ -52,14 +53,71 @@ class CommonMethod
         $output = str_replace($dm, '/', $url);
         return $output;
     }
-    //add time to filename
-	static function changeFileNameImage($filename)
+    //full url with http://domain....
+    static function getfullurl($url, $domain, $parameters = null) {
+	    if (filter_var($url, FILTER_VALIDATE_URL)) { 
+	        $result = $url;
+	    } else {
+	    	//if url co chua domain (k co http://) thi check de tao full url
+	    	//host: domain.. scheme: http/https..
+	    	$urlArray = parse_url($url);
+	    	if(!empty($urlArray) && empty($urlArray['host']) && empty($urlArray['scheme'])) {
+	    		//doi voi url dang www.domain... hoac domain... (k co http/https...) can check co ton tai domain.. trong url k? neu co chi can them http:// (k them domain nua)
+	    		//kiem tra xem co domain.ext hoac www.domain.ext hay k?
+	    		if(!empty($urlArray['path'])) {
+	    			$urlExplode = explode('/', substr($urlArray['path'], 1));
+	    			if(strpos($urlExplode[0], '.') !== false) {
+		    			$result = 'http://' . $url;
+		    		} else {
+		    			$result = 'http://' . $domain . $url;
+		    		}
+	    		} else {
+	    			$result = 'http://' . $domain . $url;
+	    		}
+	    	}
+	    	else if(!empty($urlArray) && !empty($urlArray['host']) && empty($urlArray['scheme'])) {
+	    		$result = 'http://' . $url;
+	    	}
+	    	else {
+	    		$result = $url;
+	    	}
+	    }
+	    if($parameters == null) {
+	        $result = self::removeParameters($result);
+	    }
+	    return $result;
+	}
+	//remove /?param=.... in url
+	static function removeParameters($url = '')
 	{
-		$file = getFilename($filename);
-		$str = strtotime(date('YmdHis'));
-		$fileNameAfter = $file. '-' . $str;
-		$extension = getExtension($filename);
-		return $fileNameAfter.'.'.$extension;
+	    if(!empty($url)) {
+	        $urlArray = parse_url($url);
+	        if(!empty($urlArray) && !empty($urlArray['host']) && !empty($urlArray['scheme']) || !empty($urlArray['path'])) {
+	            if(!empty($urlArray['port'])) {
+	            	return $urlArray['scheme'].'://'.$urlArray['host'].':'.$urlArray['port'].$urlArray['path'];
+	            } else {
+	            	return $urlArray['scheme'].'://'.$urlArray['host'].$urlArray['path'];
+	            }
+	        }
+	    }
+	    return $url;
+	}
+    //add time to filename
+    //remove %20, space to - . or add time
+	static function changeFileNameImage($filename, $time = null)
+	{
+		$file = self::getFilename($filename);
+		//vietnamese to none vietnamese & replace space %20
+		$file = str_replace('%20', '-', $file);
+		$file = self::convert_string_vi_to_en($file);
+        $file = strtolower(preg_replace('/[^a-zA-Z0-9]+/i', '-', $file));
+		//add time
+		if($time == null) {
+			$str_time = strtotime(date('YmdHis'));
+			$file = $file. '-' . $str_time;
+		}
+		$extension = self::getExtension($filename);
+		return $file.'.'.$extension;
 	}
 	//get extension from filename
 	static function getExtension($filename = null)
@@ -76,6 +134,67 @@ class CommonMethod
 			return pathinfo($filename, PATHINFO_FILENAME);
 		}
 		return null;
+	}
+	//create thumbnail
+	static function createThumb($imageUrl, $domainSource, $savePath, $imageWidth = null, $imageHeight = null, $mode = null) {
+		//1 so url khong full (k co http://domain... nen tao duong dan full)
+		$imageUrl = self::getfullurl($imageUrl, $domainSource);
+		//if image at localhost, imageUrl must full path with public_path / if internet no need
+	    if(strpos($imageUrl, 'localhost') !== false) {
+	    	//remove http://localhost.../ if exist
+	    	$imageUrlRe = self::removeDomainUrl($imageUrl);
+	    	$imageUrl = public_path().$imageUrlRe;
+	    	if(!file_exists($imageUrl)) {
+		    	return '';
+		    }
+	    } else {
+	    	if(!remoteFileExists($imageUrl)) {
+				return '';
+			}
+	    }
+        //get image name: foo.jpg
+        $name = basename($imageUrl);
+        //change file name image
+        $name = self::changeFileNameImage($name, 1);
+        //result path
+        $imageResult = '/images/'.$savePath.'/'.$name;
+        //if exist image then return result
+        if(file_exists(public_path().$imageResult)) {
+	    	return $imageResult;
+	    }
+        //full save path
+	    $path = public_path().$imageResult;
+	    //directory to save
+	    $directory = './images/'.$savePath;
+	    //check directory and create it if no exists
+	    if (!file_exists($directory)) {
+	        mkdir($directory, 0755, true);
+	    }
+        // open an image file
+        $img = Image::make($imageUrl);
+        if(isset($imageWidth) && isset($imageHeight)) {
+        	//mode = resize / crop / fit ... more please go to page http://image.intervention.io/
+        	if($mode == 'resize') {
+        		// resize image instance
+        		$img->resize($imageWidth, $imageHeight);
+        	} else if($mode == 'crop') {
+        		// crop image
+				$img->crop($imageWidth, $imageHeight);
+        	} else {
+        		if($imageWidth != $imageHeight) {
+        			// crop the best fitting 5:3 (600x360) ratio and resize to 600x360 pixel
+					$img->fit($imageWidth, $imageHeight);
+        		} else {
+        			// crop the best fitting 1:1 ratio (200x200) and resize to 200x200 pixel
+					$img->fit($imageWidth);
+        		}
+        	}
+        }
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+        // save image in desired format
+        $img->save($path);
+        return $imageResult;
 	}
 	static function convert_string_vi_to_en($str)
 	{

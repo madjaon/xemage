@@ -13,8 +13,8 @@
             @if(Auth::guard('admin')->user()->role_id == ADMIN)
             <li><a href="{{ route('admin.ad.index') }}"><i class="fa fa-picture-o"></i> <span>Quảng cáo</span></a></li>
             <li><a href="{{ route('admin.contact.index') }}"><i class="fa fa-phone"></i> <span>Liên hệ</span></a></li>
-            @endif
             <li><a href="{{ route('admin.crawler.index') }}"><i class="fa fa-bug"></i> <span>Crawler</span></a></li>
+            @endif
             <li class="header">CONFIG</li>
             <li><a href="{{ route('admin.menu.index') }}"><i class="fa fa-navicon"></i> <span>Quản lý menu</span></a></li>
             @if(Auth::guard('admin')->user()->role_id == ADMIN)

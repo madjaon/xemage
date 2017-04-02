@@ -10,7 +10,9 @@
 	<div class="col-xs-12">
 		<a href="{{ route('admin.post.index') }}" class="btn btn-success">Danh sách post</a>
 		<a href="{{ route('admin.post.create') }}" class="btn btn-primary">Thêm post</a>
-		<a onclick="deleteSelected();" class="btn btn-danger" id="loadMsg">Xóa mục đã chọn</a>
+		<a onclick="actionSelected(3);" class="btn btn-danger" id="loadMsg3">Xóa mục đã chọn</a>
+		<a onclick="actionSelected(2);" class="btn btn-warning" id="loadMsg2">Đổi thể loại mục đã chọn</a>
+		<a onclick="actionSelected(1);" class="btn btn-default" id="loadMsg1">Đổi Status mục đã chọn</a>
 	</div>
 </div>
 
@@ -43,7 +45,7 @@
 						<td><input type="checkbox" class="id" name="id[]" value="{{ $value->id }}"></td>
 						<td><img height="30px" src="{{ $thumbnail }}" /></td>
 						<td>{{ $value->name }}</td>
-						<td ondblclick="callupdatetype()">{{ CommonQuery::getFieldById('post_types', $value->type_main_id, 'name') }}</td>
+						<td>{{ CommonQuery::getFieldById('post_types', $value->type_main_id, 'name') }}</td>
 						<!-- <td>{{-- CommonOption::getTypePost($value->type) --}}</td> -->
 						<td>{{ getZero($value->view) }}</td>
 						<td><a href="{{ $value->source_url }}" target="_blank" rel="nofollow">{{ $value->source }}</a></td>
@@ -67,6 +69,7 @@
 	</div>
 </div>
 
+@include('admin.post.indexposttype')
 @include('admin.post.script')
 
 @stop

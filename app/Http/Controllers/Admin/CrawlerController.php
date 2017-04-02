@@ -16,9 +16,18 @@ use App\Helpers\CommonMethod;
 use App\Helpers\CommonQuery;
 use Cache;
 use Sunra\PhpSimple\HtmlDomParser;
+use Image;
 
 class CrawlerController extends Controller
 {
+
+    public function __construct()
+    {
+        if(Auth::guard('admin')->user()->role_id != ADMIN) {
+            dd('Permission denied! Please back!');
+        }
+    }
+    
     public function index(Request $request)
     {
         trimRequest($request);
@@ -42,7 +51,7 @@ class CrawlerController extends Controller
         trimRequest($request);
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'source' => 'max:255',
+            'source' => 'required|max:255',
             'type_main_id' => 'required',
             'type' => 'required',
             'category_post_link_pattern' => 'max:255',
@@ -75,6 +84,7 @@ class CrawlerController extends Controller
                         'image_dir' => $request->image_dir,
                         'image_pattern' => $request->image_pattern,
                         'image_check' => $request->image_check,
+                        'title_post_check' => $request->title_post_check,
                         'title_pattern' => $request->title_pattern,
                         'description_pattern' => $request->description_pattern,
                         'description_pattern_delete' => $request->description_pattern_delete,
@@ -103,6 +113,7 @@ class CrawlerController extends Controller
                     'image_dir' => $request->image_dir,
                     'image_pattern' => $request->image_pattern,
                     'image_check' => $request->image_check,
+                    'title_post_check' => $request->title_post_check,
                     'title_pattern' => $request->title_pattern,
                     'description_pattern' => $request->description_pattern,
                     'description_pattern_delete' => $request->description_pattern_delete,
@@ -141,26 +152,48 @@ class CrawlerController extends Controller
                 $cats = array();
             }
             //check paging
-            if(!empty($request->category_page_link) && !empty($request->category_page_number)) {
+            if(!empty($request->category_page_link) && !empty($request->category_page_number) && $request->category_page_number > 1) {
                 for($i = 2; $i <= $request->category_page_number; $i++) {
                     $cats[] = str_replace('[page_number]', $i, $request->category_page_link);
                 }
             }
             if(count($cats) > 0 && !empty($request->category_post_link_pattern)) {
                 foreach($cats as $key => $value) {
+                    //get full link if link is slug
+                    $value = CommonMethod::getfullurl($value, $request->source);
                     // get all link cat
                     $html = HtmlDomParser::file_get_html($value); // Create DOM from URL or file
                     foreach($html->find($request->category_post_link_pattern) as $element) {
                         $links[$key][] = trim($element->href);
                     }
-                    if(!empty($request->image_check) && $request->image_check == CRAW_CATEGORY_IMAGE && !empty($request->image_pattern)) {
+                    //luon luon lay danh sach anh trong trang category. 
+                    //bo phan: && $request->image_check == CRAW_CATEGORY_IMAGE . 
+                    //ly do neu trong noi dung k co hinh thi lay avatar o ben ngoai trang danh sach category
+                    if(!empty($request->image_check) && !empty($request->image_pattern)) {
                         foreach($html->find($request->image_pattern) as $element) {
-                            $images[$key][] = $element->src;
+                            if($element) {
+                                $images[$key][] = $element->src;
+                            } else {
+                                $images[$key][] = '';
+                            }
                         }
                     } else {
                         $images[$key] = [];
                     }
-                    $result = self::stealPost($request, $links[$key], $images[$key]);
+                    if($request->title_type == TITLETYPE1) {
+                        if(!empty($request->title_post_check) && $request->title_post_check == CRAW_TITLE_CATEGORY && !empty($request->title_pattern)) {
+                            foreach($html->find($request->title_pattern) as $element) {
+                                if($element) {
+                                    $titleList[$key][] = trim($element->plaintext);
+                                } else {
+                                    $titleList[$key][] = '';
+                                }
+                            }
+                        } else {
+                            $titleList[$key] = [];
+                        }
+                    }
+                    $result = self::stealPost($request, $links[$key], $images[$key], $titleList[$key]);
                 }
             }
         }
@@ -176,10 +209,12 @@ class CrawlerController extends Controller
         return $result;
     }
 
-    private function stealPost($request, $links, $images=array())
+    private function stealPost($request, $links=array(), $images=array(), $titleList=array())
     {
         if(count($links) > 0) {
             foreach($links as $key => $link) {
+                //get full link if link is slug
+                $link = CommonMethod::getfullurl($link, $request->source);
                 $html = HtmlDomParser::file_get_html($link); // Create DOM from URL or file
                 // Lấy tiêu đề
                 if($request->title_type == TITLETYPE2) {
@@ -194,16 +229,30 @@ class CrawlerController extends Controller
                         $postName = trim($titles[$key]);
                     }
                 } else {
-                    foreach($html->find($request->title_pattern) as $element) {
-                        $postName = trim($element->plaintext); // Chỉ lấy phần text
+                    //postname lay theo tieu de tung bai viet trong trang danh sach
+                    if(count($titleList) > 0 && !empty($request->title_post_check) && $request->title_post_check == CRAW_TITLE_CATEGORY) {
+                        $postName = $titleList[$key];
+                    } 
+                    //postname lay theo tieu de trong trang chi tiet
+                    else {
+                        foreach($html->find($request->title_pattern) as $element) {
+                            $postName = trim($element->plaintext); // Chỉ lấy phần text
+                        }
                     }
                 }
+                $postName = html_entity_decode($postName);
                 // Lấy noi dung
+                $postDescription = '';
                 foreach($html->find($request->description_pattern) as $element) {
-                    // tim anh truoc khi xoa the chua anh <img>
+                    // tim anh truoc khi xoa the chua anh <img> (lay lam avatar neu lua chon)
                     if(!empty($request->image_check) && $request->image_check == CRAW_POST_IMAGE && !empty($request->image_pattern)) {
-                        foreach($element->find($request->image_pattern) as $e) {
-                            $images = [$e->src];
+                        //tim het anh trong noi dung
+                        foreach($element->find($request->image_pattern) as $kimg => $eimg) {
+                            if($eimg && $kimg == 0) {
+                                //nhung chi lay anh dau tien lam avatar. $eimg[0]
+                                $images[$key] = $eimg->src;
+                                break;
+                            }
                         }
                     }
                     // Xóa các mẫu trong miêu tả
@@ -238,12 +287,28 @@ class CrawlerController extends Controller
                             }
                         }
                     }
+                    //neu khong xoa img trong noi dung thi can thay doi duong dan va upload hinh
+                    foreach($element->find('img') as $el) {
+                        if($el && !empty($el->src)) {
+                            //origin image upload
+                            $el_src = CommonMethod::createThumb($el->src, $request->source, $request->image_dir);
+                            //thumbnail image upload
+                            $el_thumb = CommonMethod::createThumb($el->src, $request->source, $request->image_dir . '/thumb', IMAGE_WIDTH, IMAGE_HEIGHT);
+                            //neu up duoc hinh thi thay doi duong dan, neu khong xoa the img nay di luon
+                            if(!empty($el_src)) {
+                                $el->src = $el_src;
+                            } else {
+                                $el->outertext = '';
+                            }
+                        }
+                    }
                     $postDescription = trim($element->innertext); // Lấy toàn bộ phần html
                     //loai bo het duong dan trong noi dung
                     if(!empty($postDescription)){
                         $postDescription = preg_replace('/<a href=\"(.*?)\">(.*?)<\/a>/', "\\2", $postDescription);
                     }
                 }
+                $postDescription = html_entity_decode($postDescription);
                 //slug
                 if($request->slug_type == SLUGTYPE2) {
                     $slug = getSlugFromUrl($link);
@@ -260,10 +325,13 @@ class CrawlerController extends Controller
                 }
                 //check slug post
                 $checkSlug = Post::where('slug', $slug)->first();
-                if(count($$checkSlug) == 0) {
-                    //image
-                    if(count($images) > 0 && !empty($request->image_dir)) {
-                        $image = '/images/'.$request->image_dir.'/'.basename($images[$key]);
+                if(count($checkSlug) == 0) {
+                    //image avatar upload
+                    if(count($images) > 0 && !empty($images[$key]) && !empty($request->image_dir)) {
+                        //origin image upload
+                        $imageOrigin = CommonMethod::createThumb($images[$key], $request->source, $request->image_dir);
+                        //thumbnail image upload
+                        $image = CommonMethod::createThumb($images[$key], $request->source, $request->image_dir . '/thumb', IMAGE_WIDTH, IMAGE_HEIGHT);
                     } else {
                         $image = '';
                     }
@@ -284,14 +352,70 @@ class CrawlerController extends Controller
                         // insert game type relation
                         $data->posttypes()->attach([$request->type_main_id]);
                     }
-                    //upload images
-                    if(count($images) > 0 && !empty($request->image_dir)) {
-                        $imageName = uploadImageFromUrl($images[$key], $request->image_dir);
-                    }
                 }
                 //end post
             }
         }
         return;
     }
+
+    public function genthumb()
+    {
+        //get all image in all table (has image field)
+        $data = array();
+        $images = array();
+        $images1 = DB::table('posts')->where('image', '!=', '')->lists('image');
+        $images2 = DB::table('post_types')->where('image', '!=', '')->lists('image');
+        $images3 = DB::table('post_tags')->where('image', '!=', '')->lists('image');
+        $images4 = DB::table('pages')->where('image', '!=', '')->lists('image');
+        $images1 = array_merge($images1, $images2);
+        $images1 = array_merge($images1, $images3);
+        $images = array_merge($images1, $images4);
+        //tim domain cua host
+        $urlArray = parse_url(url('/'));
+        if(!empty($urlArray) && !empty($urlArray['host']) && empty($urlArray['port'])) {
+            $domainSource = $urlArray['host'];
+        } else if(!empty($urlArray) && !empty($urlArray['host']) && !empty($urlArray['port'])) {
+            $domainSource = $urlArray['host'] . ':' . $urlArray['port'];
+        } else {
+            $domainSource = null;
+        }
+        //vong lap kiem tra anh goc neu co thi moi tao thumbnail
+        if(count($images) > 0 && !empty($domainSource)) {
+            foreach($images as $key => $value) {
+                // link anh co the la thumb hoac khong (truoc lay tu dong nen vay).
+                if(strpos($value, '/thumb/') !== false) {
+                    if(!file_exists(public_path().$value)) {
+                        $dir = dirname($value);
+                        $name = basename($value);
+                        //bo /images/ phia truoc dir de lay savePath
+                        $savePath = substr($dir, 8);
+                        //bo /thumb phia sau dir
+                        $originDir = substr($dir, 0, -6);
+                        $imageUrl = $originDir.'/'.$name;
+                        if(file_exists(public_path().$imageUrl)) {
+                            $data[] = CommonMethod::createThumb($imageUrl, $domainSource, $savePath, IMAGE_WIDTH, IMAGE_HEIGHT);
+                        }
+                    }
+                } else {
+                    //if exist image then return result
+                    if(file_exists(public_path().$value)) {
+                        $imageUrl = $value;
+                        //bo /images/ phia truoc value
+                        $value = substr($value, 8);
+                        $dir = dirname($value);
+                        $name = basename($value);
+                        // them /thumb phia sau dir de tao savePath
+                        $savePath = $dir . '/thumb';
+                        $thumb = '/images/'.$savePath.'/'.$name;
+                        if(!file_exists(public_path().$thumb)) {
+                            $data[] = CommonMethod::createThumb($imageUrl, $domainSource, $savePath, IMAGE_WIDTH, IMAGE_HEIGHT);
+                        }
+                    }
+                }
+            }
+        }
+        return view('admin.crawler.genthumb', ['data' => $data]);
+    }
+
 }

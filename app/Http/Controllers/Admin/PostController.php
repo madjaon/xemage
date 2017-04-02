@@ -257,7 +257,7 @@ class PostController extends Controller
     {
         $id = $request->id;
         $field = $request->field;
-        if($id) {
+        if($id && $field) {
             $data = Post::find($id);    
             if(count($data) > 0) {
                 $status = ($data->$field == ACTIVE)?INACTIVE:ACTIVE;
@@ -265,6 +265,24 @@ class PostController extends Controller
                 Cache::flush();
                 return 1;
             }
+        }
+        return 0;
+    }
+
+    public function callupdatestatus(Request $request)
+    {
+        $id = $request->id;
+        $field = $request->field;
+        if($id && $field) {
+            foreach($id as $key => $value) {
+                $data = Post::find($value);
+                if(count($data) > 0) {
+                    $status = ($data->$field == ACTIVE)?INACTIVE:ACTIVE;
+                    $data->update([$field=>$status]);
+                }
+            }
+            Cache::flush();
+            return 1;
         }
         return 0;
     }
@@ -280,6 +298,32 @@ class PostController extends Controller
                 $data->delete();
             }
             Cache::flush();
+            return 1;
+        }
+        return 0;
+    }
+
+    public function callupdatetype(Request $request)
+    {
+        $id = $request->id;
+        $type_id = $request->type_id;
+        $type_main_id = $request->type_main_id;
+        // $seri = $request->seri;
+        $related = $request->related;
+        if($id && $type_main_id && $type_id) {
+            foreach($id as $key => $value) {
+                $data = Post::find($value);
+                //update post
+                $data->update([
+                    'type_main_id' => $type_main_id,
+                    // 'seri' => $seri,
+                    'related' => $related,
+                ]);
+                // update post type relation
+                $data->posttypes()->sync($type_id);
+            }
+            Cache::flush();
+            return 1;
         }
         return 0;
     }

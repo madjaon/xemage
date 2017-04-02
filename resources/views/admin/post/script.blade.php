@@ -76,17 +76,68 @@
 					alert('Xảy ra lỗi! Chưa thể cập nhật! Vui lòng refresh trang.');
 					window.location.reload();
 				}
+			},
+			error: function(xhr)
+			{
+				alert("An error occured: " + xhr.status + " " + xhr.statusText);
+				window.location.reload();
 			}
 		});
-		// window.location.reload();
 	}
-	function deleteSelected()
+	//update status selected: 1
+	//call update type selected: 2
+	//delete selected: 3
+	function actionSelected(action)
 	{
 		var check = $('input:checkbox:checked.id').val();
 		if(check) {
-			calldelete();
+			if(action == 1) {
+				callupdatestatus('status');
+			} else if(action == 2) {
+				callupdatetypebox();
+			} else {
+				calldelete();
+			}
 		} else {
 			alert('Bạn chưa chọn cái nào!');
+		}
+	}
+	function callupdatestatus(field)
+	{
+		confirm = confirm('Bạn có chắc chắn muốn làm điều này không?')
+		if(confirm) {
+			var id = $('input:checkbox:checked.id').map(function () {
+			  	return this.value;
+			}).get();
+			$.ajax(
+			{
+				type: 'post',
+				url: '{{ url("admin/post/callupdatestatus") }}',
+				data: {
+					'id': id,
+					'field': field,
+					'_token': '{{ csrf_token() }}'
+				},
+				beforeSend: function() {
+		            $('#loadMsg1').html('Status Updating...');
+		        },
+				success: function(data)
+				{
+					if(data == 1) {
+						window.location.reload();
+					} else {
+						alert('Xảy ra lỗi! Chưa thể cập nhật! Vui lòng refresh trang.');
+						window.location.reload();
+					}
+				},
+				error: function(xhr)
+				{
+					alert("An error occured: " + xhr.status + " " + xhr.statusText);
+					window.location.reload();
+				}
+			});
+		} else {
+			window.location.reload();
 		}
 	}
 	//call delete selected
@@ -106,23 +157,90 @@
 					'_token': '{{ csrf_token() }}'
 				},
 				beforeSend: function() {
-		            $('#loadMsg').html('Deleting...');
+		            $('#loadMsg3').html('Deleting...');
 		        },
 				success: function(data)
 				{
-					if(data) {
+					if(data == 1) {
+						window.location.reload();
+					} else {
+						alert('Xảy ra lỗi! Chưa thể cập nhật! Vui lòng refresh trang.');
 						window.location.reload();
 					}
+				},
+				error: function(xhr)
+				{
+					alert("An error occured: " + xhr.status + " " + xhr.statusText);
+					window.location.reload();
 				}
 			});
 		} else {
 			window.location.reload();
 		}
 	}
-	//update type main index list
+	function callupdatetypebox()
+	{
+		$('#myModalPostTypeSelect').modal('toggle');
+	}
 	function callupdatetype()
 	{
-		alert('tính năng bị delay');
-		return;
+		confirm = confirm('Bạn có chắc chắn muốn làm điều này không?')
+		if(confirm) {
+			var id = $('input:checkbox:checked.id').map(function () {
+			  	return this.value;
+			}).get();
+			var type_id = $('input:checkbox:checked.type_id').map(function () {
+			  	return this.value;
+			}).get();
+			var type_main_id = $('input[name="type_main_id"]').val();
+			// var seri = $('input[name="seri"]').val();
+			var related = $('input[name="related"]').val();
+			//validate
+			if(id.length <= 0 || type_id.length <= 0 || type_main_id == '') {
+				alert('Bạn chưa chọn đầy đủ các mục (post, thể loại, thể loại chính (primary)!');
+				$('#myModalPostTypeSelect').modal('hide');
+				window.location.reload();
+			} else {
+				$.ajax(
+				{
+					type: 'post',
+					url: '{{ url("admin/post/callupdatetype") }}',
+					data: {
+						'id': id,
+						'type_id': type_id,
+						'type_main_id': type_main_id,
+						// 'seri': seri,
+						'related': related,
+						'_token': '{{ csrf_token() }}'
+					},
+					beforeSend: function() {
+			            $('#indexposttype').prop('disabled', true);
+			        },
+					success: function(data)
+					{
+						$('#indexposttype').prop('disabled', false);
+						$('#myModalPostTypeSelect').modal('hide');
+						if(data == 1) {
+							alert('Ok! My darling!');
+							window.location.reload();
+						} else {
+							alert('Xảy ra lỗi! Chưa thể cập nhật! Vui lòng refresh trang.');
+							window.location.reload();
+						}
+					},
+					error: function(xhr)
+					{
+						$('#indexposttype').prop('disabled', false);
+						$('#myModalPostTypeSelect').modal('hide');
+						alert("An error occured: " + xhr.status + " " + xhr.statusText);
+						window.location.reload();
+					}
+				});
+			}
+			//end validate
+		} else {
+			window.location.reload();
+		}
 	}
+
 </script>

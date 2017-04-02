@@ -46,11 +46,11 @@
 					</div>
 					<div class="form-group">
 						<label for="image">Hình</label>
-						<p>Định dạng jpg, jpeg, png. Tên thư mục & ảnh phải là không dấu, không chứa dấu cách + kí tự đặc biệt. Dung lượng ảnh nhẹ (< 1mb)<br>Auto crop thumbnail: 120x120</p>
+						<p>Định dạng jpg, jpeg, png. Tên thư mục & ảnh phải là không dấu, không chứa dấu cách + kí tự đặc biệt. Dung lượng ảnh nhẹ (< 1mb)<br>Auto crop thumbnail: {{ THUMB_DIMENSIONS }}</p>
 						<p>Kích cỡ:</p>
 						<ul>
-							<li>Slider đầu trang: 775x380</li>
-							<li>Slider cuối trang: 200x120</li>
+							<li>Slider đầu trang: {{ SLIDE_HEADER_DIMENSIONS }}</li>
+							<li>Slider cuối trang: {{ SLIDE_FOOTER_DIMENSIONS }}</li>
 						</ul>
 						<div class="row">
 							<div class="col-sm-6">
