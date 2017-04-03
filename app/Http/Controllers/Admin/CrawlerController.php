@@ -176,7 +176,7 @@ class CrawlerController extends Controller
             if(count($cats) > 0 && !empty($request->category_post_link_pattern)) {
                 foreach($cats as $key => $value) {
                     //get full link if link is slug
-                    $value = CommonMethod::getfullurl($value, $request->source);
+                    $value = CommonMethod::getfullurl($value, $request->source, 1);
                     // get all link cat
                     $html = HtmlDomParser::file_get_html($value); // Create DOM from URL or file
                     foreach($html->find($request->category_post_link_pattern) as $element) {
@@ -230,7 +230,7 @@ class CrawlerController extends Controller
         if(count($links) > 0) {
             foreach($links as $key => $link) {
                 //get full link if link is slug
-                $link = CommonMethod::getfullurl($link, $request->source);
+                $link = CommonMethod::getfullurl($link, $request->source, 1);
                 $html = HtmlDomParser::file_get_html($link); // Create DOM from URL or file
                 // Lấy tiêu đề
                 if($request->title_type == TITLETYPE2) {

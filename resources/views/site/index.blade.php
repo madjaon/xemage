@@ -72,6 +72,7 @@
 		<span>&nbsp;</span>
 	</div>
 	<ul class="loveyou">
+		<li><a href="{{ url('/mau-sac-hop-tuoi') }}" title="Xem màu sắc hợp tuổi">Xem màu sắc hợp tuổi</a></li>
 		<li><a href="{{ url('/xem-ngay-cuoi-hoi') }}" title="Xem ngày cưới hỏi">Xem ngày cưới hỏi</a></li>
 		<li><a href="{{ url('/chon-ngay-chon-cat') }}" title="Xem ngày chon cất">Xem ngày chôn cất</a></li>
 		<li><a href="{{ url('/xem-ngay-khai-truong') }}" title="Xem ngày khai trương">Xem ngày khai trương</a></li>
@@ -85,7 +86,10 @@
 		<li><a href="{{ url('/bang-tinh-tam-tai-hoang-oc-kim-lau') }}" title="Bảng tính tam tai hoàng ốc kim lâu">Bảng tính tam tai hoàng ốc kim lâu</a></li>
 		<li><a href="{{ url('/phong-thuy/phong-thuy-mat-tien') }}" title="Xem phong thủy mặt tiền">Phong thủy mặt tiền</a></li>
 		<li><a href="{{ url('/phong-thuy/phong-thuy-san-vuon') }}" title="Xem phong thủy sân vườn">Phong thủy sân vườn</a></li>
-		<li><a href="{{ url('/mau-sac-hop-tuoi') }}" title="Xem màu sắc hợp tuổi">Xem màu sắc hợp tuổi</a></li>
+		<li><a href="{{ url('/phong-thuy/phong-thuy-cai-menh') }}" title="Phong Thủy Cải Mệnh">Phong Thủy Cải Mệnh</a></li>
+		<li><a href="{{ url('/phong-thuy/phong-thuy-kinh-doanh') }}" title="Phong Thủy Kinh Doanh">Phong Thủy Kinh Doanh</a></li>
+		<li><a href="{{ url('/phong-thuy/phong-thuy-nha-o') }}" title="Phong Thủy Nhà Ở">Phong Thủy Nhà Ở</a></li>
+		<li><a href="{{ url('/phong-tuc-tap-quan') }}" title="Phong Tục Tập Quán">Phong Tục Tập Quán</a></li>
 	</ul>
 </div>
 
@@ -101,6 +105,7 @@
 		<li><a href="{{ url('/xem-boi-chi-tay') }}" title="Xem Bói Chỉ Tay">Xem Bói Chỉ Tay</a></li>
 		<li><a href="{{ url('/xem-boi-hoa-tay') }}" title="Xem Bói hoa tay">Xem Bói hoa tay</a></li>
 		<li><a href="{{ url('/diem-bao-lanh-du') }}" title="Điềm báo lành dữ">Điềm báo lành dữ</a></li>
+		<li><a href="{{ url('/giai-ma-giac-mo') }}" title="Giải Mã Giấc Mơ">Giải Mã Giấc Mơ</a></li>
 		<li><a href="{{ url('/giai-mong-chiem-bao') }}" title="Giải Mộng Chiêm Bao">Giải Mộng Chiêm Bao</a></li>
 		<li><a href="{{ url('/giai-ma-giac-mo-va-cac-con-so') }}" title="Giải Mã Giấc Mơ Và Các Con Số">Giải Mã Giấc Mơ Và Các Con Số</a></li>
 		<li><a href="{{ url('/ngay-sinh-va-tinh-cach') }}" title="Xem bói ngày Sinh Và Tính Cách">Bói ngày Sinh Và Tính Cách</a></li>

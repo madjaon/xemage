@@ -237,6 +237,9 @@ class CommonMethod
         		if(!empty($urlArray['scheme'])) {
         			$pathHost = $urlArray['scheme'].'://'.$pathHost;
         		}
+        		if(!empty($urlArray['query'])) {
+        			$pathUrl = $pathUrl.'?'.$urlArray['query'];
+        		}
         		$url = $pathHost.$pathUrl;
         	}
         }
