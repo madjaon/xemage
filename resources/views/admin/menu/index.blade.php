@@ -51,7 +51,7 @@
 				</table>
 			</div>
 		</div>
-		{{ $data->links() }}
+		{!! $data->appends($request->except('page'))->render() !!}
 	</div>
 </div>
 

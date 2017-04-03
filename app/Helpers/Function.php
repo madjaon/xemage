@@ -68,25 +68,42 @@ function limit_text($text, $len) {
     }
     return $out;
 }
-//check file exist
-function remoteFileExists($url) {
-    $curl = curl_init($url);
-    //don't fetch the actual page, you only want to check the connection is ok
-    curl_setopt($curl, CURLOPT_NOBODY, true);
-    //do request
-    $result = curl_exec($curl);
-    $ret = false;
-    //if request did not fail
-    if ($result !== false) {
-        //if request was ok, check response code
-        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-        if ($statusCode == 200) {
-            $ret = true;
-        }
+function image_exists($url)
+{
+    $c = @getimagesize($url);
+    if($c) {
+        return true;
     }
-    curl_close($curl);
-    return $ret;
+    return false;
+}
+function UR_exists($url)
+{
+   $headers=get_headers($url);
+   return stripos($headers[0],"200 OK")?true:false;
+}
+function remote_file_exists($url)
+{
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if( $httpCode == 200 ){return true;}
+    return false;
+}
+//check file exist
+function remoteFileExists($url, $type = 1)
+{
+    $c1 = true;
+    if($type == 1) {
+        $c1 = image_exists($url);
+    }
+    $c2 = UR_exists($url);
+    $c3 = remote_file_exists($url);
+    if($c1 === true || $c2 === true || $c3 === true) {
+        return true;
+    }
+    return false;
 }
 //Get image dimensions facebook og:image
 function getImageDimensionsOg($image='')
