@@ -45,6 +45,7 @@
 		<li><a href="{{ url('/tu-vi-tron-doi') }}" title="Tử vi trọn đời">Tử vi trọn đời</a></li>
 		<li><a href="{{ url('/tu-vi-12-con-giap') }}" title="Tử vi 12 con giáp">Tử vi 12 con giáp</a></li>
 		<li><a href="{{ url('/xem-tu-vi-theo-gio-sinh') }}" title="Tử vi theo giờ sinh">Tử vi theo giờ sinh</a></li>
+		<li><a href="{{ url('/kien-thuc-tu-vi') }}" title="Kiến Thức Tử Vi">Kiến Thức Tử Vi</a></li>
 	</ul>
 </div>
 
@@ -57,12 +58,19 @@
 		<li><a href="{{ url('/xem-tuoi-vo-chong') }}" title="Xem tuổi vợ chồng">Xem tuổi vợ chồng</a></li>
 		<li><a href="{{ url('/xem-tuoi-ket-hon') }}" title="Xem tuổi kết hôn">Xem tuổi kết hôn</a></li>
 		<li><a href="{{ url('/xem-tuoi-xong-dat') }}" title="Xem Tuổi Xông Đất">Xem Tuổi Xông Đất</a></li>
+		<li><a href="{{ url('/dat-ten-con-theo-ngu-hanh') }}" title="Đặt tên con theo ngũ hành">Đặt tên con theo ngũ hành</a></li>
 		<li><a href="{{ url('/cao-ly-dau-hinh') }}" title="Cao ly đầu hình">Cao ly đầu hình</a></li>
 		<li><a href="{{ url('/quy-coc-toan-menh') }}" title="Quỷ cốc toán mệnh">Quỷ cốc toán mệnh</a></li>
-		<li><a href="{{ url('/dat-ten-con-theo-ngu-hanh') }}" title="Đặt tên con theo ngũ hành">Đặt tên con theo ngũ hành</a></li>
+		<li><a href="{{ url('/bang-tinh-tam-tai-hoang-oc-kim-lau') }}" title="Bảng tính tam tai hoàng ốc kim lâu">Bảng tính tam tai hoàng ốc kim lâu</a></li>
 		<li><a href="{{ url('/menh-so') }}" title="Xem mệnh số">Xem mệnh số</a></li>
 		<li><a href="{{ url('/xem-cung-menh-theo-nam-sinh') }}" title="Xem cung mệnh">Xem cung mệnh</a></li>
-		<li><a href="{{ url('/xem-sao-chieu-menh') }}" title="Xem cung mệnh">Xem sao chiếu mệnh</a></li>
+		<li><a href="{{ url('/xem-sao-chieu-menh') }}" title="Xem sao chiếu mệnh">Xem sao chiếu mệnh</a></li>
+		<li><a href="{{ url('/tich-truyen') }}" title="Tích Truyện">Tích Truyện</a></li>
+		<li><a href="{{ url('/van-khan-co-truyen') }}" title="Văn Khấn Cổ Truyền">Văn Khấn Cổ Truyền</a></li>
+		<li><a href="{{ url('/nhan-qua') }}" title="Nhân quả">Nhân quả</a></li>
+		<li><a href="{{ url('/nhung-cau-noi-hay') }}" title="Những câu nói hay">Những câu nói hay</a></li>
+		<li><a href="{{ url('/tuong-so') }}" title="Tướng Số">Tướng Số</a></li>
+		
 	</ul>
 </div>
 
@@ -72,6 +80,7 @@
 		<span>&nbsp;</span>
 	</div>
 	<ul class="loveyou">
+		<li><a href="{{ url('/ngu-hanh') }}" title="Ngũ Hành">Ngũ Hành</a></li>
 		<li><a href="{{ url('/mau-sac-hop-tuoi') }}" title="Xem màu sắc hợp tuổi">Xem màu sắc hợp tuổi</a></li>
 		<li><a href="{{ url('/xem-ngay-cuoi-hoi') }}" title="Xem ngày cưới hỏi">Xem ngày cưới hỏi</a></li>
 		<li><a href="{{ url('/chon-ngay-chon-cat') }}" title="Xem ngày chon cất">Xem ngày chôn cất</a></li>
@@ -83,7 +92,6 @@
 		<li><a href="{{ url('/xem-ngay-hac-dao-ngay-xau') }}" title="Xem ngày hắc đạo">Xem ngày hắc đạo</a></li>
 		<li><a href="{{ url('/xem-ngay-hoang-dao') }}" title="Xem ngày hoàng đạo">Xem ngày hoàng đạo</a></li>
 		<li><a href="{{ url('/xem-huong-nha-tot') }}" title="Xem hướng nhà tốt">Xem hướng nhà tốt</a></li>
-		<li><a href="{{ url('/bang-tinh-tam-tai-hoang-oc-kim-lau') }}" title="Bảng tính tam tai hoàng ốc kim lâu">Bảng tính tam tai hoàng ốc kim lâu</a></li>
 		<li><a href="{{ url('/phong-thuy/phong-thuy-mat-tien') }}" title="Xem phong thủy mặt tiền">Phong thủy mặt tiền</a></li>
 		<li><a href="{{ url('/phong-thuy/phong-thuy-san-vuon') }}" title="Xem phong thủy sân vườn">Phong thủy sân vườn</a></li>
 		<li><a href="{{ url('/phong-thuy/phong-thuy-cai-menh') }}" title="Phong Thủy Cải Mệnh">Phong Thủy Cải Mệnh</a></li>
@@ -115,6 +123,7 @@
 		<li><a href="{{ url('/xem-boi-ai-cap') }}" title="Xem bói Ai Cập">Xem bói Ai Cập</a></li>
 		<li><a href="{{ url('/xem-boi-tinh-yeu-theo-chu-cai-dau-tien') }}" title="Xem Bói Tình Yêu Theo Chữ Cái Đầu Tiên Trong Tên">Bói Tình Yêu Theo Chữ Cái</a></li>
 		<li><a href="{{ url('/xem-boi-tinh-cach-theo-chu-cai-dau-tien') }}" title="Xem Bói Tính Cách Theo Chữ Cái Đầu Tiên Trong Tên">Bói Tính Cách Theo Chữ Cái</a></li>
+		<li><a href="{{ url('/xem-boi-tuong-mat') }}" title="Xem Bói Tướng Mặt">Xem Bói Tướng Mặt</a></li>
 	</ul>
 </div>
 

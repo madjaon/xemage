@@ -141,7 +141,8 @@ class CommonMethod
 		// make result (duong dan anh de luu vao db)
 		//////////////////////////////////////
 		//get image name: foo.jpg
-        $name = basename($imageUrl);
+		//remove query ?param=.... neu co
+        $name = basename(self::removeParameters($imageUrl));
         //change file name image
         $name = self::changeFileNameImage($name, 1);
         //result path
