@@ -304,17 +304,19 @@ class CrawlerController extends Controller
                         }
                     }
                     //neu khong xoa img trong noi dung thi can thay doi duong dan va upload hinh
-                    foreach($element->find('img') as $el) {
-                        if($el && !empty($el->src)) {
-                            //origin image upload
-                            $el_src = CommonMethod::createThumb($el->src, $request->source, $request->image_dir);
-                            //thumbnail image upload
-                            $el_thumb = CommonMethod::createThumb($el->src, $request->source, $request->image_dir . '/thumb', IMAGE_WIDTH, IMAGE_HEIGHT);
-                            //neu up duoc hinh thi thay doi duong dan, neu khong xoa the img nay di luon
-                            if(!empty($el_src)) {
-                                $el->src = $el_src;
-                            } else {
-                                $el->outertext = '';
+                    if(empty($request->description_pattern_delete) || (!empty($request->description_pattern_delete) && strpos($request->description_pattern_delete, ',img') === false)) {
+                        foreach($element->find('img') as $el) {
+                            if($el && !empty($el->src)) {
+                                //origin image upload
+                                $el_src = CommonMethod::createThumb($el->src, $request->source, $request->image_dir, null, null, null, 1);
+                                //thumbnail image upload
+                                $el_thumb = CommonMethod::createThumb($el->src, $request->source, $request->image_dir . '/thumb', IMAGE_WIDTH, IMAGE_HEIGHT);
+                                //neu up duoc hinh thi thay doi duong dan, neu khong xoa the img nay di luon
+                                if(!empty($el_src)) {
+                                    $el->src = $el_src;
+                                } else {
+                                    $el->outertext = '';
+                                }
                             }
                         }
                     }
@@ -345,7 +347,7 @@ class CrawlerController extends Controller
                     //image avatar upload
                     if(count($images) > 0 && !empty($images[$key]) && !empty($request->image_dir)) {
                         //origin image upload
-                        $imageOrigin = CommonMethod::createThumb($images[$key], $request->source, $request->image_dir);
+                        $imageOrigin = CommonMethod::createThumb($images[$key], $request->source, $request->image_dir, null, null, null, 1);
                         //thumbnail image upload
                         $image = CommonMethod::createThumb($images[$key], $request->source, $request->image_dir . '/thumb', IMAGE_WIDTH, IMAGE_HEIGHT);
                     } else {
