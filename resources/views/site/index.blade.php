@@ -80,7 +80,6 @@
 		<span>&nbsp;</span>
 	</div>
 	<ul class="loveyou">
-		<li><a href="{{ url('/ngu-hanh') }}" title="Ngũ Hành">Ngũ Hành</a></li>
 		<li><a href="{{ url('/mau-sac-hop-tuoi') }}" title="Xem màu sắc hợp tuổi">Xem màu sắc hợp tuổi</a></li>
 		<li><a href="{{ url('/xem-ngay-cuoi-hoi') }}" title="Xem ngày cưới hỏi">Xem ngày cưới hỏi</a></li>
 		<li><a href="{{ url('/chon-ngay-chon-cat') }}" title="Xem ngày chon cất">Xem ngày chôn cất</a></li>
@@ -124,6 +123,7 @@
 		<li><a href="{{ url('/xem-boi-tinh-yeu-theo-chu-cai-dau-tien') }}" title="Xem Bói Tình Yêu Theo Chữ Cái Đầu Tiên Trong Tên">Bói Tình Yêu Theo Chữ Cái</a></li>
 		<li><a href="{{ url('/xem-boi-tinh-cach-theo-chu-cai-dau-tien') }}" title="Xem Bói Tính Cách Theo Chữ Cái Đầu Tiên Trong Tên">Bói Tính Cách Theo Chữ Cái</a></li>
 		<li><a href="{{ url('/xem-boi-tuong-mat') }}" title="Xem Bói Tướng Mặt">Xem Bói Tướng Mặt</a></li>
+		<li><a href="{{ url('/boi-bai-tay') }}" title="Bói Bài Tây">Bói Bài Tây</a></li>
 	</ul>
 </div>
 

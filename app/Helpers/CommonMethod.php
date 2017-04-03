@@ -66,7 +66,8 @@ class CommonMethod
 	    		//kiem tra xem co domain.ext hoac www.domain.ext hay k?
 	    		if(!empty($urlArray['path'])) {
 	    			$urlExplode = explode('/', substr($urlArray['path'], 1));
-	    			if(strpos($urlExplode[0], '.') !== false) {
+	    			//count url explode path > 1: tranh truong hop dau cham co o duoi .html, .htm...
+	    			if(count($urlExplode) > 1 && strpos($urlExplode[0], '.') !== false) {
 		    			$result = 'http://' . $url;
 		    		} else {
 		    			$result = 'http://' . $domain . $url;
