@@ -92,7 +92,7 @@ class CommonMethod
 	{
 	    if(!empty($url)) {
 	        $urlArray = parse_url($url);
-	        if(!empty($urlArray) && !empty($urlArray['host']) && !empty($urlArray['scheme']) || !empty($urlArray['path'])) {
+	        if(!empty($urlArray) && !empty($urlArray['host']) && !empty($urlArray['scheme']) && !empty($urlArray['path'])) {
 	            if(!empty($urlArray['port'])) {
 	            	return $urlArray['scheme'].'://'.$urlArray['host'].':'.$urlArray['port'].$urlArray['path'];
 	            } else {
@@ -171,7 +171,7 @@ class CommonMethod
 	        mkdir($directory, 0755, true);
 	    }
 	    //co trang anh tieng viet co dau, phien phuc gay loi, nen can ma hoa html
-	    $imageUrl = htmlentities($imageUrl, ENT_QUOTES, "UTF-8");
+	    $imageUrl = self::convertUrlEncode($imageUrl);
         // open an image file
         $img = Image::make($imageUrl);
         if(isset($imageWidth) && isset($imageHeight)) {
@@ -205,6 +205,38 @@ class CommonMethod
         // save image in desired format
         $img->save($path);
         return $imageResult;
+	}
+	static function convertUrlEncode($url)
+	{
+		//loai bo scheme va host
+		$urlArray = parse_url($url);
+        if(!empty($urlArray) && !empty($urlArray['path'])) {
+        	//bo dau / truoc path de explode
+        	$path = substr($urlArray['path'], 1);
+        	//tach path theo dau /
+        	$pathArray = explode('/', $path);
+        	$pathUrl = '';
+        	$pathHost = '';
+        	if(count($pathArray) > 0) {
+        		foreach($pathArray as $value) {
+        			$pathUrl .= '/'.urlencode($value);
+        		}
+        	}
+        	if($pathUrl != '') {
+        		if(!empty($urlArray['host'])) {
+        			if(!empty($urlArray['port'])) {
+	        			$pathHost = $urlArray['host'].':'.$urlArray['port'];
+	        		} else {
+	        			$pathHost = $urlArray['host'];
+	        		}
+        		}
+        		if(!empty($urlArray['scheme'])) {
+        			$pathHost = $urlArray['scheme'].'://'.$pathHost;
+        		}
+        		$url = $pathHost.$pathUrl;
+        	}
+        }
+		return $url;
 	}
 	static function convert_string_vi_to_en($str)
 	{
