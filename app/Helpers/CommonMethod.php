@@ -137,22 +137,10 @@ class CommonMethod
 	}
 	//create thumbnail
 	static function createThumb($imageUrl, $domainSource, $savePath, $imageWidth = null, $imageHeight = null, $mode = null, $watermark = null) {
-		//1 so url khong full (k co http://domain... nen tao duong dan full)
-		$imageUrl = self::getfullurl($imageUrl, $domainSource);
-		//if image at localhost, imageUrl must full path with public_path / if internet no need
-	    if(strpos($imageUrl, 'localhost') !== false) {
-	    	//remove http://localhost.../ if exist
-	    	$imageUrlRe = self::removeDomainUrl($imageUrl);
-	    	$imageUrl = public_path().$imageUrlRe;
-	    	if(!file_exists($imageUrl)) {
-		    	return '';
-		    }
-	    } else {
-	    	if(!remoteFileExists($imageUrl)) {
-				return '';
-			}
-	    }
-        //get image name: foo.jpg
+		//////////////////////////////////////
+		// make result (duong dan anh de luu vao db)
+		//////////////////////////////////////
+		//get image name: foo.jpg
         $name = basename($imageUrl);
         //change file name image
         $name = self::changeFileNameImage($name, 1);
@@ -169,6 +157,24 @@ class CommonMethod
 	    //check directory and create it if no exists
 	    if (!file_exists($directory)) {
 	        mkdir($directory, 0755, true);
+	    }
+	    //////////////////////////////////////
+	    // make image url (duong dan anh can down ve de up len host)
+	    //////////////////////////////////////
+		//1 so url khong full (k co http://domain... nen tao duong dan full)
+		$imageUrl = self::getfullurl($imageUrl, $domainSource);
+		//if image at localhost, imageUrl must full path with public_path / if internet no need
+	    if(strpos($imageUrl, 'localhost') !== false) {
+	    	//remove http://localhost.../ if exist
+	    	$imageUrlRe = self::removeDomainUrl($imageUrl);
+	    	$imageUrl = public_path().$imageUrlRe;
+	    	if(!file_exists($imageUrl)) {
+		    	return '';
+		    }
+	    } else {
+	    	if(!remoteFileExists($imageUrl)) {
+				return '';
+			}
 	    }
         // open an image file
         $img = Image::make($imageUrl);
