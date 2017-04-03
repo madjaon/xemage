@@ -56,7 +56,7 @@ class CommonMethod
     //full url with http://domain....
     static function getfullurl($url, $domain, $parameters = null) {
 	    if (filter_var($url, FILTER_VALIDATE_URL)) { 
-	        $result = $url;
+	        $result = self::convertUrlEncode($url);
 	    } else {
 	    	//if url co chua domain (k co http://) thi check de tao full url
 	    	//host: domain.. scheme: http/https..
@@ -85,7 +85,7 @@ class CommonMethod
 	    if($parameters == null) {
 	        $result = self::removeParameters($result);
 	    }
-	    return $result;
+	    return self::convertUrlEncode($result);
 	}
 	//remove /?param=.... in url
 	static function removeParameters($url = '')
@@ -170,8 +170,6 @@ class CommonMethod
 	    if (!file_exists($directory)) {
 	        mkdir($directory, 0755, true);
 	    }
-	    //co trang anh tieng viet co dau, phien phuc gay loi, nen can ma hoa html
-	    $imageUrl = self::convertUrlEncode($imageUrl);
         // open an image file
         $img = Image::make($imageUrl);
         if(isset($imageWidth) && isset($imageHeight)) {
