@@ -15,7 +15,8 @@
 		$post_links = $data->post_links;
 		$category_link = $data->category_link;
 		$category_page_link = $data->category_page_link;
-		$category_page_number = $data->category_page_number;
+		$category_page_start = $data->category_page_start;
+		$category_page_end = $data->category_page_end;
 		$category_post_link_pattern = $data->category_post_link_pattern;
 		$type_main_id = $data->type_main_id;
 		$type = $data->type;
@@ -43,7 +44,8 @@
 		$post_links = old('post_links');
 		$category_link = old('category_link');
 		$category_page_link = old('category_page_link');
-		$category_page_number = old('category_page_number');
+		$category_page_start = old('category_page_start');
+		$category_page_end = old('category_page_end');
 		$category_post_link_pattern = old('category_post_link_pattern');
 		$type_main_id = old('type_main_id');
 		$type = old('type');
@@ -132,7 +134,7 @@
 											</div>
 											<div class="form-group">
 												<label>Link Category</label>
-												<p>Link trang category (trang 1 nếu có phân trang)</p>
+												<p>Link trang category (hoặc trang 1 nếu có phân trang - k cần page 1 cũng ok)</p>
 												<div class="row">
 													<div class="col-sm-12">
 													<textarea name="category_link" class="form-control crawcategory" rows="3">{{ $category_link }}</textarea>
@@ -151,9 +153,17 @@
 											</div>
 											<div class="form-group">
 												<label>Số trang Category</label>
+												<p>Bắt đầu từ trang 1 nếu không điền <b><small>Link Category</small></b> bên trên. Hoặc bắt đầu từ trang 2 nếu có <b><small>Link Category</small></b> bên trên.</p>
+												<p>Kết thúc là số trang category cuối cùng muốn lấy (phải lớn hơn trang Bắt đầu)</p>
+												<p>Nếu không nhập (hoặc nhập 0) vào các mục này thì sẽ lấy auto theo logic.</p>
 												<div class="row">
-													<div class="col-sm-12">
-														<input name="category_page_number" type="text" value="{{ $category_page_number }}" class="form-control onlyNumber crawcategory">
+													<div class="col-sm-6">
+														<label>Bắt đầu</label>
+														<input name="category_page_start" type="text" value="{{ $category_page_start }}" class="form-control onlyNumber crawcategory">
+													</div>
+													<div class="col-sm-6">
+														<label>Kết thúc</label>
+														<input name="category_page_end" type="text" value="{{ $category_page_end }}" class="form-control onlyNumber crawcategory">
 													</div>
 												</div>
 											</div>

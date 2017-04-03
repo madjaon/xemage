@@ -77,7 +77,8 @@ class CrawlerController extends Controller
                         'post_links' => $request->post_links,
                         'category_link' => $request->category_link,
                         'category_page_link' => $request->category_page_link,
-                        'category_page_number' => $request->category_page_number,
+                        'category_page_start' => $request->category_page_start,
+                        'category_page_end' => $request->category_page_end,
                         'category_post_link_pattern' => $request->category_post_link_pattern,
                         'type_main_id' => $request->type_main_id,
                         'type' => $request->type,
@@ -106,7 +107,8 @@ class CrawlerController extends Controller
                     'post_links' => $request->post_links,
                     'category_link' => $request->category_link,
                     'category_page_link' => $request->category_page_link,
-                    'category_page_number' => $request->category_page_number,
+                    'category_page_start' => $request->category_page_start,
+                    'category_page_end' => $request->category_page_end,
                     'category_post_link_pattern' => $request->category_post_link_pattern,
                     'type_main_id' => $request->type_main_id,
                     'type' => $request->type,
@@ -151,9 +153,23 @@ class CrawlerController extends Controller
             } else {
                 $cats = array();
             }
-            //check paging
-            if(!empty($request->category_page_link) && !empty($request->category_page_number) && $request->category_page_number > 1) {
-                for($i = 2; $i <= $request->category_page_number; $i++) {
+            //check paging. neu trang ket thuc > 1 va co link mau trang thi moi lay ds link trang
+            if(!empty($request->category_page_link) && !empty($request->category_page_end) && $request->category_page_end > 1) {
+                //neu co category_link (trang dau tien) thi trang bat dau phai lon hon 1
+                if(!empty($request->category_link)) {
+                    $pageStartCheck = 1;
+                    $pageStartNeed = 2;
+                } else {
+                    $pageStartCheck = 0;
+                    $pageStartNeed = 1;
+                }
+                //neu trang bat dau > 0 thi ok neu khong se lay mac dinh tu 2
+                if(!empty($request->category_page_start) && $request->category_page_start > $pageStartCheck) {
+                    $category_page_start = $request->category_page_start;
+                } else {
+                    $category_page_start = $pageStartNeed;
+                }
+                for($i = $category_page_start; $i <= $request->category_page_end; $i++) {
                     $cats[] = str_replace('[page_number]', $i, $request->category_page_link);
                 }
             }

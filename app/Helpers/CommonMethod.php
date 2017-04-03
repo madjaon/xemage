@@ -170,6 +170,8 @@ class CommonMethod
 	    if (!file_exists($directory)) {
 	        mkdir($directory, 0755, true);
 	    }
+	    //co trang anh tieng viet co dau, phien phuc gay loi, nen can ma hoa html
+	    $imageUrl = htmlentities($imageUrl, ENT_QUOTES, "UTF-8");
         // open an image file
         $img = Image::make($imageUrl);
         if(isset($imageWidth) && isset($imageHeight)) {

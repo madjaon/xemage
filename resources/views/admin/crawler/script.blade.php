@@ -33,7 +33,8 @@
 				'post_titles': post_titles,
 				'category_link': category_link,
 				'category_page_link': category_page_link,
-				'category_page_number': category_page_number,
+				'category_page_start': category_page_start,
+				'category_page_end': category_page_end,
 				'category_post_link_pattern': category_post_link_pattern,
 				'image_dir': image_dir,
 				'image_pattern': image_pattern,
@@ -86,7 +87,8 @@
 				'post_titles': post_titles,
 				'category_link': category_link,
 				'category_page_link': category_page_link,
-				'category_page_number': category_page_number,
+				'category_page_start': category_page_start,
+				'category_page_end': category_page_end,
 				'category_post_link_pattern': category_post_link_pattern,
 				'image_dir': image_dir,
 				'image_pattern': image_pattern,
@@ -141,7 +143,8 @@
 		post_titles = $('textarea[name="post_titles"]').val();
 		category_link = $('textarea[name="category_link"]').val();
 		category_page_link = $('textarea[name="category_page_link"]').val();
-		category_page_number = $('input[name="category_page_number"]').val();
+		category_page_start = $('input[name="category_page_start"]').val();
+		category_page_end = $('input[name="category_page_end"]').val();
 		category_post_link_pattern = $('input[name="category_post_link_pattern"]').val();
 		image_dir = $('input[name="image_dir"]').val();
 		image_pattern = $('input[name="image_pattern"]').val();

@@ -24,7 +24,8 @@ class CreateCrawlerTable extends Migration
             $table->text('post_links'); // 1 hoac nhieu. neu nhieu links thi phai cung 1 mau trang
             $table->text('category_link'); // link trang category dau tien
             $table->text('category_page_link'); // link trang 2 (phan trang)
-            $table->integer('category_page_number'); // so luong trang trong category
+            $table->integer('category_page_start'); // trang bat dau category
+            $table->integer('category_page_end'); // trang cuoi trong category
             $table->string('category_post_link_pattern'); //mau the chua link cua post trong trang category, ex: div.post h2.title a
             $table->integer('type_main_id'); // type_main_id cua post
             $table->integer('type')->default(CRAW_POST); // type cua mau lay tin
