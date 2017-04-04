@@ -24,71 +24,27 @@ class TestController extends Controller
     	// $result = CommonVideo::getLinkFacebookVideo($link);
     	// dd($result);
 
-
-        //tu vi tron doi -> table
-        // $data = DB::table('tvtd')->take(60)->get();
-        // $table = '<table style="height: auto;" width="100%"><tbody><tr>
-        //     <td style="text-align: center;" colspan="2"><strong>Năm dương lịch</strong></td>
-        //     <td style="text-align: center;"><strong>Năm âm lịch</strong></td>
-        //     <td style="text-align: center;"><strong>Giải thích</strong></td>
-        //     <td style="text-align: center;"><strong>Mệnh</strong></td>
-        //     <td style="text-align: center;"><strong>Giải nghĩa</strong></td>
-        //     </tr>';
-        // foreach($data as $key => $value) {
-        //     $year2 = $value->year + 60;
-        //     $url = DB::table('tvtd')->select('slug')->where('year', $value->year)->first();
-        //     $url = str_replace('.html', '', $url->slug);
-        //     $url2 = DB::table('tvtd')->select('slug')->where('year', $year2)->first();
-        //     $url2 = str_replace('.html', '', $url2->slug);
-        //     $table .= '<tr>
-        //         <td style="text-align: center;"><strong><a href="'.$url.'">'.$value->year.'</a></strong></td>
-        //         <td style="text-align: center;"><strong><a href="'.$url2.'">'.$year2.'</a></strong></td>
-        //         <td style="text-align: center;">'.$value->ages.'</td>
-        //         <td style="text-align: center;">'.$value->note.'</td>
-        //         <td style="text-align: center;">'.str_replace('Mạng ', '', $value->life).'</td>
-        //         <td style="text-align: center;">'.$value->life_desc.'</td>
-        //         </tr>';
+        ////////////////////////////////////////
+        //check posts va post_type_relations co trung du lieu hay ko
+        // $posts = DB::table('posts')->lists('id');
+        // $post_type_relations = DB::table('post_type_relations')->groupBy('post_id')->lists('post_id');
+        // $count_posts = count($posts);
+        // $count_post_type_relations = count($post_type_relations);
+        // if($count_post_type_relations > 0 && $count_posts > 0) {
+        //     foreach($post_type_relations as $value) {
+        //         if(!in_array($value, $posts)) {
+        //             echo $value . '<br>';
+        //         }
+        //     }
         // }
-        // $table .= '</tbody></table>';
-        // echo $table;
-        
-        // insert posts
-        // $datas = DB::table('tvtd')->get();
-        // foreach($datas as $key => $value) {
-        //     $slug = str_replace('.html', '', $value->slug);
-        //     $slug = str_replace('/', '', $slug);
-        //     $type_id = 41;
-        //     $data = Post::create([
-        //         'name' => $value->name,
-        //         'slug' => $slug,
-        //         'type_main_id' => $type_id, //tu-vi-tron-doi
-        //         'description' => str_replace('  <p style="text-align: center; margin: 10px 0;">  <!-- LVS300x250 -->   </p> <br/> ', '', $value->description),
-        //         'source' => 'xemtuoi.com.vn',
-        //         'source_url' => 'http://xemtuoi.com.vn'.$value->slug,
-        //         'start_date' => date('Y-m-d H:i:s'),
-        //     ]);
-        //     $data->posttypes()->attach($type_id);
-        // }
-
-        // $datas = DB::table('tvtd2')->get();
-        // foreach($datas as $key => $value) {
-        //     $type_id = 42;
-        //     $data = Post::create([
-        //         'name' => $value->name,
-        //         'slug' => $value->slug,
-        //         'type_main_id' => $type_id, //tu-vi-tron-doi
-        //         'description' => $value->description,
-        //         'source' => 'xemtuoi.com.vn',
-        //         'source_url' => 'http://xemtuoi.com.vn/'.$value->slug.'.html',
-        //         'start_date' => date('Y-m-d H:i:s'),
-        //     ]);
-        //     $data->posttypes()->attach($type_id);
-        // }
-        // Cache::flush();
-        // return 1;
+        // dd($count_post_type_relations);
+        //END
+        ////////////////////////////////////////
     }
 
     // warning: this function is dangerous
+    // check bai viet trung nhau va lam 1 so thu khac
+    // viet xong gio quen roi, doc lai code de biet
     //vlue = 28: type id 28. 
     public function mixdb($typeId=28)
     {
@@ -99,6 +55,7 @@ class TestController extends Controller
                 ->having('c', '>', 1)
                 ->orderBy('c', 'desc')
                 ->get();
+        dd($ps);
         if(count($ps) > 0) {
             $ids = [];
             foreach($ps as $key => $value) {
