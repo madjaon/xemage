@@ -124,6 +124,7 @@
 		<li><a href="{{ url('/xem-boi-tinh-cach-theo-chu-cai-dau-tien') }}" title="Xem Bói Tính Cách Theo Chữ Cái Đầu Tiên Trong Tên">Bói Tính Cách Theo Chữ Cái</a></li>
 		<li><a href="{{ url('/xem-boi-tuong-mat') }}" title="Xem Bói Tướng Mặt">Xem Bói Tướng Mặt</a></li>
 		<li><a href="{{ url('/boi-bai-tay') }}" title="Bói Bài Tây">Bói Bài Tây</a></li>
+		<li><a href="{{ url('/boi-bai-tarot') }}" title="Bói Bài Tarot">Bói Bài Tarot</a></li>
 	</ul>
 </div>
 
