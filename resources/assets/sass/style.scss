@@ -113,10 +113,10 @@ body {
 		margin-top: 5px;
 		margin-bottom: 5px;
 		h1 {
-			font-size: 18px;
+			font-size: 22px;
 		}
 		strong {
-			font-size: 18px;
+			font-size: 22px;
 			font-weight: bold;
 		}
 	}
@@ -633,7 +633,7 @@ header.mobileheader {
 input[type="text"],
 input[type="email"],
 textarea {
-	padding: 5px;
+	padding: 6px;
 	border: 1px solid #888;
 }
 input[type="text"]:focus,
@@ -663,6 +663,9 @@ button:hover, button.focus {
 		input[type="text"] {
 			width: 200px;
 		}
+		input[type="submit"] {
+			padding: 6px;
+		}
 	}
 }
 form.contact-form {
@@ -674,7 +677,11 @@ form.contact-form {
 	input[type="text"],
 	input[type="email"],
 	textarea {
+		padding: 10px;
 		width: 300px;
+	}
+	input[type="submit"] {
+		padding: 10px;
 	}
 }
 .timebox {
@@ -735,10 +742,6 @@ form.contact-form {
 
 /* Small only */
 @media screen and (max-width: 39.9375em) {
-	*,
-	.list-right h2 a {
-		font-size: 16px;
-	}
 	.box-grid {
 		ul {
 			li {
@@ -770,6 +773,14 @@ form.contact-form {
 	.bottommenu {
 		display: none;
 	}
+	.search form {
+		input[type="text"] {
+		    padding: 8px;
+		}
+		input[type="submit"] {
+			padding: 8px;
+		}
+	}
 	form.contact-form {
 		label {
 			display: block;
@@ -778,8 +789,16 @@ form.contact-form {
 		input[type="text"],
 		input[type="email"],
 		textarea {
-			width: 96%;
+			width: 100%;
+			padding: 10px 0;
 		}
+		input[type="submit"] {
+			width: 100%;
+			padding: 15px;
+		}
+	}
+	select {
+		margin-bottom: 10px;
 	}
 }
 /* Medium */
@@ -787,16 +806,19 @@ form.contact-form {
 	*,
 	.list-right h2 a,
 	.box0 ul li i.fa,
-	.list-right h2 a,
 	ul.menu li a,
 	ul.menu > li:first-child > a {
 		font-size: 16px;
 	}
+	.list-right h2 a {
+		font-size: 18px;
+	}
+	ul.breadcrumbs li a,
+	ul.breadcrumbs li span {
+		font-size: 14px;
+	}
 	.container {
 		width: 100%;
-	}
-	input {
-		max-width: 100%;
 	}
 	
 }
