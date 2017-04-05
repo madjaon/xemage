@@ -566,7 +566,7 @@ header.mobileheader {
 	a.mobile-menuopen {
 		display: table-cell;
 		vertical-align: middle;
-		font-size: 14px;
+		font-size: 16px;
 		color: #888;
 		cursor: pointer;
 		i.fa {
@@ -785,7 +785,11 @@ form.contact-form {
 /* Medium */
 @media screen and (max-width: 63.9375em) {
 	*,
-	.list-right h2 a {
+	.list-right h2 a,
+	.box0 ul li i.fa,
+	.list-right h2 a,
+	ul.menu li a,
+	ul.menu > li:first-child > a {
 		font-size: 16px;
 	}
 	.container {
@@ -794,6 +798,7 @@ form.contact-form {
 	input {
 		max-width: 100%;
 	}
+	
 }
 /* Medium and up */
 @media screen and (min-width: 40em) {
