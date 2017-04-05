@@ -300,13 +300,13 @@ class SiteController extends Controller
     public function search(Request $request)
     {
         trimRequest($request);
-        if($request->name == '') {
+        if($request->s == '') {
             return view('site.post.search', ['data' => null, 'request' => $request]);
         }
         //check page
         $page = ($request->page)?$request->page:1;
         //cache name
-        $cacheName = 'search_'.$request->name.'_'.$page;
+        $cacheName = 'search_'.$request->s.'_'.$page;
         $device = getDevice();
         if($device == MOBILE) {
             $cacheName = $cacheName.'_mobile';
@@ -317,7 +317,7 @@ class SiteController extends Controller
         }
         //query
         // post
-        $slug = CommonMethod::convert_string_vi_to_en($request->name);
+        $slug = CommonMethod::convert_string_vi_to_en($request->s);
         $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/i', '-', $slug));
         $data = DB::table('posts')
             ->where('status', ACTIVE)

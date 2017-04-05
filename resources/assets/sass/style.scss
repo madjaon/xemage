@@ -97,7 +97,7 @@ body {
 .container {
 	background: #fff;
 	margin: 0 auto;
-	width: 640px;
+	width: 50%;
 	max-width: 100%;
 }
 .main {
@@ -156,7 +156,7 @@ body {
 			padding-bottom: 10px;
 			margin-bottom: 10px;
 			list-style: none;
-			width: 295px;
+			width: 49%;
 			float: left;
 			a {
 				display: table;
@@ -212,6 +212,8 @@ body {
 	}
 }
 .box0 {
+	padding-left: 0;
+	padding-right: 0;
 	ul {
 		li {
 			i.fa {
@@ -226,7 +228,7 @@ body {
 		text-align: center;
 		li {
 			display: inline-block;
-			width: 180px;
+			width: 32%;
 			float: none;
 			border-bottom: none;
 			a {
@@ -255,7 +257,7 @@ body {
 .list-left {
 	float: left;
 	width: 100px;
-	margin-right: 10px;
+	margin-right: 15px;
 	a {
 		display: block;
 		img {
@@ -266,8 +268,7 @@ body {
 }
 .list-right {
 	float: left;
-	width: 500px;
-	margin-left: 10px;
+	width: 80%;
 	h2 {
 		margin-top: 0;
 		margin-bottom: 0;
@@ -535,6 +536,7 @@ ul.loveyou {
 .bottommenu {
 	margin-top: 30px;
 	ul.menu {
+		z-index: 0;
 		li {
 			a {
 				font-size: 13px;
@@ -754,7 +756,6 @@ form.contact-form {
 	.list-right {
 		float: none;
 		width: 100%;
-		margin-left: 0;
 	}
 	table.zodiac-rank {
 		width: 100% !important;
@@ -769,12 +770,29 @@ form.contact-form {
 	.bottommenu {
 		display: none;
 	}
+	form.contact-form {
+		label {
+			display: block;
+			width: 100%;
+		}
+		input[type="text"],
+		input[type="email"],
+		textarea {
+			width: 96%;
+		}
+	}
 }
-/* Medium and up */
+/* Medium */
 @media screen and (max-width: 63.9375em) {
 	*,
 	.list-right h2 a {
 		font-size: 16px;
+	}
+	.container {
+		width: 100%;
+	}
+	input {
+		max-width: 100%;
 	}
 }
 /* Medium and up */
@@ -791,5 +809,7 @@ form.contact-form {
 }
 /* Large only */
 @media screen and (min-width: 64em) and (max-width: 74.9375em) {
-
+	.container {
+		width: 60%;
+	}
 }

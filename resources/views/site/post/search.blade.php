@@ -30,7 +30,7 @@
 		<strong>{!! $title !!}</strong>
 	</div>
 	<div class="search-result">
-		<span>Kết quả tìm kiếm cho từ khóa:</span><h1>{{ $request->name }}</h1>
+		<span>Kết quả tìm kiếm cho từ khóa:</span><h1>{{ $request->s }}</h1>
 	</div>
 	@if(isset($data) && $data->total() > 0)
 		@include('site.post.boxList', array('data' => $data))
