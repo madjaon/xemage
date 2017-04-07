@@ -20,7 +20,7 @@
 	@if($meta_image)
 	<meta property="og:image" content="{!! url($meta_image) !!}" />
 	@endif
-	{!! getImageDimensionsOg($meta_image) !!}
+	{{-- getImageDimensionsOg($meta_image) --}}
 	@if(isset($isPost))
 	<meta property="og:type" content="article" />
 	@endif
