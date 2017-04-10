@@ -412,7 +412,7 @@ footer {
 }
 header {
 	background: #fff;
-	padding-bottom: 32px;
+	margin-bottom: 32px;
 	center {
 		background: #ba761a;
 		a.logo {
@@ -635,6 +635,51 @@ header.mobileheader {
 		}
 	}
 }
+
+//lib
+.lib {
+	padding: 10px;
+	margin-top: 20px;
+	.box-title {
+		background-color: #ba761a;
+		padding: 5px 10px;
+		border: none;
+		h3 {
+			font-size: 15px;
+			color: #fff;
+			margin: 0;
+			padding: 0;
+		}
+	}
+	ul {
+		padding: 0;
+		margin: 0;
+		overflow: hidden;
+		li {
+			border-bottom: 1px solid #ccc;
+			list-style: none;
+			a {
+				display: block;
+				padding: 10px 0 10px 10px;
+				font-weight: bold;
+				i.fa {
+					margin-right: 8px;
+				}
+				span {
+					float: right;
+					i.fa {
+
+					}
+				}
+			}
+			a:hover,
+			a:focus {
+				background: #efefef;
+			}
+		}
+	}
+}
+
 //end menu
 input[type="text"],
 input[type="email"],

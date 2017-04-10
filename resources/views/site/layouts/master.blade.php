@@ -33,6 +33,8 @@
 		@yield('content')
 	</div>
 
+  @include('site.common.lib')
+
   @include('site.common.ad', ['posPc' => 3, 'posMobile' => 4])
 
 </div>

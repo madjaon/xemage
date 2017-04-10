@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use DB;
+use Cache;
 use App\Helpers\CommonQuery;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,18 +17,43 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //get config data
-        $config = DB::table('configs')->first();
+        if(Cache::has('configsite')) {
+            $config = Cache::get('configsite');
+        } else {
+            $config = DB::table('configs')->first();
+            Cache::forever('configsite', $config);
+        }
         view()->share('configcode', $config->code);
         view()->share('configfbappid', $config->facebook_app_id);
         //all menu
-        view()->share('topmenu', self::getMenu());
-        // self::getMenus(MENUTYPE1, 'topmenu');
+        if(Cache::has('menutype1')) {
+            $menutype1 = Cache::get('menutype1');
+        } else {
+            $menutype1 = self::getMenu();
+            Cache::forever('menutype1', $menutype1);
+        }
+        view()->share('topmenu', $menutype1);
+        // if(Cache::has('menutype2')) {
+        //     $menutype2 = Cache::get('menutype2');
+        // } else {
+        //     $menutype2 = self::getMenu(MENUTYPE2);
+        //     Cache::forever('menutype2', $menutype2);
+        // }
         // view()->share('sidemenu', self::getMenu(MENUTYPE2));
-        // self::getMenus(MENUTYPE2, 'sidemenu');
-        view()->share('bottommenu', self::getMenu(MENUTYPE3));
-        // self::getMenus(MENUTYPE3, 'bottommenu');
-        view()->share('mobilemenu', self::getMenu(MENUTYPE4));
-        // self::getMenus(MENUTYPE4, 'mobilemenu');
+        if(Cache::has('menutype3')) {
+            $menutype3 = Cache::get('menutype3');
+        } else {
+            $menutype3 = self::getMenu(MENUTYPE3);
+            Cache::forever('menutype3', $menutype3);
+        }
+        view()->share('bottommenu', $menutype3);
+        if(Cache::has('menutype4')) {
+            $menutype4 = Cache::get('menutype4');
+        } else {
+            $menutype4 = self::getMenu(MENUTYPE4);
+            Cache::forever('menutype4', $menutype4);
+        }
+        view()->share('mobilemenu', $menutype4);
     }
 
     private function getArchives($orderColumn = 'start_date', $orderSort = 'desc', $limit = PAGINATE_SIDE)
