@@ -29,17 +29,11 @@ class AppServiceProvider extends ServiceProvider
         //all menu
         //current url
         $currentUrl = Request::url();
-        $urlArray = parse_url($currentUrl);
-        if(!empty($urlArray) && !empty($urlArray['path'])) {
-            $path = str_replace('/', '-', $urlArray['path']);
-        } else {
-            $path = '';
-        }
-        if(Cache::has('menutype1'.$path)) {
-            $menutype1 = Cache::get('menutype1'.$path);
+        if(Cache::has('menutype1'.$currentUrl)) {
+            $menutype1 = Cache::get('menutype1'.$currentUrl);
         } else {
             $menutype1 = self::getMenu();
-            Cache::forever('menutype1'.$path, $menutype1);
+            Cache::forever('menutype1'.$currentUrl, $menutype1);
         }
         view()->share('topmenu', $menutype1);
         // if(Cache::has('menutype2')) {
@@ -56,11 +50,11 @@ class AppServiceProvider extends ServiceProvider
             Cache::forever('menutype3', $menutype3);
         }
         view()->share('bottommenu', $menutype3);
-        if(Cache::has('menutype4'.$path)) {
-            $menutype4 = Cache::get('menutype4'.$path);
+        if(Cache::has('menutype4'.$currentUrl)) {
+            $menutype4 = Cache::get('menutype4'.$currentUrl);
         } else {
             $menutype4 = self::getMenu(MENUTYPE4);
-            Cache::forever('menutype4'.$path, $menutype4);
+            Cache::forever('menutype4'.$currentUrl, $menutype4);
         }
         view()->share('mobilemenu', $menutype4);
     }
