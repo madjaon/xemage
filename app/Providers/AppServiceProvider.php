@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use DB;
 use Cache;
+use Request;
 use App\Helpers\CommonQuery;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,11 +27,19 @@ class AppServiceProvider extends ServiceProvider
         view()->share('configcode', $config->code);
         view()->share('configfbappid', $config->facebook_app_id);
         //all menu
-        if(Cache::has('menutype1')) {
-            $menutype1 = Cache::get('menutype1');
+        //current url
+        $currentUrl = Request::url();
+        $urlArray = parse_url($currentUrl);
+        if(!empty($urlArray) && !empty($urlArray['path'])) {
+            $path = str_replace('/', '-', $urlArray['path']);
+        } else {
+            $path = '';
+        }
+        if(Cache::has('menutype1'.$path)) {
+            $menutype1 = Cache::get('menutype1'.$path);
         } else {
             $menutype1 = self::getMenu();
-            Cache::forever('menutype1', $menutype1);
+            Cache::forever('menutype1'.$path, $menutype1);
         }
         view()->share('topmenu', $menutype1);
         // if(Cache::has('menutype2')) {
@@ -47,11 +56,11 @@ class AppServiceProvider extends ServiceProvider
             Cache::forever('menutype3', $menutype3);
         }
         view()->share('bottommenu', $menutype3);
-        if(Cache::has('menutype4')) {
-            $menutype4 = Cache::get('menutype4');
+        if(Cache::has('menutype4'.$path)) {
+            $menutype4 = Cache::get('menutype4'.$path);
         } else {
             $menutype4 = self::getMenu(MENUTYPE4);
-            Cache::forever('menutype4', $menutype4);
+            Cache::forever('menutype4'.$path, $menutype4);
         }
         view()->share('mobilemenu', $menutype4);
     }
