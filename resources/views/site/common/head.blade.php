@@ -7,17 +7,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Content-language" content="vi">
 	<meta name="format-detection" content="telephone=no">
-	<meta name="revisit-after" content="1 days" />
 	<meta name="robots" content="noindex,nofollow" />
 	<meta name="language" content="vietnamese" />
-	<meta name='revisit-after' content='1 days' />
 	<meta name="title" content="{!! $meta_title !!}">
 	<meta name="keywords" content="{!! $meta_keyword !!}">
 	<meta name="description" content="{!! $meta_description !!}">
 	<meta property="og:url" content="{!! url()->current() !!}" />
 	<meta property="og:title" content="{!! $meta_title !!}" />
 	<meta property="og:description" content="{!! $meta_description !!}" />
-	@if($meta_image)
+	@if(!empty($meta_image))
 	<meta property="og:image" content="{!! url($meta_image) !!}" />
 	@endif
 	{{-- getImageDimensionsOg($meta_image) --}}
@@ -28,7 +26,7 @@
 	<meta property="fb:app_id" content="{!! $configfbappid !!}" />
 	@endif
 	<link rel="shortcut icon" href="{!! url('img/favicon.png') !!}" type="image/x-icon">
-	<link rel="alternate" hreflang="vi" href="{!! env('APP_URL', 'http://nauanngonre.com') !!}" />
+	<link rel="alternate" hreflang="vi" href="{!! env('APP_URL', 'https://xemtuoi.vn') !!}" />
 	@if(isset($pagePrev))
 	<link rel="prev" href="{!! $pagePrev !!}">
 	@endif
