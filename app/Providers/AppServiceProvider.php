@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use DB;
 use Cache;
-use Request;
 use App\Helpers\CommonQuery;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('configfbappid', $config->facebook_app_id);
         //all menu
         //current url
-        $currentUrl = Request::url();
+        $currentUrl = url()->current();
         if(Cache::has('menutype1'.$currentUrl)) {
             $menutype1 = Cache::get('menutype1'.$currentUrl);
         } else {
@@ -73,12 +72,18 @@ class AppServiceProvider extends ServiceProvider
 
     private function getMenus($type, $name)
     {
-        $menu = DB::table('menus')
-            ->where('type', $type)
-            ->where('status', ACTIVE)
-            ->orderByRaw(DB::raw("position = '0', position"))
-            ->orderBy('name')
-            ->get();
+        $cacheName = 'menu_'.$type.'_'.$name;
+        if(Cache::has($cacheName)) {
+            $menu = Cache::get($cacheName);
+        } else {
+            $menu = DB::table('menus')
+                ->where('type', $type)
+                ->where('status', ACTIVE)
+                ->orderByRaw(DB::raw("position = '0', position"))
+                ->orderBy('name')
+                ->get();
+            Cache::forever($cacheName, $menu);
+        }
         view()->share($name, $menu);
     }
 
