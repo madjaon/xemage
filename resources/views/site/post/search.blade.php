@@ -1,9 +1,9 @@
 <?php 
-	$title = 'Tìm kiếm';
-	$meta_title = '';
-	$meta_keyword = '';
-	$meta_description = '';
-	$meta_image = '';
+	$title = isset($search['meta_title'])?$search['meta_title']:'Tìm kiếm';
+	$meta_title = isset($search['meta_title'])?$search['meta_title']:'';
+	$meta_keyword = isset($search['meta_keyword'])?$search['meta_keyword']:'';
+	$meta_description = isset($search['meta_description'])?$search['meta_description']:'';
+	$meta_image = isset($data[0]->image)?url($data[0]->image):'';
 	$extendData = array(
 			'is404' => false,
 			'meta_title' => $meta_title,

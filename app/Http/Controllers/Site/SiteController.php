@@ -84,16 +84,20 @@ class SiteController extends Controller
             $data = $this->getPostByRelationsQuery('tag', $tag->id)->paginate(PAGINATE);
             if($data->total() > 0) {
                 //auto meta tag for seo
+                $tagName = ucwords(mb_strtolower($tag->name));
                 if(empty($tag->meta_title)) {
-                    $tag->meta_title = $tag->name.' | Tổng hợp tử vi xem bói phong thủy tại xemtuoi.vn';
+                    if($page > 1) {
+                        $tag->meta_title = $tagName.' trang '.$page.' | xemtuoi.vn';
+                    } else {
+                        $tag->meta_title = $tagName.' | xemtuoi.vn';
+                    }
                 }
                 if(empty($tag->meta_keyword)) {
-                    $tagNameNoLatin = CommonMethod::convert_string_vi_to_en($tag->name);
-                    $tag->meta_keyword = $tagNameNoLatin.', '.$tag->name;
+                    $tagNameNoLatin = CommonMethod::convert_string_vi_to_en($tagName);
+                    $tag->meta_keyword = $tagNameNoLatin.','.$tagName;
                 }
                 if(empty($tag->meta_description)) {
-                    $tagNameNoLatin = CommonMethod::convert_string_vi_to_en($tag->name);
-                    $tag->meta_description = $tagNameNoLatin.', '.$tag->name.' tại xemtuoi.vn';
+                    $tag->meta_description = $tagName;
                 }
                 //put cache
                 $html = view('site.post.tag', ['data' => $data, 'tag' => $tag])->render();
@@ -154,18 +158,6 @@ class SiteController extends Controller
                 $paginate = 1;
                 $data = $this->getPostByRelationsQuery('type', $type->id)->paginate($paginateNumber);
                 $total = count($data);
-                //auto meta tag for seo
-                if(empty($type->meta_title)) {
-                    $type->meta_title = $type->name.' | Tổng hợp tử vi xem bói phong thủy tại xemtuoi.vn';
-                }
-                if(empty($type->meta_keyword)) {
-                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                    $type->meta_keyword = $typeNameNoLatin.', '.$type->name;
-                }
-                if(empty($type->meta_description)) {
-                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                    $type->meta_description = $typeNameNoLatin.', '.$type->name.' tại xemtuoi.vn';
-                }
                 // lay ra the loai con cua the loai hien tai
                 $typeChild = DB::table('post_types')
                         ->select('id', 'name', 'slug', 'parent_id', 'image')
@@ -182,6 +174,22 @@ class SiteController extends Controller
                 $data = null;
                 $total = 0;
                 $typeChild = null;
+            }
+            //auto meta tag for seo
+            $typeName = ucwords(mb_strtolower($type->name));
+            if(empty($type->meta_title)) {
+                if($page > 1) {
+                    $type->meta_title = $typeName.' trang '.$page.' | xemtuoi.vn';
+                } else {
+                    $type->meta_title = $typeName.' | xemtuoi.vn';
+                }
+            }
+            if(empty($type->meta_keyword)) {
+                $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($typeName);
+                $type->meta_keyword = $typeNameNoLatin.','.$typeName;
+            }
+            if(empty($type->meta_description)) {
+                $type->meta_description = $typeName;
             }
             //put cache
             $html = view('site.post.type', ['data' => $data, 'type' => $type, 'typeChild' => $typeChild, 'total' => $total, 'paginate' => $paginate])->render();
@@ -223,16 +231,16 @@ class SiteController extends Controller
                 $typeMainParent = null;
             }
             //auto meta tag for seo
+            $postName = ucwords(mb_strtolower($post->name));
             if(empty($post->meta_title)) {
-                $post->meta_title = $post->name.' | '.$post->name.' tại xemtuoi.vn';
+                $post->meta_title = $postName.' | xemtuoi.vn';
             }
             if(empty($post->meta_keyword)) {
-                $postNameNoLatin = CommonMethod::convert_string_vi_to_en($post->name);
-                $post->meta_keyword = $post->name.', '.$postNameNoLatin;
+                $postNameNoLatin = CommonMethod::convert_string_vi_to_en($postName);
+                $post->meta_keyword = $postName.','.$postNameNoLatin;
             }
             if(empty($post->meta_description)) {
-                $postNameNoLatin = CommonMethod::convert_string_vi_to_en($post->name);
-                $post->meta_description = $post->name.', '.$postNameNoLatin;
+                $post->meta_description = limit_text(strip_tags($post->description), 200);
             }
             //put cache
             $html = view('site.post.show', [
@@ -289,6 +297,22 @@ class SiteController extends Controller
                 $paginate = null;
                 $total = 0;
             }
+            //auto meta tag for seo
+            $typeName = ucwords(mb_strtolower($type->name));
+            if(empty($type->meta_title)) {
+                if($page > 1) {
+                    $type->meta_title = $typeName.' trang '.$page.' | xemtuoi.vn';
+                } else {
+                    $type->meta_title = $typeName.' | xemtuoi.vn';
+                }
+            }
+            if(empty($type->meta_keyword)) {
+                $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($typeName);
+                $type->meta_keyword = $typeNameNoLatin.','.$typeName;
+            }
+            if(empty($type->meta_description)) {
+                $type->meta_description = $typeName;
+            }
             //put cache
             $html = view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate, 'typeParent' => $typeParent])->render();
             Cache::forever($cacheName, $html);
@@ -299,9 +323,10 @@ class SiteController extends Controller
     }
     public function search(Request $request)
     {
+        $search = array();
         trimRequest($request);
         if($request->s == '') {
-            return view('site.post.search', ['data' => null, 'request' => $request]);
+            return view('site.post.search', ['data' => null, 'request' => $request, 'search' => $search]);
         }
         //check page
         $page = ($request->page)?$request->page:1;
@@ -325,11 +350,19 @@ class SiteController extends Controller
             ->where('slug', 'like', '%'.$slug.'%')
             ->orderBy('start_date', 'desc')
             ->paginate(PAGINATE);
+        //auto meta tag for seo
+        if($page > 1) {
+            $search['meta_title'] = 'Tìm kiếm: '.$request->s.' trang '.$page.' | xemtuoi.vn';
+        } else {
+            $search['meta_title'] = 'Tìm kiếm: '.$request->s.' | xemtuoi.vn';
+        }
+        $search['meta_keyword'] = $request->s;
+        $search['meta_description'] = $request->s;
         //put cache
-        $html = view('site.post.search', ['data' => $data->appends($request->except('page')), 'request' => $request])->render();
+        $html = view('site.post.search', ['data' => $data->appends($request->except('page')), 'request' => $request, 'search' => $search])->render();
         Cache::forever($cacheName, $html);
         //return view
-        return view('site.post.search', ['data' => $data->appends($request->except('page')), 'request' => $request]);
+        return view('site.post.search', ['data' => $data->appends($request->except('page')), 'request' => $request, 'search' => $search]);
     }
     public function sitemap()
     {
